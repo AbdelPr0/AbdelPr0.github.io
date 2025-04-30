@@ -1,0 +1,98 @@
+
+{
+  "meta": {
+    "title": "Terminal Vault-Tech | Abdelrahmane Gacemi",
+    "description": "Portfolio développeur interactif d'Abdelrahmane Gacemi"
+  },
+  "terminal": {
+    "welcome": "SYSTÈME D'EXPLOITATION UNIFIÉ VAULT-TECH",
+    "copyright": "COPYRIGHT 2075-2077 VAULT-TECH",
+    "boot": "SÉQUENCE DE DÉMARRAGE INITIALISÉE...",
+    "loading": "CHARGEMENT DES DONNÉES PERSONNELLES...",
+    "accessGranted": "ACCÈS ACCORDÉ",
+    "initializing": "INITIALISATION DE L'INTERFACE...",
+    "hello": "Bonjour, Visiteur !",
+    "prompt": ">",
+    "help": "Tapez 'help' pour les commandes disponibles",
+    "commands": "Commandes disponibles : about, projects, skills, contact, theme, language, clear, help",
+    "notFound": "Commande non trouvée. Tapez 'help' pour les commandes disponibles."
+  },
+  "nav": {
+    "about": "À Propos",
+    "projects": "Projets",
+    "skills": "Compétences",
+    "contact": "Contact"
+  },
+  "theme": {
+    "green": "Terminal Vert",
+    "amber": "Terminal Ambre"
+  },
+  "language": {
+    "en": "Anglais",
+    "fr": "Français",
+    "switch": "Changer de Langue"
+  },
+  "about": {
+    "title": "Dossier Personnel : Abdelrahmane Gacemi",
+    "role": "Développeur Web et Mobile",
+    "intro": "Bonjour ! Je suis un développeur web et mobile passionné, spécialisé dans la création d'applications réactives et conviviales. J'excelle tant dans le développement front-end que back-end, offrant des expériences numériques fluides.",
+    "background": "Avec une formation en informatique et des années d'expérience pratique, j'ai développé une compréhension approfondie des frameworks et pratiques de développement modernes. Je suis constamment à la recherche de nouvelles technologies pour améliorer mes compétences.",
+    "approach": "Mon approche combine précision technique et résolution créative de problèmes. Je crois au code propre, au design intuitif et à la construction d'applications qui non seulement fonctionnent parfaitement, mais offrent également des expériences utilisateur engageantes."
+  },
+  "projects": {
+    "title": "Base de Données des Projets",
+    "viewAll": "Voir Tous les Projets",
+    "viewProject": "Voir le Projet",
+    "viewCode": "Voir le Code",
+    "featured": "Projets en Vedette",
+    "items": [
+      {
+        "title": "Plateforme E-Commerce",
+        "description": "Boutique en ligne full-stack avec traitement sécurisé des paiements, comptes utilisateurs et gestion des stocks.",
+        "tech": "React, Node.js, MongoDB, Stripe"
+      },
+      {
+        "title": "Application de Surveillance Météo",
+        "description": "Application mobile fournissant des données météorologiques en temps réel et des prévisions avec cartes interactives.",
+        "tech": "React Native, API Météo, MapBox"
+      },
+      {
+        "title": "Système de Gestion des Tâches",
+        "description": "Outil de gestion de projet collaboratif avec suivi des tâches, affectations d'équipe et visualisation des progrès.",
+        "tech": "Vue.js, Firebase, Chart.js"
+      }
+    ]
+  },
+  "skills": {
+    "title": "Spécifications Techniques",
+    "frontend": "Front-end",
+    "backend": "Back-end",
+    "mobile": "Mobile",
+    "other": "Autres",
+    "frontendSkills": ["HTML5", "CSS3", "JavaScript", "TypeScript", "React", "Vue.js", "Tailwind CSS", "Redux"],
+    "backendSkills": ["Node.js", "Express", "Python", "Django", "PHP", "MySQL", "MongoDB", "PostgreSQL"],
+    "mobileSkills": ["React Native", "Flutter", "Android Development", "iOS Development"],
+    "otherSkills": ["Git", "Docker", "AWS", "Firebase", "RESTful APIs", "GraphQL", "Agile/Scrum", "UI/UX Design"]
+  },
+  "contact": {
+    "title": "Interface de Communication",
+    "formTitle": "Envoyer un Message",
+    "name": "Nom",
+    "email": "Email",
+    "message": "Message",
+    "send": "Envoyer le Message",
+    "sending": "Transmission en cours...",
+    "success": "Message transmis avec succès !",
+    "error": "Échec de la transmission. Veuillez réessayer.",
+    "socialTitle": "Canaux de Communication",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "twitter": "Twitter",
+    "email": "Email"
+  },
+  "footer": {
+    "copyright": "© 2025 Abdelrahmane Gacemi",
+    "rights": "Tous Droits Réservés",
+    "madeWith": "Codé à la main avec <3"
+  }
+}

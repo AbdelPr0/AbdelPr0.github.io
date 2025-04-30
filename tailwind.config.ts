@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -18,12 +19,23 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				mono: ['VT323', 'Share Tech Mono', 'Space Mono', 'monospace'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
+				terminal: {
+					green: '#4ade80',
+					amber: '#ffbf00',
+					dark: '#0f172a',
+					black: '#121212',
+					'green-glow': 'rgba(74, 222, 128, 0.5)',
+					'amber-glow': 'rgba(255, 191, 0, 0.5)'
+				},
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))'
@@ -63,33 +75,51 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				}
 			},
+			keyframes: {
+				'accordion-down': {
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' }
+				},
+				'accordion-up': {
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' }
+				},
+				'text-blink': {
+					'0%, 100%': { opacity: '1' },
+					'50%': { opacity: '0' }
+				},
+				'scan-line': {
+					'0%': { transform: 'translateY(0)' },
+					'100%': { transform: 'translateY(100%)' }
+				},
+				'screen-flicker': {
+					'0%, 100%': { opacity: '1' },
+					'92%': { opacity: '0.95' },
+					'96%': { opacity: '0.85' }
+				},
+				'typing': {
+					from: { width: '0' },
+					to: { width: '100%' }
+				},
+				'cursor-blink': {
+					'from, to': { borderColor: 'transparent' },
+					'50%': { borderColor: 'currentColor' }
+				}
+			},
+			animation: {
+				'accordion-down': 'accordion-down 0.2s ease-out',
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'text-blink': 'text-blink 1s infinite',
+				'scan-line': 'scan-line 8s linear infinite',
+				'screen-flicker': 'screen-flicker 6s infinite',
+				'typing': 'typing 3.5s steps(40, end)',
+				'cursor-blink': 'cursor-blink 0.75s step-end infinite'
+			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
 			},
-			keyframes: {
-				'accordion-down': {
-					from: {
-						height: '0'
-					},
-					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
-				},
-				'accordion-up': {
-					from: {
-						height: 'var(--radix-accordion-content-height)'
-					},
-					to: {
-						height: '0'
-					}
-				}
-			},
-			animation: {
-				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
-			}
 		}
 	},
 	plugins: [require("tailwindcss-animate")],

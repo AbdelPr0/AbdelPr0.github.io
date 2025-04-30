@@ -1,0 +1,98 @@
+
+{
+  "meta": {
+    "title": "Vault-Tech Terminal | Abdelrahmane Gacemi",
+    "description": "Interactive developer portfolio of Abdelrahmane Gacemi"
+  },
+  "terminal": {
+    "welcome": "VAULT-TECH UNIFIED OPERATING SYSTEM",
+    "copyright": "COPYRIGHT 2075-2077 VAULT-TECH",
+    "boot": "BOOTING SEQUENCE INITIALIZED...",
+    "loading": "LOADING PERSONAL DATA...",
+    "accessGranted": "ACCESS GRANTED",
+    "initializing": "INITIALIZING INTERFACE...",
+    "hello": "Hello, Visitor!",
+    "prompt": ">",
+    "help": "Type 'help' for available commands",
+    "commands": "Available commands: about, projects, skills, contact, theme, language, clear, help",
+    "notFound": "Command not found. Type 'help' for available commands."
+  },
+  "nav": {
+    "about": "About",
+    "projects": "Projects",
+    "skills": "Skills",
+    "contact": "Contact"
+  },
+  "theme": {
+    "green": "Green Terminal",
+    "amber": "Amber Terminal"
+  },
+  "language": {
+    "en": "English",
+    "fr": "French",
+    "switch": "Switch Language"
+  },
+  "about": {
+    "title": "Personnel File: Abdelrahmane Gacemi",
+    "role": "Web and Mobile Developer",
+    "intro": "Greetings! I'm a passionate web and mobile developer with expertise in creating responsive, user-friendly applications. I specialize in both front-end and back-end development, delivering seamless digital experiences.",
+    "background": "With a background in computer science and years of hands-on experience, I've developed a deep understanding of modern development frameworks and practices. I'm constantly exploring new technologies to enhance my skillset.",
+    "approach": "My approach combines technical precision with creative problem-solving. I believe in clean code, intuitive design, and building applications that not only function flawlessly but also provide engaging user experiences."
+  },
+  "projects": {
+    "title": "Project Database",
+    "viewAll": "View All Projects",
+    "viewProject": "View Project",
+    "viewCode": "View Code",
+    "featured": "Featured Projects",
+    "items": [
+      {
+        "title": "E-Commerce Platform",
+        "description": "Full-stack online store with secure payment processing, user accounts, and inventory management.",
+        "tech": "React, Node.js, MongoDB, Stripe"
+      },
+      {
+        "title": "Weather Monitoring App",
+        "description": "Mobile application that provides real-time weather data and forecasts with interactive maps.",
+        "tech": "React Native, Weather API, MapBox"
+      },
+      {
+        "title": "Task Management System",
+        "description": "Collaborative project management tool with task tracking, team assignments, and progress visualization.",
+        "tech": "Vue.js, Firebase, Chart.js"
+      }
+    ]
+  },
+  "skills": {
+    "title": "Technical Specifications",
+    "frontend": "Front-end",
+    "backend": "Back-end",
+    "mobile": "Mobile",
+    "other": "Other",
+    "frontendSkills": ["HTML5", "CSS3", "JavaScript", "TypeScript", "React", "Vue.js", "Tailwind CSS", "Redux"],
+    "backendSkills": ["Node.js", "Express", "Python", "Django", "PHP", "MySQL", "MongoDB", "PostgreSQL"],
+    "mobileSkills": ["React Native", "Flutter", "Android Development", "iOS Development"],
+    "otherSkills": ["Git", "Docker", "AWS", "Firebase", "RESTful APIs", "GraphQL", "Agile/Scrum", "UI/UX Design"]
+  },
+  "contact": {
+    "title": "Communication Interface",
+    "formTitle": "Send Message",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send Message",
+    "sending": "Transmitting...",
+    "success": "Message successfully transmitted!",
+    "error": "Transmission failed. Please try again.",
+    "socialTitle": "Communication Channels",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "twitter": "Twitter",
+    "email": "Email"
+  },
+  "footer": {
+    "copyright": "© 2025 Abdelrahmane Gacemi",
+    "rights": "All Rights Reserved",
+    "madeWith": "Hand-coded with <3"
+  }
+}
