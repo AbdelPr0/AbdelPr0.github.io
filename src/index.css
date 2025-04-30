@@ -123,5 +123,41 @@
   .cursor {
     @apply animate-text-blink;
   }
+  
+  .terminal-help ul li {
+    @apply opacity-80 hover:opacity-100 transition-opacity;
+  }
+  
+  .terminal-help ul li span {
+    @apply font-bold;
+  }
+  
+  @keyframes scan-line {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(100vh);
+    }
+  }
+  
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+  
+  @keyframes text-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
 }
 
+@layer utilities {
+  .animate-typing {
+    animation: typing 2s steps(40, end);
+  }
+  
+  .animate-text-blink {
+    animation: text-blink 1s infinite;
+  }
+}

@@ -3,11 +3,13 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import TerminalCommand from './terminal/TerminalCommand';
 import TerminalInput from './terminal/TerminalInput';
+import TerminalNavbar from './terminal/TerminalNavbar';
 import AboutSection from './sections/AboutSection';
 import ProjectsSection from './sections/ProjectsSection';
 import SkillsSection from './sections/SkillsSection';
 import ContactSection from './sections/ContactSection';
 import SnakeGame from './games/SnakeGame';
+import IntroScreen from './IntroScreen';
 import { useTheme } from '@/contexts/ThemeContext';
 
 type CommandType = {
@@ -22,6 +24,7 @@ const Terminal: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
   const [history, setHistory] = useState<CommandType[]>([]);
   const [bootSequence, setBootSequence] = useState(true);
+  const [showIntro, setShowIntro] = useState(true);
   const terminalEndRef = useRef<HTMLDivElement>(null);
   
   // Scroll to bottom when new commands are added
@@ -31,6 +34,9 @@ const Terminal: React.FC = () => {
   
   // Initial boot sequence
   useEffect(() => {
+    // Skip boot sequence if intro is still showing
+    if (showIntro) return;
+    
     const bootMessages = [
       { message: t('terminal.boot'), delay: 600 },
       { message: t('terminal.copyright'), delay: 1000 },
@@ -62,7 +68,7 @@ const Terminal: React.FC = () => {
         }
       }, totalDelay);
     });
-  }, [t]);
+  }, [t, showIntro]);
   
   const handleCommand = (cmd: string) => {
     let output: React.ReactNode;
@@ -97,18 +103,30 @@ const Terminal: React.FC = () => {
         </div>;
         break;
       case 'help':
-        output = <div className="text-sm">{t('terminal.commands')}</div>;
+        output = <div className="terminal-help space-y-3">
+          <p className="text-sm">{t('terminal.availableCommands')}</p>
+          <ul className="space-y-1 text-sm">
+            <li><span className="text-current">▸ about</span>      → {t('commands.about')}</li>
+            <li><span className="text-current">▸ projects</span>   → {t('commands.projects')}</li>
+            <li><span className="text-current">▸ skills</span>     → {t('commands.skills')}</li>
+            <li><span className="text-current">▸ contact</span>    → {t('commands.contact')}</li>
+            <li><span className="text-current">▸ theme</span>      → {t('commands.theme')}</li>
+            <li><span className="text-current">▸ language</span>   → {t('commands.language')}</li>
+            <li><span className="text-current">▸ snake</span>      → {t('commands.snake')}</li>
+            <li><span className="text-current">▸ clear</span>      → {t('commands.clear')}</li>
+          </ul>
+        </div>;
         break;
       case 'clear':
         setHistory([]);
         output = <></>;
         return;
-      // Commande secrète pour le jeu Snake
-      case '42snake':
+      case 'snake':
+      case '42snake': // Keep the easter egg command too
         output = <SnakeGame />;
         break;
       case 'easteregg':
-        output = <div className="text-sm animate-pulse">🎮 Essayez la commande secrète : 42snake</div>;
+        output = <div className="text-sm animate-pulse">🎮 {t('terminal.snakeHint')}</div>;
         break;
       default:
         output = <div className="text-sm">{t('terminal.notFound')}</div>;
@@ -124,24 +142,36 @@ const Terminal: React.FC = () => {
       }
     ]);
   };
+
+  const handleIntroComplete = () => {
+    setShowIntro(false);
+  };
+  
+  if (showIntro) {
+    return <IntroScreen onComplete={handleIntroComplete} />;
+  }
   
   return (
-    <div className="space-y-4 p-2">
-      {history.map((item) => (
-        <TerminalCommand 
-          key={item.id}
-          command={item.command}
-          output={item.output}
-          timestamp={item.timestamp}
-          isTyping={bootSequence}
-        />
-      ))}
+    <div className="space-y-4">
+      <TerminalNavbar onRunCommand={handleCommand} />
       
-      {!bootSequence && (
-        <TerminalInput onCommand={handleCommand} placeholder="help" />
-      )}
-      
-      <div ref={terminalEndRef} />
+      <div className="p-2">
+        {history.map((item) => (
+          <TerminalCommand 
+            key={item.id}
+            command={item.command}
+            output={item.output}
+            timestamp={item.timestamp}
+            isTyping={bootSequence}
+          />
+        ))}
+        
+        {!bootSequence && (
+          <TerminalInput onCommand={handleCommand} placeholder="help" />
+        )}
+        
+        <div ref={terminalEndRef} />
+      </div>
     </div>
   );
 };

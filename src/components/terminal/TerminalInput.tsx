@@ -33,9 +33,11 @@ const TerminalInput: React.FC<TerminalInputProps> = ({
     }
   };
   
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    // Jouer un son de frappe de clavier
-    playRandomKeySound();
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    // Play a keyboard sound when typing, not on every key press
+    if (e.key.length === 1 || e.key === 'Backspace' || e.key === 'Enter') {
+      playRandomKeySound();
+    }
   };
   
   // Focus the input when clicked anywhere in the terminal
@@ -57,7 +59,7 @@ const TerminalInput: React.FC<TerminalInputProps> = ({
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          onKeyDown={handleKeyPress}
+          onKeyDown={handleKeyDown}
           placeholder={placeholder}
           disabled={disabled}
           className="bg-transparent border-none outline-none w-full caret-current animate-cursor-blink"

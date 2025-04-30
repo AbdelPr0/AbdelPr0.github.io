@@ -23,20 +23,22 @@ const SnakeGame: React.FC = () => {
   const directionRef = useRef(direction);
   const speedRef = useRef(INITIAL_SPEED);
   const gameLoopRef = useRef<number | null>(null);
+  const requestRef = useRef<number>();
+  const lastUpdateTimeRef = useRef(0);
 
-  // Mettre à jour la référence de direction lorsque direction change
+  // Update the direction reference when direction changes
   useEffect(() => {
     directionRef.current = direction;
   }, [direction]);
 
-  // Générer une position aléatoire pour la nourriture
+  // Generate a random position for food
   const generateFood = (currentSnake: Position[]): Position => {
     const newFood = {
       x: Math.floor(Math.random() * GRID_SIZE),
       y: Math.floor(Math.random() * GRID_SIZE),
     };
 
-    // Vérifier si la nourriture est sur le serpent
+    // Check if food is on the snake
     if (currentSnake.some(segment => segment.x === newFood.x && segment.y === newFood.y)) {
       return generateFood(currentSnake);
     }
@@ -44,27 +46,35 @@ const SnakeGame: React.FC = () => {
     return newFood;
   };
 
-  // Gestionnaire de clavier pour contrôler le serpent
+  // Handle keyboard controls
   const handleKeyDown = (e: KeyboardEvent) => {
     e.preventDefault();
 
     switch (e.key) {
       case 'ArrowUp':
+      case 'w':
+      case 'W':
         if (directionRef.current !== 'DOWN') {
           setDirection('UP');
         }
         break;
       case 'ArrowRight':
+      case 'd':
+      case 'D':
         if (directionRef.current !== 'LEFT') {
           setDirection('RIGHT');
         }
         break;
       case 'ArrowDown':
+      case 's':
+      case 'S':
         if (directionRef.current !== 'UP') {
           setDirection('DOWN');
         }
         break;
       case 'ArrowLeft':
+      case 'a':
+      case 'A':
         if (directionRef.current !== 'RIGHT') {
           setDirection('LEFT');
         }
@@ -80,12 +90,24 @@ const SnakeGame: React.FC = () => {
     }
   };
 
-  // Mettre à jour le jeu à chaque frame
+  // Handle touch/button controls for mobile
+  const handleDirectionButton = (newDirection: 'UP' | 'RIGHT' | 'DOWN' | 'LEFT') => {
+    if (
+      (newDirection === 'UP' && directionRef.current !== 'DOWN') ||
+      (newDirection === 'RIGHT' && directionRef.current !== 'LEFT') ||
+      (newDirection === 'DOWN' && directionRef.current !== 'UP') ||
+      (newDirection === 'LEFT' && directionRef.current !== 'RIGHT')
+    ) {
+      setDirection(newDirection);
+    }
+  };
+
+  // Update game state
   const updateGame = () => {
     if (gameOver || !gameStarted) return;
 
     setSnake(currentSnake => {
-      // Calculer la nouvelle tête du serpent
+      // Calculate new head position
       const head = { ...currentSnake[0] };
 
       switch (directionRef.current) {
@@ -103,13 +125,13 @@ const SnakeGame: React.FC = () => {
           break;
       }
 
-      // Vérifier si le serpent est sorti de la grille ou s'est mordu lui-même
+      // Check for collisions
       if (
         head.x < 0 ||
         head.x >= GRID_SIZE ||
         head.y < 0 ||
         head.y >= GRID_SIZE ||
-        currentSnake.some(segment => segment.x === head.x && segment.y === head.y)
+        currentSnake.slice(1).some(segment => segment.x === head.x && segment.y === head.y)
       ) {
         setGameOver(true);
         if (gameLoopRef.current) {
@@ -120,16 +142,16 @@ const SnakeGame: React.FC = () => {
 
       const newSnake = [head, ...currentSnake];
 
-      // Vérifier si le serpent a mangé la nourriture
+      // Check if snake ate food
       if (head.x === food.x && head.y === food.y) {
-        // Augmenter le score
+        // Increase score
         setScore(s => s + 10);
-        // Accélérer légèrement
+        // Speed up slightly
         speedRef.current = Math.max(50, speedRef.current - 5);
-        // Générer une nouvelle nourriture
+        // Generate new food
         setFood(generateFood(newSnake));
       } else {
-        // Retirer la queue si le serpent n'a pas mangé
+        // Remove tail if snake didn't eat
         newSnake.pop();
       }
 
@@ -137,20 +159,30 @@ const SnakeGame: React.FC = () => {
     });
   };
 
-  // Boucle de jeu principale
-  const startGameLoop = () => {
-    let lastTime = 0;
-    const gameLoop = (timestamp: number) => {
-      if (timestamp - lastTime >= speedRef.current) {
-        lastTime = timestamp;
-        updateGame();
-      }
-      gameLoopRef.current = requestAnimationFrame(gameLoop);
-    };
-    gameLoopRef.current = requestAnimationFrame(gameLoop);
+  // Game loop using requestAnimationFrame for smoother animation
+  const gameLoop = (timestamp: number) => {
+    if (!lastUpdateTimeRef.current) lastUpdateTimeRef.current = timestamp;
+    
+    const elapsed = timestamp - lastUpdateTimeRef.current;
+    
+    if (elapsed > speedRef.current) {
+      lastUpdateTimeRef.current = timestamp;
+      updateGame();
+    }
+    
+    // Continue the game loop
+    requestRef.current = requestAnimationFrame(gameLoop);
   };
 
-  // Dessiner le jeu dans le canvas
+  // Start the game loop
+  const startGameLoop = () => {
+    if (requestRef.current) {
+      cancelAnimationFrame(requestRef.current);
+    }
+    requestRef.current = requestAnimationFrame(gameLoop);
+  };
+
+  // Draw the game on canvas
   const drawGame = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -158,10 +190,10 @@ const SnakeGame: React.FC = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Effacer le canvas
+    // Clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Dessiner la grille (facultatif)
+    // Draw grid (optional)
     ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
     for (let i = 0; i <= GRID_SIZE; i++) {
       ctx.beginPath();
@@ -174,7 +206,7 @@ const SnakeGame: React.FC = () => {
       ctx.stroke();
     }
 
-    // Dessiner la nourriture
+    // Draw food
     ctx.fillStyle = '#4ade80';
     ctx.fillRect(
       food.x * CELL_SIZE,
@@ -183,9 +215,9 @@ const SnakeGame: React.FC = () => {
       CELL_SIZE
     );
 
-    // Dessiner le serpent
+    // Draw snake
     snake.forEach((segment, index) => {
-      // Tête du serpent - couleur différente
+      // Snake head - different color
       if (index === 0) {
         ctx.fillStyle = '#4ade80';
       } else {
@@ -200,7 +232,7 @@ const SnakeGame: React.FC = () => {
     });
   };
 
-  // Redémarrer le jeu
+  // Restart the game
   const restartGame = () => {
     setSnake([{ x: 8, y: 8 }]);
     setFood(generateFood([{ x: 8, y: 8 }]));
@@ -209,24 +241,31 @@ const SnakeGame: React.FC = () => {
     setScore(0);
     setGameStarted(false);
     speedRef.current = INITIAL_SPEED;
+    lastUpdateTimeRef.current = 0;
   };
 
-  // Configurer les écouteurs d'événements
+  // Set up event listeners
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
 
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
-      if (gameLoopRef.current) {
-        cancelAnimationFrame(gameLoopRef.current);
+      if (requestRef.current) {
+        cancelAnimationFrame(requestRef.current);
       }
     };
   }, []);
 
-  // Dessiner le jeu à chaque changement d'état
+  // Draw game when state changes
   useEffect(() => {
     drawGame();
   }, [snake, food, gameOver]);
+
+  // Start button handler
+  const handleStart = () => {
+    setGameStarted(true);
+    startGameLoop();
+  };
 
   return (
     <div className="flex flex-col items-center space-y-4 p-2">
@@ -249,6 +288,53 @@ const SnakeGame: React.FC = () => {
           className="bg-terminal-dark"
         />
       </div>
+      
+      {/* Controls for touch devices */}
+      <div className="grid grid-cols-3 gap-2 w-[180px] mt-2">
+        <div></div>
+        <button 
+          onClick={() => handleDirectionButton('UP')}
+          className="border border-current px-4 py-2 hover:bg-terminal-dark/50"
+        >
+          ↑
+        </button>
+        <div></div>
+        
+        <button 
+          onClick={() => handleDirectionButton('LEFT')}
+          className="border border-current px-4 py-2 hover:bg-terminal-dark/50"
+        >
+          ←
+        </button>
+        
+        {!gameStarted && !gameOver ? (
+          <button 
+            onClick={handleStart}
+            className="border border-current px-4 py-2 hover:bg-terminal-dark/50"
+          >
+            ▶
+          </button>
+        ) : (
+          <div className="border border-current px-4 py-2 opacity-50 text-center">·</div>
+        )}
+        
+        <button 
+          onClick={() => handleDirectionButton('RIGHT')}
+          className="border border-current px-4 py-2 hover:bg-terminal-dark/50"
+        >
+          →
+        </button>
+        
+        <div></div>
+        <button 
+          onClick={() => handleDirectionButton('DOWN')}
+          className="border border-current px-4 py-2 hover:bg-terminal-dark/50"
+        >
+          ↓
+        </button>
+        <div></div>
+      </div>
+      
       {gameOver && (
         <button
           onClick={restartGame}
@@ -259,6 +345,7 @@ const SnakeGame: React.FC = () => {
       )}
       <div className="text-xs text-center mt-4">
         <p>{t('games.snake.instructions')}</p>
+        <p className="mt-1">{t('games.snake.controlsHelp')}</p>
       </div>
     </div>
   );

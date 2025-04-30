@@ -1,80 +1,67 @@
 
+// Let's create a new English translation file with expanded entries
 {
   "meta": {
-    "title": "Terminal Portfolio",
-    "description": "Interactive terminal-style portfolio"
+    "title": "Terminal Portfolio | Abdelrahmane Gacemi",
+    "description": "Interactive terminal-style portfolio showcasing the work of Abdelrahmane Gacemi"
+  },
+  "intro": {
+    "title": "Web & Mobile Developer"
   },
   "terminal": {
-    "welcome": "Terminal v1.0.0",
-    "boot": "System initializing...",
-    "copyright": "© 2023 Terminal Portfolio System",
-    "loading": "Loading environment variables...",
-    "accessGranted": "Access granted. Welcome, user.",
-    "initializing": "Initializing user interface...",
-    "hello": "Hello! Type 'help' to see available commands.",
-    "help": "Available commands: about, projects, skills, contact, theme, language, clear",
-    "notFound": "Command not found. Type 'help' for available commands.",
-    "commands": "Available commands:\n- about: Display information about me\n- projects: Show my projects\n- skills: List my technical skills\n- contact: Display contact information\n- theme: Toggle terminal theme (green/amber)\n- language: Switch language (en/fr)\n- clear: Clear terminal history\n- easteregg: Discover hidden features",
-    "prompt": ">"
-  },
-  "about": {
-    "title": "About Me",
-    "role": "Full Stack Developer",
-    "intro": "Welcome to my terminal portfolio! I'm a passionate developer with experience in building web applications using modern technologies.",
-    "background": "With a background in computer science and several years of industry experience, I specialize in creating efficient and elegant solutions to complex problems.",
-    "approach": "I believe in clean code, continuous learning, and staying up-to-date with the latest technologies and best practices."
-  },
-  "projects": {
-    "title": "Projects",
-    "seeMore": "See more on GitHub",
-    "project1": {
-      "title": "Project One",
-      "description": "A responsive web application built with React and Node.js."
-    },
-    "project2": {
-      "title": "Project Two",
-      "description": "An e-commerce platform with secure payment processing."
-    },
-    "project3": {
-      "title": "Project Three",
-      "description": "A real-time data visualization dashboard."
-    }
-  },
-  "skills": {
-    "title": "Technical Skills",
-    "languages": "Programming Languages",
-    "frontend": "Frontend Technologies",
-    "backend": "Backend Technologies",
-    "other": "Other Tools & Skills"
-  },
-  "contact": {
-    "title": "Contact Information",
-    "email": "Email",
-    "linkedin": "LinkedIn",
-    "github": "GitHub",
-    "message": "Feel free to reach out through any of these channels!"
-  },
-  "theme": {
-    "green": "GREEN THEME",
-    "amber": "AMBER THEME"
-  },
-  "language": {
-    "en": "ENGLISH",
-    "fr": "FRENCH",
-    "switch": "Change language"
+    "welcome": "Terminal",
+    "prompt": ">",
+    "boot": "System booting...",
+    "copyright": "© Terminal OS v3.14.15",
+    "loading": "Loading profile data...",
+    "accessGranted": "Access granted!",
+    "initializing": "Initializing portfolio interface...",
+    "hello": "Hello! Welcome to my interactive portfolio.",
+    "help": "Type 'help' to see available commands.",
+    "commands": "Available commands: about, projects, skills, contact, theme, language, clear",
+    "notFound": "Command not found. Type 'help' to see available commands.",
+    "availableCommands": "Available commands:",
+    "helpButton": "Help",
+    "snakeHint": "Try the command: snake"
   },
   "footer": {
-    "copyright": "Terminal Portfolio",
+    "copyright": "© 2024 Abdelrahmane Gacemi",
     "rights": "All rights reserved",
-    "madeWith": "Made with React & Tailwind CSS"
+    "madeWith": "Made with ❤️ and code"
+  },
+  "theme": {
+    "green": "GREEN",
+    "amber": "AMBER",
+    "toggle": "Toggle theme"
+  },
+  "language": {
+    "en": "English",
+    "fr": "French",
+    "switch": "Switch language"
+  },
+  "sound": {
+    "on": "Sound ON",
+    "off": "Sound OFF",
+    "toggle": "Toggle keyboard sound"
+  },
+  "commands": {
+    "about": "Learn about the developer",
+    "projects": "View my projects",
+    "skills": "See my technical skills",
+    "contact": "Get in touch with me",
+    "theme": "Change terminal color theme",
+    "language": "Switch language (EN/FR)",
+    "snake": "Play Snake game",
+    "clear": "Clear terminal screen"
   },
   "games": {
     "snake": {
       "score": "Score",
-      "gameOver": "GAME OVER",
-      "pressSpace": "Press SPACE to start",
+      "gameOver": "Game Over!",
+      "pressSpace": "Press SPACE or click START to begin",
       "restart": "Restart Game",
-      "instructions": "Use arrow keys to control the snake. Eat the food to grow!"
+      "instructions": "Use arrow keys or WASD to control the snake",
+      "controlsHelp": "Eat food to grow and increase your score"
     }
   }
 }

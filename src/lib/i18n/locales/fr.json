@@ -1,80 +1,67 @@
 
+// Let's create a French translation file with all the same entries
 {
   "meta": {
-    "title": "Portfolio Terminal",
-    "description": "Portfolio interactif en style terminal"
+    "title": "Portfolio Terminal | Abdelrahmane Gacemi",
+    "description": "Portfolio interactif en style terminal présentant le travail d'Abdelrahmane Gacemi"
+  },
+  "intro": {
+    "title": "Développeur Web & Mobile"
   },
   "terminal": {
-    "welcome": "Terminal v1.0.0",
-    "boot": "Initialisation du système...",
-    "copyright": "© 2023 Système de Portfolio Terminal",
-    "loading": "Chargement des variables d'environnement...",
-    "accessGranted": "Accès accordé. Bienvenue, utilisateur.",
-    "initializing": "Initialisation de l'interface utilisateur...",
-    "hello": "Bonjour ! Tapez 'help' pour voir les commandes disponibles.",
-    "help": "Commandes disponibles : about, projects, skills, contact, theme, language, clear",
-    "notFound": "Commande non trouvée. Tapez 'help' pour les commandes disponibles.",
-    "commands": "Commandes disponibles :\n- about: Afficher des informations sur moi\n- projects: Montrer mes projets\n- skills: Lister mes compétences techniques\n- contact: Afficher les coordonnées\n- theme: Changer le thème du terminal (vert/ambre)\n- language: Changer de langue (en/fr)\n- clear: Effacer l'historique du terminal\n- easteregg: Découvrir des fonctionnalités cachées",
-    "prompt": ">"
-  },
-  "about": {
-    "title": "À Propos de Moi",
-    "role": "Développeur Full Stack",
-    "intro": "Bienvenue sur mon portfolio terminal ! Je suis un développeur passionné avec de l'expérience dans la création d'applications web utilisant les technologies modernes.",
-    "background": "Avec une formation en informatique et plusieurs années d'expérience dans l'industrie, je me spécialise dans la création de solutions efficaces et élégantes à des problèmes complexes.",
-    "approach": "Je crois au code propre, à l'apprentissage continu et à rester à jour avec les dernières technologies et meilleures pratiques."
-  },
-  "projects": {
-    "title": "Projets",
-    "seeMore": "Voir plus sur GitHub",
-    "project1": {
-      "title": "Projet Un",
-      "description": "Une application web responsive construite avec React et Node.js."
-    },
-    "project2": {
-      "title": "Projet Deux",
-      "description": "Une plateforme e-commerce avec traitement sécurisé des paiements."
-    },
-    "project3": {
-      "title": "Projet Trois",
-      "description": "Un tableau de bord de visualisation de données en temps réel."
-    }
-  },
-  "skills": {
-    "title": "Compétences Techniques",
-    "languages": "Langages de Programmation",
-    "frontend": "Technologies Frontend",
-    "backend": "Technologies Backend",
-    "other": "Autres Outils & Compétences"
-  },
-  "contact": {
-    "title": "Coordonnées",
-    "email": "Email",
-    "linkedin": "LinkedIn",
-    "github": "GitHub",
-    "message": "N'hésitez pas à me contacter par l'un de ces canaux !"
-  },
-  "theme": {
-    "green": "THÈME VERT",
-    "amber": "THÈME AMBRE"
-  },
-  "language": {
-    "en": "ANGLAIS",
-    "fr": "FRANÇAIS",
-    "switch": "Changer de langue"
+    "welcome": "Terminal",
+    "prompt": ">",
+    "boot": "Démarrage du système...",
+    "copyright": "© Terminal OS v3.14.15",
+    "loading": "Chargement des données du profil...",
+    "accessGranted": "Accès autorisé !",
+    "initializing": "Initialisation de l'interface du portfolio...",
+    "hello": "Bonjour ! Bienvenue sur mon portfolio interactif.",
+    "help": "Tapez 'help' pour voir les commandes disponibles.",
+    "commands": "Commandes disponibles : about, projects, skills, contact, theme, language, clear",
+    "notFound": "Commande non trouvée. Tapez 'help' pour voir les commandes disponibles.",
+    "availableCommands": "Commandes disponibles :",
+    "helpButton": "Aide",
+    "snakeHint": "Essayez la commande : snake"
   },
   "footer": {
-    "copyright": "Portfolio Terminal",
+    "copyright": "© 2024 Abdelrahmane Gacemi",
     "rights": "Tous droits réservés",
-    "madeWith": "Fait avec React & Tailwind CSS"
+    "madeWith": "Fait avec ❤️ et du code"
+  },
+  "theme": {
+    "green": "VERT",
+    "amber": "AMBRE",
+    "toggle": "Changer le thème"
+  },
+  "language": {
+    "en": "Anglais",
+    "fr": "Français",
+    "switch": "Changer la langue"
+  },
+  "sound": {
+    "on": "Son ACTIVÉ",
+    "off": "Son DÉSACTIVÉ",
+    "toggle": "Activer/désactiver le son"
+  },
+  "commands": {
+    "about": "En savoir plus sur le développeur",
+    "projects": "Voir mes projets",
+    "skills": "Voir mes compétences techniques",
+    "contact": "Me contacter",
+    "theme": "Changer le thème de couleur du terminal",
+    "language": "Changer la langue (EN/FR)",
+    "snake": "Jouer au jeu Snake",
+    "clear": "Effacer l'écran du terminal"
   },
   "games": {
     "snake": {
       "score": "Score",
-      "gameOver": "PARTIE TERMINÉE",
-      "pressSpace": "Appuyez sur ESPACE pour commencer",
-      "restart": "Redémarrer le Jeu",
-      "instructions": "Utilisez les flèches pour contrôler le serpent. Mangez la nourriture pour grandir !"
+      "gameOver": "Partie terminée !",
+      "pressSpace": "Appuyez sur ESPACE ou cliquez sur DÉMARRER pour commencer",
+      "restart": "Recommencer",
+      "instructions": "Utilisez les flèches ou ZQSD pour contrôler le serpent",
+      "controlsHelp": "Mangez pour grandir et augmenter votre score"
     }
   }
 }
