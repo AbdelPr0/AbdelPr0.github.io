@@ -1,7 +1,6 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { playRandomKeySound } from '@/utils/keyboardSounds';
 
 interface TerminalInputProps {
   onCommand: (command: string) => void;
@@ -33,13 +32,6 @@ const TerminalInput: React.FC<TerminalInputProps> = ({
     }
   };
   
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    // Play a keyboard sound when typing, not on every key press
-    if (e.key.length === 1 || e.key === 'Backspace' || e.key === 'Enter') {
-      playRandomKeySound();
-    }
-  };
-  
   // Focus the input when clicked anywhere in the terminal
   const handleContainerClick = () => {
     if (!disabled && inputRef.current) {
@@ -59,7 +51,6 @@ const TerminalInput: React.FC<TerminalInputProps> = ({
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          onKeyDown={handleKeyDown}
           placeholder={placeholder}
           disabled={disabled}
           className="bg-transparent border-none outline-none w-full caret-current animate-cursor-blink"
