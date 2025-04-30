@@ -1,98 +1,80 @@
 
 {
   "meta": {
-    "title": "Terminal Vault-Tech | Abdelrahmane Gacemi",
-    "description": "Portfolio développeur interactif d'Abdelrahmane Gacemi"
+    "title": "Portfolio Terminal",
+    "description": "Portfolio interactif en style terminal"
   },
   "terminal": {
-    "welcome": "SYSTÈME D'EXPLOITATION UNIFIÉ VAULT-TECH",
-    "copyright": "COPYRIGHT 2075-2077 VAULT-TECH",
-    "boot": "SÉQUENCE DE DÉMARRAGE INITIALISÉE...",
-    "loading": "CHARGEMENT DES DONNÉES PERSONNELLES...",
-    "accessGranted": "ACCÈS ACCORDÉ",
-    "initializing": "INITIALISATION DE L'INTERFACE...",
-    "hello": "Bonjour, Visiteur !",
-    "prompt": ">",
-    "help": "Tapez 'help' pour les commandes disponibles",
-    "commands": "Commandes disponibles : about, projects, skills, contact, theme, language, clear, help",
-    "notFound": "Commande non trouvée. Tapez 'help' pour les commandes disponibles."
-  },
-  "nav": {
-    "about": "À Propos",
-    "projects": "Projets",
-    "skills": "Compétences",
-    "contact": "Contact"
-  },
-  "theme": {
-    "green": "Terminal Vert",
-    "amber": "Terminal Ambre"
-  },
-  "language": {
-    "en": "Anglais",
-    "fr": "Français",
-    "switch": "Changer de Langue"
+    "welcome": "Terminal v1.0.0",
+    "boot": "Initialisation du système...",
+    "copyright": "© 2023 Système de Portfolio Terminal",
+    "loading": "Chargement des variables d'environnement...",
+    "accessGranted": "Accès accordé. Bienvenue, utilisateur.",
+    "initializing": "Initialisation de l'interface utilisateur...",
+    "hello": "Bonjour ! Tapez 'help' pour voir les commandes disponibles.",
+    "help": "Commandes disponibles : about, projects, skills, contact, theme, language, clear",
+    "notFound": "Commande non trouvée. Tapez 'help' pour les commandes disponibles.",
+    "commands": "Commandes disponibles :\n- about: Afficher des informations sur moi\n- projects: Montrer mes projets\n- skills: Lister mes compétences techniques\n- contact: Afficher les coordonnées\n- theme: Changer le thème du terminal (vert/ambre)\n- language: Changer de langue (en/fr)\n- clear: Effacer l'historique du terminal\n- easteregg: Découvrir des fonctionnalités cachées",
+    "prompt": ">"
   },
   "about": {
-    "title": "Dossier Personnel : Abdelrahmane Gacemi",
-    "role": "Développeur Web et Mobile",
-    "intro": "Bonjour ! Je suis un développeur web et mobile passionné, spécialisé dans la création d'applications réactives et conviviales. J'excelle tant dans le développement front-end que back-end, offrant des expériences numériques fluides.",
-    "background": "Avec une formation en informatique et des années d'expérience pratique, j'ai développé une compréhension approfondie des frameworks et pratiques de développement modernes. Je suis constamment à la recherche de nouvelles technologies pour améliorer mes compétences.",
-    "approach": "Mon approche combine précision technique et résolution créative de problèmes. Je crois au code propre, au design intuitif et à la construction d'applications qui non seulement fonctionnent parfaitement, mais offrent également des expériences utilisateur engageantes."
+    "title": "À Propos de Moi",
+    "role": "Développeur Full Stack",
+    "intro": "Bienvenue sur mon portfolio terminal ! Je suis un développeur passionné avec de l'expérience dans la création d'applications web utilisant les technologies modernes.",
+    "background": "Avec une formation en informatique et plusieurs années d'expérience dans l'industrie, je me spécialise dans la création de solutions efficaces et élégantes à des problèmes complexes.",
+    "approach": "Je crois au code propre, à l'apprentissage continu et à rester à jour avec les dernières technologies et meilleures pratiques."
   },
   "projects": {
-    "title": "Base de Données des Projets",
-    "viewAll": "Voir Tous les Projets",
-    "viewProject": "Voir le Projet",
-    "viewCode": "Voir le Code",
-    "featured": "Projets en Vedette",
-    "items": [
-      {
-        "title": "Plateforme E-Commerce",
-        "description": "Boutique en ligne full-stack avec traitement sécurisé des paiements, comptes utilisateurs et gestion des stocks.",
-        "tech": "React, Node.js, MongoDB, Stripe"
-      },
-      {
-        "title": "Application de Surveillance Météo",
-        "description": "Application mobile fournissant des données météorologiques en temps réel et des prévisions avec cartes interactives.",
-        "tech": "React Native, API Météo, MapBox"
-      },
-      {
-        "title": "Système de Gestion des Tâches",
-        "description": "Outil de gestion de projet collaboratif avec suivi des tâches, affectations d'équipe et visualisation des progrès.",
-        "tech": "Vue.js, Firebase, Chart.js"
-      }
-    ]
+    "title": "Projets",
+    "seeMore": "Voir plus sur GitHub",
+    "project1": {
+      "title": "Projet Un",
+      "description": "Une application web responsive construite avec React et Node.js."
+    },
+    "project2": {
+      "title": "Projet Deux",
+      "description": "Une plateforme e-commerce avec traitement sécurisé des paiements."
+    },
+    "project3": {
+      "title": "Projet Trois",
+      "description": "Un tableau de bord de visualisation de données en temps réel."
+    }
   },
   "skills": {
-    "title": "Spécifications Techniques",
-    "frontend": "Front-end",
-    "backend": "Back-end",
-    "mobile": "Mobile",
-    "other": "Autres",
-    "frontendSkills": ["HTML5", "CSS3", "JavaScript", "TypeScript", "React", "Vue.js", "Tailwind CSS", "Redux"],
-    "backendSkills": ["Node.js", "Express", "Python", "Django", "PHP", "MySQL", "MongoDB", "PostgreSQL"],
-    "mobileSkills": ["React Native", "Flutter", "Android Development", "iOS Development"],
-    "otherSkills": ["Git", "Docker", "AWS", "Firebase", "RESTful APIs", "GraphQL", "Agile/Scrum", "UI/UX Design"]
+    "title": "Compétences Techniques",
+    "languages": "Langages de Programmation",
+    "frontend": "Technologies Frontend",
+    "backend": "Technologies Backend",
+    "other": "Autres Outils & Compétences"
   },
   "contact": {
-    "title": "Interface de Communication",
-    "formTitle": "Envoyer un Message",
-    "name": "Nom",
+    "title": "Coordonnées",
     "email": "Email",
-    "message": "Message",
-    "send": "Envoyer le Message",
-    "sending": "Transmission en cours...",
-    "success": "Message transmis avec succès !",
-    "error": "Échec de la transmission. Veuillez réessayer.",
-    "socialTitle": "Canaux de Communication",
-    "github": "GitHub",
     "linkedin": "LinkedIn",
-    "twitter": "Twitter",
-    "email": "Email"
+    "github": "GitHub",
+    "message": "N'hésitez pas à me contacter par l'un de ces canaux !"
+  },
+  "theme": {
+    "green": "THÈME VERT",
+    "amber": "THÈME AMBRE"
+  },
+  "language": {
+    "en": "ANGLAIS",
+    "fr": "FRANÇAIS",
+    "switch": "Changer de langue"
   },
   "footer": {
-    "copyright": "© 2025 Abdelrahmane Gacemi",
-    "rights": "Tous Droits Réservés",
-    "madeWith": "Codé à la main avec <3"
+    "copyright": "Portfolio Terminal",
+    "rights": "Tous droits réservés",
+    "madeWith": "Fait avec React & Tailwind CSS"
+  },
+  "games": {
+    "snake": {
+      "score": "Score",
+      "gameOver": "PARTIE TERMINÉE",
+      "pressSpace": "Appuyez sur ESPACE pour commencer",
+      "restart": "Redémarrer le Jeu",
+      "instructions": "Utilisez les flèches pour contrôler le serpent. Mangez la nourriture pour grandir !"
+    }
   }
 }

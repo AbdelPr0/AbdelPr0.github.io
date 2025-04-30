@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 
 const AboutSection: React.FC = () => {
   const { t } = useTranslation();
@@ -15,8 +16,14 @@ const AboutSection: React.FC = () => {
         <div className="md:w-1/3">
           <div className="border border-current p-4 rounded-md">
             <div className="aspect-square bg-terminal-dark/50 rounded flex items-center justify-center mb-4">
-              {/* Placeholder for profile image */}
-              <div className="text-6xl">ID</div>
+              {/* Utilisation du profil téléchargé */}
+              <Avatar className="w-full h-full rounded-none">
+                <AvatarImage 
+                  src="/lovable-uploads/6f939b66-853e-4d45-951f-ae326ca8a583.png" 
+                  className="w-full h-full object-cover"
+                />
+                <AvatarFallback className="text-6xl">ID</AvatarFallback>
+              </Avatar>
             </div>
             <h3 className="text-lg font-semibold">{t('about.role')}</h3>
             <div className="mt-2 space-y-1 text-sm">

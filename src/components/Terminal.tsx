@@ -7,6 +7,7 @@ import AboutSection from './sections/AboutSection';
 import ProjectsSection from './sections/ProjectsSection';
 import SkillsSection from './sections/SkillsSection';
 import ContactSection from './sections/ContactSection';
+import SnakeGame from './games/SnakeGame';
 import { useTheme } from '@/contexts/ThemeContext';
 
 type CommandType = {
@@ -102,6 +103,13 @@ const Terminal: React.FC = () => {
         setHistory([]);
         output = <></>;
         return;
+      // Commande secrète pour le jeu Snake
+      case '42snake':
+        output = <SnakeGame />;
+        break;
+      case 'easteregg':
+        output = <div className="text-sm animate-pulse">🎮 Essayez la commande secrète : 42snake</div>;
+        break;
       default:
         output = <div className="text-sm">{t('terminal.notFound')}</div>;
     }

@@ -1,98 +1,80 @@
 
 {
   "meta": {
-    "title": "Vault-Tech Terminal | Abdelrahmane Gacemi",
-    "description": "Interactive developer portfolio of Abdelrahmane Gacemi"
+    "title": "Terminal Portfolio",
+    "description": "Interactive terminal-style portfolio"
   },
   "terminal": {
-    "welcome": "VAULT-TECH UNIFIED OPERATING SYSTEM",
-    "copyright": "COPYRIGHT 2075-2077 VAULT-TECH",
-    "boot": "BOOTING SEQUENCE INITIALIZED...",
-    "loading": "LOADING PERSONAL DATA...",
-    "accessGranted": "ACCESS GRANTED",
-    "initializing": "INITIALIZING INTERFACE...",
-    "hello": "Hello, Visitor!",
-    "prompt": ">",
-    "help": "Type 'help' for available commands",
-    "commands": "Available commands: about, projects, skills, contact, theme, language, clear, help",
-    "notFound": "Command not found. Type 'help' for available commands."
-  },
-  "nav": {
-    "about": "About",
-    "projects": "Projects",
-    "skills": "Skills",
-    "contact": "Contact"
-  },
-  "theme": {
-    "green": "Green Terminal",
-    "amber": "Amber Terminal"
-  },
-  "language": {
-    "en": "English",
-    "fr": "French",
-    "switch": "Switch Language"
+    "welcome": "Terminal v1.0.0",
+    "boot": "System initializing...",
+    "copyright": "© 2023 Terminal Portfolio System",
+    "loading": "Loading environment variables...",
+    "accessGranted": "Access granted. Welcome, user.",
+    "initializing": "Initializing user interface...",
+    "hello": "Hello! Type 'help' to see available commands.",
+    "help": "Available commands: about, projects, skills, contact, theme, language, clear",
+    "notFound": "Command not found. Type 'help' for available commands.",
+    "commands": "Available commands:\n- about: Display information about me\n- projects: Show my projects\n- skills: List my technical skills\n- contact: Display contact information\n- theme: Toggle terminal theme (green/amber)\n- language: Switch language (en/fr)\n- clear: Clear terminal history\n- easteregg: Discover hidden features",
+    "prompt": ">"
   },
   "about": {
-    "title": "Personnel File: Abdelrahmane Gacemi",
-    "role": "Web and Mobile Developer",
-    "intro": "Greetings! I'm a passionate web and mobile developer with expertise in creating responsive, user-friendly applications. I specialize in both front-end and back-end development, delivering seamless digital experiences.",
-    "background": "With a background in computer science and years of hands-on experience, I've developed a deep understanding of modern development frameworks and practices. I'm constantly exploring new technologies to enhance my skillset.",
-    "approach": "My approach combines technical precision with creative problem-solving. I believe in clean code, intuitive design, and building applications that not only function flawlessly but also provide engaging user experiences."
+    "title": "About Me",
+    "role": "Full Stack Developer",
+    "intro": "Welcome to my terminal portfolio! I'm a passionate developer with experience in building web applications using modern technologies.",
+    "background": "With a background in computer science and several years of industry experience, I specialize in creating efficient and elegant solutions to complex problems.",
+    "approach": "I believe in clean code, continuous learning, and staying up-to-date with the latest technologies and best practices."
   },
   "projects": {
-    "title": "Project Database",
-    "viewAll": "View All Projects",
-    "viewProject": "View Project",
-    "viewCode": "View Code",
-    "featured": "Featured Projects",
-    "items": [
-      {
-        "title": "E-Commerce Platform",
-        "description": "Full-stack online store with secure payment processing, user accounts, and inventory management.",
-        "tech": "React, Node.js, MongoDB, Stripe"
-      },
-      {
-        "title": "Weather Monitoring App",
-        "description": "Mobile application that provides real-time weather data and forecasts with interactive maps.",
-        "tech": "React Native, Weather API, MapBox"
-      },
-      {
-        "title": "Task Management System",
-        "description": "Collaborative project management tool with task tracking, team assignments, and progress visualization.",
-        "tech": "Vue.js, Firebase, Chart.js"
-      }
-    ]
+    "title": "Projects",
+    "seeMore": "See more on GitHub",
+    "project1": {
+      "title": "Project One",
+      "description": "A responsive web application built with React and Node.js."
+    },
+    "project2": {
+      "title": "Project Two",
+      "description": "An e-commerce platform with secure payment processing."
+    },
+    "project3": {
+      "title": "Project Three",
+      "description": "A real-time data visualization dashboard."
+    }
   },
   "skills": {
-    "title": "Technical Specifications",
-    "frontend": "Front-end",
-    "backend": "Back-end",
-    "mobile": "Mobile",
-    "other": "Other",
-    "frontendSkills": ["HTML5", "CSS3", "JavaScript", "TypeScript", "React", "Vue.js", "Tailwind CSS", "Redux"],
-    "backendSkills": ["Node.js", "Express", "Python", "Django", "PHP", "MySQL", "MongoDB", "PostgreSQL"],
-    "mobileSkills": ["React Native", "Flutter", "Android Development", "iOS Development"],
-    "otherSkills": ["Git", "Docker", "AWS", "Firebase", "RESTful APIs", "GraphQL", "Agile/Scrum", "UI/UX Design"]
+    "title": "Technical Skills",
+    "languages": "Programming Languages",
+    "frontend": "Frontend Technologies",
+    "backend": "Backend Technologies",
+    "other": "Other Tools & Skills"
   },
   "contact": {
-    "title": "Communication Interface",
-    "formTitle": "Send Message",
-    "name": "Name",
+    "title": "Contact Information",
     "email": "Email",
-    "message": "Message",
-    "send": "Send Message",
-    "sending": "Transmitting...",
-    "success": "Message successfully transmitted!",
-    "error": "Transmission failed. Please try again.",
-    "socialTitle": "Communication Channels",
-    "github": "GitHub",
     "linkedin": "LinkedIn",
-    "twitter": "Twitter",
-    "email": "Email"
+    "github": "GitHub",
+    "message": "Feel free to reach out through any of these channels!"
+  },
+  "theme": {
+    "green": "GREEN THEME",
+    "amber": "AMBER THEME"
+  },
+  "language": {
+    "en": "ENGLISH",
+    "fr": "FRENCH",
+    "switch": "Change language"
   },
   "footer": {
-    "copyright": "© 2025 Abdelrahmane Gacemi",
-    "rights": "All Rights Reserved",
-    "madeWith": "Hand-coded with <3"
+    "copyright": "Terminal Portfolio",
+    "rights": "All rights reserved",
+    "madeWith": "Made with React & Tailwind CSS"
+  },
+  "games": {
+    "snake": {
+      "score": "Score",
+      "gameOver": "GAME OVER",
+      "pressSpace": "Press SPACE to start",
+      "restart": "Restart Game",
+      "instructions": "Use arrow keys to control the snake. Eat the food to grow!"
+    }
   }
 }
