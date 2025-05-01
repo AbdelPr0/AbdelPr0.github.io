@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -17,14 +16,27 @@ const TerminalCommand: React.FC<TerminalCommandProps> = ({
 }) => {
   const { t } = useTranslation();
   const [showOutput, setShowOutput] = useState(!isTyping);
+  const [displayedText, setDisplayedText] = useState('');
+  const [showCursor, setShowCursor] = useState(true);
+  const commandRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
     if (isTyping) {
-      const timer = setTimeout(() => {
-        setShowOutput(true);
-      }, command.length * 50 + 300); // Adjust timing based on command length
+      let currentIndex = 0;
+      const interval = setInterval(() => {
+        if (currentIndex < command.length) {
+          setDisplayedText(prev => prev + command[currentIndex]);
+          currentIndex++;
+        } else {
+          clearInterval(interval);
+          setShowCursor(false);
+          setTimeout(() => {
+            setShowOutput(true);
+          }, 300);
+        }
+      }, 50);
       
-      return () => clearTimeout(timer);
+      return () => clearInterval(interval);
     }
   }, [command, isTyping]);
   
@@ -34,7 +46,10 @@ const TerminalCommand: React.FC<TerminalCommandProps> = ({
         <span className="text-xs opacity-60 mr-2">[{timestamp}]</span>
         <span className="mr-2">{t('terminal.prompt')}</span>
         {isTyping ? (
-          <div className="typing-effect">{command}</div>
+          <div ref={commandRef} className="flex items-center">
+            <span>{displayedText}</span>
+            {showCursor && <span className="w-2 h-5 bg-green-500 ml-1 animate-pulse">_</span>}
+          </div>
         ) : (
           <div>{command}</div>
         )}

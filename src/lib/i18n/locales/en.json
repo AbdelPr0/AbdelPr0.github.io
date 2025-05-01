@@ -1,4 +1,3 @@
-
 {
   "meta": {
     "title": "Vault-Tech Terminal | Abdelrahmane Gacemi",
@@ -69,10 +68,10 @@
     "backend": "Back-end",
     "mobile": "Mobile",
     "other": "Other",
-    "frontendSkills": ["HTML5", "CSS3", "JavaScript", "TypeScript", "React", "Vue.js", "Tailwind CSS", "Redux"],
-    "backendSkills": ["Node.js", "Express", "Python", "Django", "PHP", "MySQL", "MongoDB", "PostgreSQL"],
-    "mobileSkills": ["React Native", "Flutter", "Android Development", "iOS Development"],
-    "otherSkills": ["Git", "Docker", "AWS", "Firebase", "RESTful APIs", "GraphQL", "Agile/Scrum", "UI/UX Design"]
+    "frontendSkills": ["HTML5", "CSS3", "JavaScript", "TypeScript", "React", "Vue.js", "Tailwind CSS", "Angular"],
+    "backendSkills": ["Node.js", "Python", "PHP", "MySQL", "Java", "Kotlin", "Spring Boot", "C#"],
+    "mobileSkills": ["Flutter", "Android Development"],
+    "otherSkills": ["Git", "Docker", "Figma", "Agile/Scrum", "UI/UX Design"]
   },
   "contact": {
     "title": "Communication Interface",

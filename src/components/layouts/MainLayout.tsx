@@ -1,9 +1,8 @@
-
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ThemeProvider } from '@/contexts/ThemeContext';
-import TerminalHeader from '@/components/terminal/TerminalHeader';
 import CRTEffect from '@/components/effects/CRTEffect';
+import TerminalHeader from '@/components/terminal/TerminalHeader';
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -31,7 +30,6 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
             </div>
           </main>
           <footer className="mt-4 text-center text-xs opacity-70">
-            <div className="animate-text-blink">█</div>
             <p>{t('footer.copyright')} | {t('footer.rights')}</p>
             <p>{t('footer.madeWith')}</p>
           </footer>

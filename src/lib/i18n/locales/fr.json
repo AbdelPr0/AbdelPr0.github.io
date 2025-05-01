@@ -1,11 +1,10 @@
-
 {
   "meta": {
     "title": "Terminal Vault-Tech | Abdelrahmane Gacemi",
     "description": "Portfolio développeur interactif d'Abdelrahmane Gacemi"
   },
   "terminal": {
-    "welcome": "SYSTÈME D'EXPLOITATION UNIFIÉ VAULT-TECH",
+    "welcome": "PORTFOLIO - ABDElRAHMANE GACEMI",
     "copyright": "COPYRIGHT 2075-2077 VAULT-TECH",
     "boot": "SÉQUENCE DE DÉMARRAGE INITIALISÉE...",
     "loading": "CHARGEMENT DES DONNÉES PERSONNELLES...",
@@ -69,10 +68,10 @@
     "backend": "Back-end",
     "mobile": "Mobile",
     "other": "Autres",
-    "frontendSkills": ["HTML5", "CSS3", "JavaScript", "TypeScript", "React", "Vue.js", "Tailwind CSS", "Redux"],
-    "backendSkills": ["Node.js", "Express", "Python", "Django", "PHP", "MySQL", "MongoDB", "PostgreSQL"],
-    "mobileSkills": ["React Native", "Flutter", "Android Development", "iOS Development"],
-    "otherSkills": ["Git", "Docker", "AWS", "Firebase", "RESTful APIs", "GraphQL", "Agile/Scrum", "UI/UX Design"]
+    "frontendSkills": ["HTML5", "CSS3", "JavaScript", "TypeScript", "React", "Vue.js", "Tailwind CSS", "Angular"],
+    "backendSkills": ["Node.js", "Python", "PHP", "MySQL", "Java", "Kotlin", "Spring Boot", "C#"],
+    "mobileSkills": ["Flutter", "Développement Android"],
+    "otherSkills": ["Git", "Docker", "Figma", "Agile/Scrum", "UI/UX Design"]
   },
   "contact": {
     "title": "Interface de Communication",

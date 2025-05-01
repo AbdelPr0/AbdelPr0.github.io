@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32" height="32" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .text {
+      font-family: monospace;
+      font-size: 24px;
+      font-weight: bold;
+      fill: #1a1a1a;
+      filter: url(#glow);
+    }
+    .background {
+      fill: #0a0a0a;
+    }
+  </style>
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0   0 1 0 0 0   0 0 0 0 0  0 0 0 0.9 0"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect class="background" width="32" height="32" rx="4"/>
+  <text x="50%" y="50%" class="text" text-anchor="middle" dominant-baseline="middle">
+    AG
+  </text>
+</svg> 

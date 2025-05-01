@@ -1,64 +1,95 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 interface TerminalInputProps {
-  onCommand: (command: string) => void;
-  placeholder?: string;
-  disabled?: boolean;
+  onCommand: (cmd: string) => void;
+  placeholder: string;
 }
 
-const TerminalInput: React.FC<TerminalInputProps> = ({ 
-  onCommand, 
-  placeholder = "", 
-  disabled = false 
-}) => {
+const AVAILABLE_COMMANDS = [
+  'about',
+  'projects',
+  'skills',
+  'contact',
+  'theme',
+  'language',
+  'help',
+  'clear',
+  'easter-egg'
+];
+
+const TerminalInput: React.FC<TerminalInputProps> = ({ onCommand, placeholder }) => {
   const { t } = useTranslation();
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState('');
+  const [suggestions, setSuggestions] = useState<string[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
-  
+
+  // Focus sur l'input au chargement
   useEffect(() => {
-    if (!disabled && inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, [disabled]);
-  
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+    inputRef.current?.focus();
+  }, []);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setInput(value);
     
-    if (input.trim()) {
-      onCommand(input.trim().toLowerCase());
-      setInput("");
+    // Mise à jour des suggestions
+    if (value) {
+      const matches = AVAILABLE_COMMANDS.filter(cmd => 
+        cmd.startsWith(value.toLowerCase())
+      );
+      setSuggestions(matches);
+    } else {
+      setSuggestions([]);
     }
   };
-  
-  // Focus the input when clicked anywhere in the terminal
-  const handleContainerClick = () => {
-    if (!disabled && inputRef.current) {
-      inputRef.current.focus();
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      if (input.trim()) {
+        onCommand(input.trim());
+        setInput('');
+        setSuggestions([]);
+      }
+    } else if (e.key === 'Tab' && suggestions.length > 0) {
+      e.preventDefault();
+      setInput(suggestions[0]);
+      setSuggestions([]);
     }
   };
-  
+
   return (
-    <div 
-      className="mt-4 flex items-center" 
-      onClick={handleContainerClick}
-    >
-      <span className="mr-2">{t('terminal.prompt')}</span>
-      <form onSubmit={handleSubmit} className="flex-1">
+    <div className="relative">
+      <div className="flex items-center">
+        <span className="text-green-500 mr-2">{t('terminal.prompt')}</span>
         <input
           ref={inputRef}
           type="text"
           value={input}
-          onChange={(e) => setInput(e.target.value)}
+          onChange={handleInputChange}
+          onKeyDown={handleKeyDown}
+          className="bg-transparent outline-none text-gray-300 flex-1"
           placeholder={placeholder}
-          disabled={disabled}
-          className="bg-transparent border-none outline-none w-full caret-current animate-cursor-blink"
-          autoComplete="off"
-          spellCheck="false"
         />
-      </form>
-      <span className="cursor animate-text-blink ml-1">█</span>
+      </div>
+      
+      {suggestions.length > 0 && (
+        <div className="absolute left-0 mt-1 bg-gray-800 border border-gray-700 rounded shadow-lg">
+          {suggestions.map((suggestion, index) => (
+            <div
+              key={suggestion}
+              className="px-2 py-1 hover:bg-gray-700 cursor-pointer text-gray-300"
+              onClick={() => {
+                setInput(suggestion);
+                setSuggestions([]);
+              }}
+            >
+              {suggestion}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
