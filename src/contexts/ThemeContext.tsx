@@ -1,7 +1,6 @@
-
 import React, { createContext, useState, useContext, useEffect } from 'react';
 
-type ThemeType = 'green' | 'amber';
+type ThemeType = 'green' | 'amber' | 'light';
 
 interface ThemeContextType {
   theme: ThemeType;
@@ -22,15 +21,27 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     localStorage.setItem('terminal-theme', theme);
     
     // Apply theme to the body
+    document.body.classList.remove('amber-theme', 'light-theme');
     if (theme === 'amber') {
       document.body.classList.add('amber-theme');
-    } else {
-      document.body.classList.remove('amber-theme');
+    } else if (theme === 'light') {
+      document.body.classList.add('light-theme');
     }
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === 'green' ? 'amber' : 'green'));
+    setTheme((prevTheme) => {
+      switch (prevTheme) {
+        case 'green':
+          return 'amber';
+        case 'amber':
+          return 'light';
+        case 'light':
+          return 'green';
+        default:
+          return 'green';
+      }
+    });
   };
 
   return (

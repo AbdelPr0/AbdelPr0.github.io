@@ -1,5 +1,5 @@
-
 import type { Config } from "tailwindcss";
+import animate from "tailwindcss-animate";
 
 export default {
 	darkMode: ["class"],
@@ -33,6 +33,7 @@ export default {
 					amber: '#ffbf00',
 					dark: '#0f172a',
 					black: '#121212',
+					light: '#1a1a1a',
 					'green-glow': 'rgba(74, 222, 128, 0.5)',
 					'amber-glow': 'rgba(255, 191, 0, 0.5)'
 				},
@@ -122,5 +123,5 @@ export default {
 			},
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [animate],
 } satisfies Config;

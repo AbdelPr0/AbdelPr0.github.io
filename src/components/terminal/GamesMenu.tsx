@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SnakeGame from './SnakeGame';
+import TetrisGame from './TetrisGame';
+import { getHighScore } from '@/utils/highscores';
 
 interface Game {
   id: string;
@@ -10,6 +12,14 @@ interface Game {
 
 const GamesMenu: React.FC = () => {
   const [selectedGame, setSelectedGame] = useState<string | null>(null);
+  const [highScores, setHighScores] = useState({ snake: 0, tetris: 0 });
+
+  useEffect(() => {
+    setHighScores({
+      snake: getHighScore('snake'),
+      tetris: getHighScore('tetris')
+    });
+  }, [selectedGame]); // Mise à jour quand on revient au menu
 
   const games: Game[] = [
     {
@@ -17,6 +27,12 @@ const GamesMenu: React.FC = () => {
       name: '🐍 Snake',
       component: <SnakeGame onQuit={() => setSelectedGame(null)} />,
       description: 'Le classique jeu du serpent'
+    },
+    {
+      id: 'tetris',
+      name: '🟦 Tetris',
+      component: <TetrisGame onQuit={() => setSelectedGame(null)} />,
+      description: 'Le célèbre jeu de blocs'
     }
   ];
 
@@ -51,6 +67,9 @@ const GamesMenu: React.FC = () => {
             <div className="flex items-center space-x-2">
               <span className="text-yellow-500">{game.name}</span>
               <span className="text-gray-400 text-sm">→ {game.description}</span>
+            </div>
+            <div className="text-green-500 text-sm">
+              Record: {highScores[game.id as keyof typeof highScores]}
             </div>
           </button>
         ))}

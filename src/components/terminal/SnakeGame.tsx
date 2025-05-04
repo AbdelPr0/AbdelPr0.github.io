@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { getHighScore, updateHighScore } from '@/utils/highscores';
 
 interface Position {
   x: number;
@@ -18,9 +19,30 @@ const SnakeGame: React.FC<SnakeGameProps> = ({ onQuit }) => {
   const [food, setFood] = useState<Position>({ x: 5, y: 5 });
   const [direction, setDirection] = useState<'UP' | 'DOWN' | 'LEFT' | 'RIGHT'>('RIGHT');
   const [score, setScore] = useState(0);
+  const [highScore, setHighScore] = useState(0);
   const [gameOver, setGameOver] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const gameLoopRef = useRef<NodeJS.Timeout>();
+
+  useEffect(() => {
+    setHighScore(getHighScore('snake'));
+  }, []);
+
+  useEffect(() => {
+    if (score > highScore) {
+      setHighScore(score);
+      updateHighScore('snake', score);
+    }
+  }, [score, highScore]);
+
+  const resetGame = () => {
+    setSnake([{ x: 10, y: 10 }]);
+    setFood({ x: 5, y: 5 });
+    setDirection('RIGHT');
+    setScore(0);
+    setGameOver(false);
+    setIsPaused(false);
+  };
 
   // Gestion des touches
   useEffect(() => {
@@ -32,6 +54,11 @@ const SnakeGame: React.FC<SnakeGameProps> = ({ onQuit }) => {
 
       if (e.key === ' ') {
         setIsPaused(prev => !prev);
+        return;
+      }
+
+      if (e.key.toLowerCase() === 'e') {
+        resetGame();
         return;
       }
 
@@ -123,7 +150,10 @@ const SnakeGame: React.FC<SnakeGameProps> = ({ onQuit }) => {
   return (
     <div className="space-y-4">
       <div className="flex justify-between items-center">
-        <div className="text-green-500">Score: {score}</div>
+        <div className="flex space-x-4">
+          <div className="text-green-500">Score: {score}</div>
+          <div className="text-yellow-500">Record: {highScore}</div>
+        </div>
         {isPaused && <div className="text-yellow-500">Pause</div>}
       </div>
       <div 
@@ -177,14 +207,15 @@ const SnakeGame: React.FC<SnakeGameProps> = ({ onQuit }) => {
             <div className="text-green-500 text-2xl mb-4">
               Score: {score}
             </div>
-            <div className="text-gray-400 text-sm">
-              Appuyez sur Q pour quitter
+            <div className="text-gray-400 text-sm space-y-2">
+              <div>Appuyez sur Q pour quitter</div>
+              <div>Appuyez sur E pour recommencer</div>
             </div>
           </div>
         )}
       </div>
       <div className="text-gray-400 text-sm">
-        Contrôles: WASD pour diriger, Espace pour pause, Q pour quitter
+        Contrôles: WASD pour diriger, Espace pour pause, Q pour quitter, E pour recommencer
       </div>
     </div>
   );

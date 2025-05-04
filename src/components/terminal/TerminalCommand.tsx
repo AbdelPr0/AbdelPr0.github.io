@@ -17,7 +17,6 @@ const TerminalCommand: React.FC<TerminalCommandProps> = ({
   const { t } = useTranslation();
   const [showOutput, setShowOutput] = useState(!isTyping);
   const [displayedText, setDisplayedText] = useState('');
-  const [showCursor, setShowCursor] = useState(true);
   const commandRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
@@ -29,12 +28,11 @@ const TerminalCommand: React.FC<TerminalCommandProps> = ({
           currentIndex++;
         } else {
           clearInterval(interval);
-          setShowCursor(false);
           setTimeout(() => {
-            setShowOutput(true);
-          }, 300);
+        setShowOutput(true);
+          }, 500);
         }
-      }, 50);
+      }, 100);
       
       return () => clearInterval(interval);
     }
@@ -48,7 +46,6 @@ const TerminalCommand: React.FC<TerminalCommandProps> = ({
         {isTyping ? (
           <div ref={commandRef} className="flex items-center">
             <span>{displayedText}</span>
-            {showCursor && <span className="w-2 h-5 bg-green-500 ml-1 animate-pulse">_</span>}
           </div>
         ) : (
           <div>{command}</div>

@@ -1,0 +1,25 @@
+{
+  "nav": {
+    "about": "About",
+    "projects": "Projects",
+    "skills": "Skills",
+    "blog": "Blog",
+    "contact": "Contact",
+    "cv": "CV",
+    "help": "Help"
+  },
+  "help": {
+    "title": "Available Commands",
+    "about": "Display information about me",
+    "projects": "Show my projects",
+    "skills": "List my skills",
+    "blog": "View my tech blog and latest articles",
+    "contact": "Contact information",
+    "cv": "Download my CV",
+    "theme": "Switch theme",
+    "language": "Switch language",
+    "clear": "Clear terminal",
+    "easter_egg": "Discover hidden features",
+    "research": "My research and discoveries"
+  }
+} 

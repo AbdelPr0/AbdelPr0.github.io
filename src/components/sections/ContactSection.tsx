@@ -1,11 +1,14 @@
-
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useToast } from "@/hooks/use-toast";
+import { Github, Linkedin, Twitter, Mail } from 'lucide-react';
+import MeetingScheduler from '../meeting/MeetingScheduler';
+import { useTheme } from '@/contexts/ThemeContext';
 
 const ContactSection: React.FC = () => {
   const { t } = useTranslation();
   const { toast } = useToast();
+  const { theme } = useTheme();
   
   const [formState, setFormState] = useState({
     name: '',
@@ -13,6 +16,13 @@ const ContactSection: React.FC = () => {
     message: ''
   });
   const [loading, setLoading] = useState(false);
+  
+  const isDarkTheme = theme !== 'light';
+  const baseInputClass = `w-full p-2 rounded-md border ${
+    isDarkTheme 
+      ? 'bg-terminal-dark border-gray-700 text-gray-300 placeholder-gray-500' 
+      : 'bg-white border-blue-200 text-blue-900 placeholder-blue-300'
+  }`;
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormState({
@@ -41,7 +51,7 @@ const ContactSection: React.FC = () => {
   };
   
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       <h2 className="text-xl font-bold border-b border-current pb-2">
         {t('contact.title')}
       </h2>
@@ -61,7 +71,7 @@ const ContactSection: React.FC = () => {
                 value={formState.name}
                 onChange={handleChange}
                 required
-                className="bg-terminal-dark/50 border border-current w-full p-2 rounded"
+                className={baseInputClass}
               />
             </div>
             <div>
@@ -75,7 +85,7 @@ const ContactSection: React.FC = () => {
                 value={formState.email}
                 onChange={handleChange}
                 required
-                className="bg-terminal-dark/50 border border-current w-full p-2 rounded"
+                className={baseInputClass}
               />
             </div>
             <div>
@@ -89,16 +99,26 @@ const ContactSection: React.FC = () => {
                 onChange={handleChange}
                 required
                 rows={4}
-                className="bg-terminal-dark/50 border border-current w-full p-2 rounded resize-none"
+                className={baseInputClass}
               />
             </div>
             <button
               type="submit"
               disabled={loading}
-              className="border border-current px-4 py-2 rounded hover:bg-current/10 transition-colors w-full"
+              className={`w-full p-2 rounded-md transition-colors disabled:opacity-50 ${
+                isDarkTheme 
+                  ? 'border border-gray-700 hover:bg-gray-800 text-gray-300' 
+                  : 'border border-blue-200 hover:bg-blue-50 text-blue-900'
+              }`}
             >
-              {loading ? t('contact.sending') : t('contact.send')}
-              {loading && <span className="ml-2 animate-text-blink">...</span>}
+              {loading ? (
+                <span className="flex items-center justify-center">
+                  {t('contact.sending')}
+                  <span className="ml-2 animate-pulse">...</span>
+                </span>
+              ) : (
+                t('contact.send')
+              )}
             </button>
           </form>
         </div>
@@ -106,49 +126,68 @@ const ContactSection: React.FC = () => {
         <div className="space-y-4">
           <h3 className="text-lg font-semibold">{t('contact.socialTitle')}</h3>
           <div className="space-y-3">
+            <MeetingScheduler email={formState.email} />
             <div className="border border-current p-3 rounded-md hover:bg-current/5 transition-colors">
-              <div className="flex justify-between">
+              <div className="flex justify-between items-center">
+                <div className="flex items-center gap-2">
+                  <Github size={18} />
                 <span>{t('contact.github')}</span>
+                </div>
                 <a href="#" className="underline">github.com/abdelrahmane</a>
               </div>
             </div>
             <div className="border border-current p-3 rounded-md hover:bg-current/5 transition-colors">
-              <div className="flex justify-between">
+              <div className="flex justify-between items-center">
+                <div className="flex items-center gap-2">
+                  <Linkedin size={18} />
                 <span>{t('contact.linkedin')}</span>
+                </div>
                 <a href="#" className="underline">linkedin.com/in/abdelrahmane</a>
               </div>
             </div>
             <div className="border border-current p-3 rounded-md hover:bg-current/5 transition-colors">
-              <div className="flex justify-between">
+              <div className="flex justify-between items-center">
+                <div className="flex items-center gap-2">
+                  <Twitter size={18} />
                 <span>{t('contact.twitter')}</span>
+                </div>
                 <a href="#" className="underline">twitter.com/abdelrahmane</a>
               </div>
             </div>
             <div className="border border-current p-3 rounded-md hover:bg-current/5 transition-colors">
-              <div className="flex justify-between">
+              <div className="flex justify-between items-center">
+                <div className="flex items-center gap-2">
+                  <Mail size={18} />
                 <span>{t('contact.email')}</span>
+                </div>
                 <a href="mailto:contact@abdelrahmane.dev" className="underline">contact@abdelrahmane.dev</a>
               </div>
             </div>
           </div>
           
-          <div className="border border-current p-3 rounded-md mt-6 bg-terminal-dark/20">
-            <div className="text-xs opacity-70">SYSTEM STATUS</div>
-            <div className="mt-2 space-y-1">
+          <div className={`p-4 rounded-md ${
+            isDarkTheme 
+              ? 'bg-terminal-dark border border-gray-700' 
+              : 'bg-white/50 border border-blue-200'
+          }`}>
+            <div className={`text-sm mb-2 ${isDarkTheme ? 'text-gray-400' : 'text-blue-900'}`}>
+              {t('contact.system.title')}
+            </div>
+            <div className="space-y-1 text-xs">
               <div className="flex justify-between">
-                <span>SERVER:</span>
-                <span className="animate-text-blink">ONLINE</span>
+                <span>{t('contact.system.server')}:</span>
+                <span className="animate-pulse">{t('contact.system.status.online')}</span>
               </div>
               <div className="flex justify-between">
-                <span>UPTIME:</span>
-                <span>324 DAYS</span>
+                <span>{t('contact.system.uptime')}:</span>
+                <span>324 {t('contact.system.status.days')}</span>
               </div>
               <div className="flex justify-between">
-                <span>RESPONSE RATE:</span>
-                <span>94%</span>
+                <span>{t('contact.system.responseRate')}:</span>
+                <span>100%</span>
               </div>
               <div className="flex justify-between">
-                <span>LAST UPDATE:</span>
+                <span>{t('contact.system.lastUpdate')}:</span>
                 <span>2077-10-23</span>
               </div>
             </div>

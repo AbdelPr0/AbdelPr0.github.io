@@ -1,0 +1,29 @@
+{
+  "nav": {
+    "about": "À propos",
+    "projects": "Projets",
+    "skills": "Compétences",
+    "blog": "Blog",
+    "contact": "Contact",
+    "cv": "CV",
+    "help": "Aide"
+  },
+  "help": {
+    "title": "Commandes disponibles",
+    "about": "Afficher mes informations",
+    "projects": "Voir mes projets",
+    "skills": "Lister mes compétences",
+    "blog": "Voir mon blog tech et mes derniers articles",
+    "contact": "Informations de contact",
+    "cv": "Télécharger mon CV",
+    "theme": "Changer le thème",
+    "language": "Changer la langue",
+    "clear": "Effacer le terminal",
+    "easter_egg": "Découvrir les fonctionnalités cachées",
+    "research": "Mes recherches et découvertes"
+  },
+  "blog": {
+    "title": "Blog",
+    "comingSoon": "Bientôt disponible"
+  }
+} 

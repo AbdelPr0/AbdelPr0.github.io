@@ -11,6 +11,8 @@ const AVAILABLE_COMMANDS = [
   'projects',
   'skills',
   'contact',
+  'blog',
+  'install cv',
   'theme',
   'language',
   'help',
@@ -23,12 +25,12 @@ const TerminalInput: React.FC<TerminalInputProps> = ({ onCommand, placeholder })
   const [input, setInput] = useState('');
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
-
+  
   // Focus sur l'input au chargement
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
-
+  
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setInput(value);
@@ -43,11 +45,14 @@ const TerminalInput: React.FC<TerminalInputProps> = ({ onCommand, placeholder })
       setSuggestions([]);
     }
   };
-
+  
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       e.preventDefault();
-      if (input.trim()) {
+      if (suggestions.length > 0) {
+        setInput(suggestions[0]);
+        setSuggestions([]);
+      } else if (input.trim()) {
         onCommand(input.trim());
         setInput('');
         setSuggestions([]);
@@ -58,7 +63,7 @@ const TerminalInput: React.FC<TerminalInputProps> = ({ onCommand, placeholder })
       setSuggestions([]);
     }
   };
-
+  
   return (
     <div className="relative">
       <div className="flex items-center">

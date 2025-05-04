@@ -20,11 +20,14 @@
     "about": "About",
     "projects": "Projects",
     "skills": "Skills",
-    "contact": "Contact"
+    "contact": "Contact",
+    "cv": "CV",
+    "help": "❔ Help"
   },
   "theme": {
     "green": "Green Terminal",
-    "amber": "Amber Terminal"
+    "amber": "Amber Terminal",
+    "light": "Light Terminal"
   },
   "language": {
     "en": "English",
@@ -36,7 +39,51 @@
     "role": "Web and Mobile Developer",
     "intro": "Greetings! I'm a passionate web and mobile developer with expertise in creating responsive, user-friendly applications. I specialize in both front-end and back-end development, delivering seamless digital experiences.",
     "background": "With a background in computer science and years of hands-on experience, I've developed a deep understanding of modern development frameworks and practices. I'm constantly exploring new technologies to enhance my skillset.",
-    "approach": "My approach combines technical precision with creative problem-solving. I believe in clean code, intuitive design, and building applications that not only function flawlessly but also provide engaging user experiences."
+    "approach": "My approach combines technical precision with creative problem-solving. I believe in clean code, intuitive design, and building applications that not only function flawlessly but also provide engaging user experiences.",
+    "status": "STATUS:",
+    "location": "LOCATION:",
+    "clearance": "CLEARANCE:",
+    "status_value": "ACTIVE",
+    "location_value": "VAULT 42",
+    "clearance_value": "LEVEL 4",
+    "system": {
+      "title": "SYSTEM ANALYSIS",
+      "status": "STATUS",
+      "location": "LOCATION",
+      "clearance": "CLEARANCE"
+    },
+    "softSkills": {
+      "title": "SOFT SKILLS",
+      "communication": "Communication",
+      "teamwork": "Teamwork",
+      "problemSolving": "Problem Solving",
+      "adaptability": "Adaptability",
+      "leadership": "Leadership",
+      "timeManagement": "Time Management"
+    },
+    "timeline": {
+      "title": "ACADEMIC JOURNEY",
+      "items": [
+        {
+          "year": "2023 - 2024",
+          "title": "Master's in Software Engineering",
+          "school": "Paris-Saclay University",
+          "description": "Specialization in distributed applications and cloud computing."
+        },
+        {
+          "year": "2020 - 2023",
+          "title": "Bachelor's in Computer Science",
+          "school": "Paris Descartes University",
+          "description": "Comprehensive training in web development, databases, and algorithms."
+        },
+        {
+          "year": "2018 - 2020",
+          "title": "DUT in Computer Science",
+          "school": "IUT Paris",
+          "description": "Practical training in programming, networks, and information systems."
+        }
+      ]
+    }
   },
   "projects": {
     "title": "Project Database",
@@ -87,7 +134,60 @@
     "github": "GitHub",
     "linkedin": "LinkedIn",
     "twitter": "Twitter",
-    "email": "Email"
+    "email": "Email",
+    "meeting": {
+      "title": "Schedule a Meeting",
+      "description": "Schedule an online meeting",
+      "button": "Schedule Meeting",
+      "duration": "Duration",
+      "selectDate": "Select a date",
+      "selectTime": "Select a time",
+      "minutes": "minutes",
+      "schedule": "Confirm meeting",
+      "platform": "Meeting platform",
+      "platforms": {
+        "google": "Google Meet",
+        "teams": "Microsoft Teams",
+        "zoom": "Zoom"
+      }
+    },
+    "system": {
+      "title": "SYSTEM STATUS",
+      "server": "SERVER",
+      "uptime": "UPTIME",
+      "responseRate": "RESPONSE RATE",
+      "lastUpdate": "LAST UPDATE",
+      "status": {
+        "online": "ONLINE",
+        "days": "DAYS"
+      }
+    }
+  },
+  "cv": {
+    "downloading": {
+      "text": "Installing CV...",
+      "log": "Downloading data..."
+    },
+    "success": {
+      "text": "CV successfully installed!",
+      "log": "Installation complete. CV has been downloaded."
+    },
+    "error": {
+      "text": "Error installing CV",
+      "log": "Error: Unable to install CV. Please try again."
+    }
+  },
+  "help": {
+    "title": "Available commands:",
+    "about": "Learn more about the developer",
+    "projects": "View completed projects",
+    "skills": "View my skills",
+    "contact": "Contact me",
+    "cv": "Download my CV",
+    "theme": "Change theme",
+    "language": "Change language",
+    "clear": "Clear screen",
+    "easter_egg": "🎮 Find out for yourself!"
   },
   "footer": {
     "copyright": "© 2025 Abdelrahmane Gacemi",

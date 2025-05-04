@@ -12,6 +12,8 @@ import NavigationBar from './NavigationBar';
 import useKeyboardSound from '@/hooks/useKeyboardSound';
 import SnakeGame from './terminal/SnakeGame';
 import GamesMenu from './terminal/GamesMenu';
+import CVDownload from './terminal/CVDownload';
+import AnimatedBackground from './ui/AnimatedBackground';
 
 type CommandType = {
   id: number;
@@ -27,13 +29,34 @@ const Terminal: React.FC = () => {
   const [bootSequence, setBootSequence] = useState(true);
   const [showWelcome, setShowWelcome] = useState(true);
   const [soundEnabled, setSoundEnabled] = useState(true);
+  const [currentBootIndex, setCurrentBootIndex] = useState(0);
   const terminalEndRef = useRef<HTMLDivElement>(null);
   const playKeySound = useKeyboardSound(soundEnabled);
+  const [isNavCommand, setIsNavCommand] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   
-  // Scroll to bottom when new commands are added
+  // Scroll to bottom after each command
   useEffect(() => {
     terminalEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [history]);
+
+  // Handle scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      const terminalContent = document.querySelector('.terminal-scrollbar');
+      if (terminalContent) {
+        const { scrollTop, scrollHeight, clientHeight } = terminalContent as HTMLElement;
+        setIsScrolled(scrollHeight - scrollTop - clientHeight > 10);
+      }
+    };
+
+    const terminalContent = document.querySelector('.terminal-scrollbar');
+    terminalContent?.addEventListener('scroll', handleScroll);
+    
+    return () => {
+      terminalContent?.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
   
   // Initial boot sequence
   useEffect(() => {
@@ -42,46 +65,49 @@ const Terminal: React.FC = () => {
     const bootMessages = [
       { message: t('terminal.boot'), delay: 600 },
       { message: t('terminal.copyright'), delay: 1000 },
-      { message: t('terminal.loading'), delay: 1500 },
+      { message: t('terminal.loading'), delay: 1000 },
       { message: t('terminal.accessGranted'), delay: 800 },
       { message: t('terminal.initializing'), delay: 1000 },
       { message: t('terminal.hello'), delay: 500 },
       { message: t('terminal.help'), delay: 500 },
     ];
-    
-    let totalDelay = 0;
-    
-    bootMessages.forEach((item, index) => {
-      totalDelay += item.delay;
+
+    if (currentBootIndex < bootMessages.length) {
+      const currentMessage = bootMessages[currentBootIndex];
+      
       setTimeout(() => {
         setHistory(prev => [
           ...prev, 
           {
-            id: Date.now() + index,
-            command: item.message,
+            id: Date.now() + currentBootIndex,
+            command: currentMessage.message,
             output: <></>,
             timestamp: new Date().toLocaleTimeString()
           }
         ]);
         
-        // End boot sequence after last message
-        if (index === bootMessages.length - 1) {
-          setTimeout(() => setBootSequence(false), 500);
+        setTimeout(() => {
+          setCurrentBootIndex(prev => prev + 1);
+        }, currentMessage.delay);
+        
+        if (currentBootIndex === bootMessages.length - 1) {
+          setTimeout(() => setBootSequence(false), 1000);
         }
-      }, totalDelay);
-    });
-  }, [t, showWelcome]);
+      }, 100);
+    }
+  }, [t, showWelcome, currentBootIndex]);
 
   const handleHelp = () => {
     handleCommand('help');
   };
   
-  const handleCommand = (cmd: string) => {
+  const handleCommand = (cmd: string, fromNav: boolean = false) => {
     playKeySound();
+    setIsNavCommand(fromNav);
     let output: React.ReactNode;
     
     // Handle different commands
-    switch (cmd) {
+    switch (cmd.toLowerCase()) {
       case 'about':
         output = <AboutSection />;
         break;
@@ -94,11 +120,26 @@ const Terminal: React.FC = () => {
       case 'contact':
         output = <ContactSection />;
         break;
+      case 'blog':
+        output = (
+          <div className="text-sm space-y-4">
+            <h2 className="text-xl font-bold border-b border-current pb-2">Blogues</h2>
+            <div className="text-center py-8">
+              <p className="text-2xl font-bold text-green-500">Coming Soon</p>
+              <p className="text-gray-500 mt-2">Stay tuned for exciting content!</p>
+            </div>
+          </div>
+        );
+        break;
+      case 'install cv':
+        output = <CVDownload />;
+        break;
       case 'theme':
         toggleTheme();
         output = <div className="text-sm">
           {t('theme.green')}: {theme === 'green' ? 'ACTIVE' : 'INACTIVE'}<br />
-          {t('theme.amber')}: {theme === 'amber' ? 'ACTIVE' : 'INACTIVE'}
+          {t('theme.amber')}: {theme === 'amber' ? 'ACTIVE' : 'INACTIVE'}<br />
+          {t('theme.light')}: {theme === 'light' ? 'ACTIVE' : 'INACTIVE'}
         </div>;
         break;
       case 'language': {
@@ -113,16 +154,18 @@ const Terminal: React.FC = () => {
       case 'help':
         output = (
           <div className="text-sm space-y-2">
-            <div className="text-green-500 font-bold mb-2">Commandes disponibles:</div>
+            <div className="text-green-500 font-bold mb-2">{t('help.title')}</div>
             <div className="grid gap-2">
-              <div>▸ <span className="text-yellow-500">about</span>      → En savoir plus sur le développeur</div>
-              <div>▸ <span className="text-yellow-500">projects</span>   → Voir les projets réalisés</div>
-              <div>▸ <span className="text-yellow-500">skills</span>    → Voir mes compétences</div>
-              <div>▸ <span className="text-yellow-500">contact</span>    → Me contacter</div>
-              <div>▸ <span className="text-yellow-500">theme</span>      → Changer le thème</div>
-              <div>▸ <span className="text-yellow-500">language</span>   → Changer la langue</div>
-              <div>▸ <span className="text-yellow-500">clear</span>      → Effacer l'écran</div>
-              <div>▸ <span className="text-yellow-500">easter-egg</span> → 🎮 Découvrez par vous-même !</div>
+              <div>▸ <span className="text-red-500">about</span>      → {t('help.about')}</div>
+              <div>▸ <span className="text-red-500">projects</span>   → {t('help.projects')}</div>
+              <div>▸ <span className="text-red-500">skills</span>    → {t('help.skills')}</div>
+              <div>▸ <span className="text-red-500">blog</span>      → {t('help.research')}</div>
+              <div>▸ <span className="text-red-500">contact</span>    → {t('help.contact')}</div>
+              <div>▸ <span className="text-red-500">install cv</span> → {t('help.cv')}</div>
+              <div>▸ <span className="text-red-500">theme</span>      → {t('help.theme')} (green/amber/light)</div>
+              <div>▸ <span className="text-red-500">language</span>   → {t('help.language')}</div>
+              <div>▸ <span className="text-red-500">clear</span>      → {t('help.clear')}</div>
+              <div>▸ <span className="text-red-500">easter-egg</span> → {t('help.easter_egg')}</div>
             </div>
           </div>
         );
@@ -152,11 +195,12 @@ const Terminal: React.FC = () => {
   if (showWelcome) {
     return <WelcomeScreen onComplete={() => setShowWelcome(false)} />;
   }
-
+  
   return (
     <div className="flex flex-col h-screen">
-      <NavigationBar onCommand={handleCommand} />
-      <div className="flex-1 overflow-auto p-2">
+      <AnimatedBackground />
+      <NavigationBar onCommand={(cmd) => handleCommand(cmd, true)} isScrolled={isScrolled} />
+      <div className="flex-1 overflow-auto p-2 terminal-scrollbar pt-[88px]">
         <div className="space-y-4">
           {history.map((item) => (
             <TerminalCommand 

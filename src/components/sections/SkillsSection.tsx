@@ -57,7 +57,7 @@ const SkillsSection: React.FC = () => {
         <div className="flex justify-between text-xs">
           <div className="flex items-center gap-2">
             <Icon size={16} />
-            <span>{skill}</span>
+          <span>{skill}</span>
           </div>
           <span>{percentage}%</span>
         </div>

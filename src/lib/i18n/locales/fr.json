@@ -4,7 +4,7 @@
     "description": "Portfolio développeur interactif d'Abdelrahmane Gacemi"
   },
   "terminal": {
-    "welcome": "PORTFOLIO - ABDElRAHMANE GACEMI",
+    "welcome": "SYSTÈME D'EXPLOITATION UNIFIÉ VAULT-TECH - PORTFOLIO - ABDELRAHMANE GACEMI",
     "copyright": "COPYRIGHT 2075-2077 VAULT-TECH",
     "boot": "SÉQUENCE DE DÉMARRAGE INITIALISÉE...",
     "loading": "CHARGEMENT DES DONNÉES PERSONNELLES...",
@@ -20,11 +20,14 @@
     "about": "À Propos",
     "projects": "Projets",
     "skills": "Compétences",
-    "contact": "Contact"
+    "contact": "Contact",
+    "cv": "CV",
+    "help": "❔ Aide"
   },
   "theme": {
     "green": "Terminal Vert",
-    "amber": "Terminal Ambre"
+    "amber": "Terminal Ambre",
+    "light": "Terminal Clair"
   },
   "language": {
     "en": "Anglais",
@@ -36,7 +39,51 @@
     "role": "Développeur Web et Mobile",
     "intro": "Bonjour ! Je suis un développeur web et mobile passionné, spécialisé dans la création d'applications réactives et conviviales. J'excelle tant dans le développement front-end que back-end, offrant des expériences numériques fluides.",
     "background": "Avec une formation en informatique et des années d'expérience pratique, j'ai développé une compréhension approfondie des frameworks et pratiques de développement modernes. Je suis constamment à la recherche de nouvelles technologies pour améliorer mes compétences.",
-    "approach": "Mon approche combine précision technique et résolution créative de problèmes. Je crois au code propre, au design intuitif et à la construction d'applications qui non seulement fonctionnent parfaitement, mais offrent également des expériences utilisateur engageantes."
+    "approach": "Mon approche combine précision technique et résolution créative de problèmes. Je crois au code propre, au design intuitif et à la construction d'applications qui non seulement fonctionnent parfaitement, mais offrent également des expériences utilisateur engageantes.",
+    "status": "STATUT :",
+    "location": "LOCALISATION :",
+    "clearance": "AUTORISATION :",
+    "status_value": "ACTIF",
+    "location_value": "VAULT 42",
+    "clearance_value": "NIVEAU 4",
+    "system": {
+      "title": "ANALYSE SYSTÈME",
+      "status": "STATUT",
+      "location": "LOCALISATION",
+      "clearance": "AUTORISATION"
+    },
+    "softSkills": {
+      "title": "COMPÉTENCES HUMAINES",
+      "communication": "Communication",
+      "teamwork": "Travail d'équipe",
+      "problemSolving": "Résolution de problèmes",
+      "adaptability": "Adaptabilité",
+      "leadership": "Leadership",
+      "timeManagement": "Gestion du temps"
+    },
+    "timeline": {
+      "title": "PARCOURS ACADÉMIQUE",
+      "items": [
+        {
+          "year": "2023 - 2024",
+          "title": "Master en Ingénierie Logicielle",
+          "school": "Université Paris-Saclay",
+          "description": "Spécialisation en développement d'applications distribuées et cloud computing."
+        },
+        {
+          "year": "2020 - 2023",
+          "title": "Licence en Informatique",
+          "school": "Université Paris Descartes",
+          "description": "Formation complète en développement web, bases de données et algorithmique."
+        },
+        {
+          "year": "2018 - 2020",
+          "title": "DUT Informatique",
+          "school": "IUT de Paris",
+          "description": "Formation pratique en programmation, réseaux et systèmes d'information."
+        }
+      ]
+    }
   },
   "projects": {
     "title": "Base de Données des Projets",
@@ -87,7 +134,60 @@
     "github": "GitHub",
     "linkedin": "LinkedIn",
     "twitter": "Twitter",
-    "email": "Email"
+    "email": "Email",
+    "meeting": {
+      "title": "Organiser un Meeting",
+      "description": "Planifier une réunion en ligne",
+      "button": "Planifier un Meeting",
+      "duration": "Durée",
+      "selectDate": "Sélectionner une date",
+      "selectTime": "Sélectionner une heure",
+      "minutes": "minutes",
+      "schedule": "Confirmer le rendez-vous",
+      "platform": "Plateforme de réunion",
+      "platforms": {
+        "google": "Google Meet",
+        "teams": "Microsoft Teams",
+        "zoom": "Zoom"
+      }
+    },
+    "system": {
+      "title": "STATUT DU SYSTÈME",
+      "server": "SERVEUR",
+      "uptime": "TEMPS DE FONCTIONNEMENT",
+      "responseRate": "TAUX DE RÉPONSE",
+      "lastUpdate": "DERNIÈRE MISE À JOUR",
+      "status": {
+        "online": "EN LIGNE",
+        "days": "JOURS"
+      }
+    }
+  },
+  "cv": {
+    "downloading": {
+      "text": "Installation du CV en cours...",
+      "log": "Téléchargement des données..."
+    },
+    "success": {
+      "text": "CV installé avec succès !",
+      "log": "Installation terminée. Le CV a été téléchargé."
+    },
+    "error": {
+      "text": "Erreur lors de l'installation du CV",
+      "log": "Erreur: Impossible d'installer le CV. Veuillez réessayer."
+    }
+  },
+  "help": {
+    "title": "Commandes disponibles:",
+    "about": "En savoir plus sur le développeur",
+    "projects": "Voir les projets réalisés",
+    "skills": "Voir mes compétences",
+    "contact": "Me contacter",
+    "cv": "Télécharger mon CV",
+    "theme": "Changer le thème",
+    "language": "Changer la langue",
+    "clear": "Effacer l'écran",
+    "easter_egg": "🎮 Découvrez par vous-même !"
   },
   "footer": {
     "copyright": "© 2025 Abdelrahmane Gacemi",
