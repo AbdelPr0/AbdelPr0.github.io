@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
+import { motion, AnimatePresence } from 'framer-motion';
 import TerminalCommand from './terminal/TerminalCommand';
 import TerminalInput from './terminal/TerminalInput';
 import AboutSection from './sections/AboutSection';
@@ -14,6 +15,14 @@ import SnakeGame from './terminal/SnakeGame';
 import GamesMenu from './terminal/GamesMenu';
 import CVDownload from './terminal/CVDownload';
 import AnimatedBackground from './ui/AnimatedBackground';
+import ChatBot from './terminal/ChatBot';
+
+interface Message {
+  type: 'user' | 'bot';
+  content: string;
+  timestamp: string;
+  isTyping?: boolean;
+}
 
 type CommandType = {
   id: number;
@@ -21,6 +30,13 @@ type CommandType = {
   output: React.ReactNode;
   timestamp: string;
 };
+
+interface Achievement {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+}
 
 const Terminal: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -34,6 +50,25 @@ const Terminal: React.FC = () => {
   const playKeySound = useKeyboardSound(soundEnabled);
   const [isNavCommand, setIsNavCommand] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [currentSection, setCurrentSection] = useState<string>('home');
+  const [isInitialized, setIsInitialized] = useState(false);
+  const [isTyping, setIsTyping] = useState(false);
+  const [currentCommand, setCurrentCommand] = useState('');
+  const [commandHistory, setCommandHistory] = useState<string[]>([]);
+  const [historyIndex, setHistoryIndex] = useState(-1);
+  const [showHelp, setShowHelp] = useState(false);
+  const [showBlog, setShowBlog] = useState(false);
+  const [showChat, setShowChat] = useState(false);
+  const [isMinimized, setIsMinimized] = useState(false);
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [input, setInput] = useState('');
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const terminalRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [achievements, setAchievements] = useState<Achievement[]>([]);
+  const [showAchievement, setShowAchievement] = useState(false);
+  const [currentAchievement, setCurrentAchievement] = useState<Achievement | null>(null);
   
   // Scroll to bottom after each command
   useEffect(() => {
@@ -101,40 +136,105 @@ const Terminal: React.FC = () => {
     handleCommand('help');
   };
   
+  // Liste des achievements possibles
+  const possibleAchievements: Achievement[] = [
+    {
+      id: 'first_command',
+      title: t('achievements.firstCommand.title', 'First Command!'),
+      description: t('achievements.firstCommand.description', 'You executed your first command in the terminal!'),
+      icon: '⌨️'
+    },
+    {
+      id: 'explorer',
+      title: t('achievements.explorer.title', 'Explorer!'),
+      description: t('achievements.explorer.description', 'You visited all main sections of the portfolio!'),
+      icon: '🗺️'
+    },
+    {
+      id: 'theme_changer',
+      title: t('achievements.themeChanger.title', 'Theme Changer!'),
+      description: t('achievements.themeChanger.description', 'You changed the theme of the portfolio!'),
+      icon: '🎨'
+    },
+    {
+      id: 'language_switcher',
+      title: t('achievements.languageSwitcher.title', 'Language Switcher!'),
+      description: t('achievements.languageSwitcher.description', 'You switched the language of the portfolio!'),
+      icon: '🌐'
+    }
+  ];
+
+  // Fonction pour vérifier et débloquer les achievements
+  const checkAchievements = (action: string) => {
+    let achievementToUnlock: Achievement | null = null;
+
+    switch (action) {
+      case 'command':
+        if (!achievements.some(a => a.id === 'first_command')) {
+          achievementToUnlock = possibleAchievements.find(a => a.id === 'first_command') || null;
+        }
+        break;
+      case 'explore':
+        if (!achievements.some(a => a.id === 'explorer')) {
+          achievementToUnlock = possibleAchievements.find(a => a.id === 'explorer') || null;
+        }
+        break;
+      case 'theme':
+        if (!achievements.some(a => a.id === 'theme_changer')) {
+          achievementToUnlock = possibleAchievements.find(a => a.id === 'theme_changer') || null;
+        }
+        break;
+      case 'language':
+        if (!achievements.some(a => a.id === 'language_switcher')) {
+          achievementToUnlock = possibleAchievements.find(a => a.id === 'language_switcher') || null;
+        }
+        break;
+    }
+
+    if (achievementToUnlock) {
+      setAchievements(prev => [...prev, achievementToUnlock]);
+      setCurrentAchievement(achievementToUnlock);
+      setShowAchievement(true);
+      setTimeout(() => {
+        setShowAchievement(false);
+        setTimeout(() => {
+          setCurrentAchievement(null);
+        }, 500);
+      }, 3000);
+    }
+  };
+
   const handleCommand = (cmd: string, fromNav: boolean = false) => {
     playKeySound();
     setIsNavCommand(fromNav);
     let output: React.ReactNode;
     
+    // Vérifier les achievements
+    checkAchievements('command');
+    
     // Handle different commands
     switch (cmd.toLowerCase()) {
       case 'about':
+        checkAchievements('explore');
         output = <AboutSection />;
         break;
       case 'projects':
+        checkAchievements('explore');
         output = <ProjectsSection />;
         break;
       case 'skills':
+        checkAchievements('explore');
         output = <SkillsSection />;
         break;
       case 'contact':
+        checkAchievements('explore');
         output = <ContactSection />;
-        break;
-      case 'blog':
-        output = (
-          <div className="text-sm space-y-4">
-            <h2 className="text-xl font-bold border-b border-current pb-2">Blogues</h2>
-            <div className="text-center py-8">
-              <p className="text-2xl font-bold text-green-500">Coming Soon</p>
-              <p className="text-gray-500 mt-2">Stay tuned for exciting content!</p>
-            </div>
-          </div>
-        );
         break;
       case 'install cv':
         output = <CVDownload />;
         break;
       case 'theme':
+        checkAchievements('theme');
         toggleTheme();
         output = <div className="text-sm">
           {t('theme.green')}: {theme === 'green' ? 'ACTIVE' : 'INACTIVE'}<br />
@@ -143,6 +243,7 @@ const Terminal: React.FC = () => {
         </div>;
         break;
       case 'language': {
+        checkAchievements('language');
         const newLang = i18n.language === 'en' ? 'fr' : 'en';
         i18n.changeLanguage(newLang);
         output = <div className="text-sm">
@@ -159,7 +260,6 @@ const Terminal: React.FC = () => {
               <div>▸ <span className="text-red-500">about</span>      → {t('help.about')}</div>
               <div>▸ <span className="text-red-500">projects</span>   → {t('help.projects')}</div>
               <div>▸ <span className="text-red-500">skills</span>    → {t('help.skills')}</div>
-              <div>▸ <span className="text-red-500">blog</span>      → {t('help.research')}</div>
               <div>▸ <span className="text-red-500">contact</span>    → {t('help.contact')}</div>
               <div>▸ <span className="text-red-500">install cv</span> → {t('help.cv')}</div>
               <div>▸ <span className="text-red-500">theme</span>      → {t('help.theme')} (green/amber/light)</div>
@@ -192,6 +292,27 @@ const Terminal: React.FC = () => {
     ]);
   };
   
+  const scrollToBottom = () => {
+    if (messagesEndRef.current && isInitialized) {
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages, isInitialized]);
+
+  useEffect(() => {
+    const initializeTerminal = async () => {
+      setIsTyping(true);
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      setIsTyping(false);
+      setIsInitialized(true);
+    };
+
+    initializeTerminal();
+  }, []);
+  
   if (showWelcome) {
     return <WelcomeScreen onComplete={() => setShowWelcome(false)} />;
   }
@@ -200,6 +321,29 @@ const Terminal: React.FC = () => {
     <div className="flex flex-col h-screen">
       <AnimatedBackground />
       <NavigationBar onCommand={(cmd) => handleCommand(cmd, true)} isScrolled={isScrolled} />
+      
+      {/* Achievement Notification */}
+      <AnimatePresence>
+        {showAchievement && currentAchievement && (
+          <motion.div
+            initial={{ y: -100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -100, opacity: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50"
+          >
+            <div className="bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg flex items-center space-x-3">
+              <div className="text-3xl">{currentAchievement.icon}</div>
+              <div>
+                <div className="font-bold">{t('achievements.unlocked', 'Achievement Unlocked!')}</div>
+                <div className="text-sm">{currentAchievement.title}</div>
+                <div className="text-xs opacity-80">{currentAchievement.description}</div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <div className="flex-1 overflow-auto p-2 terminal-scrollbar pt-[88px]">
         <div className="space-y-4">
           {history.map((item) => (
@@ -219,6 +363,7 @@ const Terminal: React.FC = () => {
           <div ref={terminalEndRef} />
         </div>
       </div>
+      <ChatBot />
     </div>
   );
 };

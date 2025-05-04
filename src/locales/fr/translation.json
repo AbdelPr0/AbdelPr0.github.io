@@ -3,7 +3,6 @@
     "about": "À propos",
     "projects": "Projets",
     "skills": "Compétences",
-    "blog": "Blog",
     "contact": "Contact",
     "cv": "CV",
     "help": "Aide"
@@ -13,17 +12,30 @@
     "about": "Afficher mes informations",
     "projects": "Voir mes projets",
     "skills": "Lister mes compétences",
-    "blog": "Voir mon blog tech et mes derniers articles",
     "contact": "Informations de contact",
     "cv": "Télécharger mon CV",
     "theme": "Changer le thème",
     "language": "Changer la langue",
     "clear": "Effacer le terminal",
-    "easter_egg": "Découvrir les fonctionnalités cachées",
-    "research": "Mes recherches et découvertes"
+    "easter_egg": "Découvrir les fonctionnalités cachées"
   },
-  "blog": {
-    "title": "Blog",
-    "comingSoon": "Bientôt disponible"
+  "achievements": {
+    "unlocked": "Succès débloqué !",
+    "firstCommand": {
+      "title": "Première commande !",
+      "description": "Vous avez exécuté votre première commande dans le terminal !"
+    },
+    "explorer": {
+      "title": "Explorateur !",
+      "description": "Vous avez visité toutes les sections principales du portfolio !"
+    },
+    "themeChanger": {
+      "title": "Changeur de thème !",
+      "description": "Vous avez changé le thème du portfolio !"
+    },
+    "languageSwitcher": {
+      "title": "Changeur de langue !",
+      "description": "Vous avez changé la langue du portfolio !"
+    }
   }
 } 

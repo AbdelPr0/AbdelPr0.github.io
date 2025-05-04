@@ -3,23 +3,39 @@
     "about": "About",
     "projects": "Projects",
     "skills": "Skills",
-    "blog": "Blog",
     "contact": "Contact",
     "cv": "CV",
     "help": "Help"
   },
   "help": {
-    "title": "Available Commands",
-    "about": "Display information about me",
-    "projects": "Show my projects",
+    "title": "Available commands",
+    "about": "Display my information",
+    "projects": "View my projects",
     "skills": "List my skills",
-    "blog": "View my tech blog and latest articles",
     "contact": "Contact information",
     "cv": "Download my CV",
-    "theme": "Switch theme",
-    "language": "Switch language",
+    "theme": "Change theme",
+    "language": "Change language",
     "clear": "Clear terminal",
-    "easter_egg": "Discover hidden features",
-    "research": "My research and discoveries"
+    "easter_egg": "Discover hidden features"
+  },
+  "achievements": {
+    "unlocked": "Achievement Unlocked!",
+    "firstCommand": {
+      "title": "First Command!",
+      "description": "You executed your first command in the terminal!"
+    },
+    "explorer": {
+      "title": "Explorer!",
+      "description": "You visited all main sections of the portfolio!"
+    },
+    "themeChanger": {
+      "title": "Theme Changer!",
+      "description": "You changed the theme of the portfolio!"
+    },
+    "languageSwitcher": {
+      "title": "Language Switcher!",
+      "description": "You switched the language of the portfolio!"
+    }
   }
 } 

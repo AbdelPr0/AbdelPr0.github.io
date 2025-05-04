@@ -12,6 +12,7 @@ const AVAILABLE_COMMANDS = [
   'skills',
   'contact',
   'blog',
+  'chat',
   'install cv',
   'theme',
   'language',
