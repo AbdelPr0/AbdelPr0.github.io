@@ -400,13 +400,14 @@
   width: 8px;
 }
 
+/* Thème vert (par défaut) */
 .terminal-scrollbar::-webkit-scrollbar-track {
   background: rgba(0, 0, 0, 0.3);
-  border: 1px solid var(--terminal-color);
+  border: 1px solid var(--terminal-green);
 }
 
 .terminal-scrollbar::-webkit-scrollbar-thumb {
-  background: var(--terminal-color);
+  background: var(--terminal-green);
   border: 2px solid transparent;
   background-clip: padding-box;
   border-radius: 6px;
@@ -414,32 +415,146 @@
 }
 
 .terminal-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: var(--terminal-color);
+  background: var(--terminal-green);
   opacity: 1;
+}
+
+/* Thème ambre */
+.amber-theme .terminal-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--terminal-amber);
+}
+
+.amber-theme .terminal-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--terminal-amber);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  border-radius: 6px;
+  opacity: 0.7;
+}
+
+.amber-theme .terminal-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--terminal-amber);
+  opacity: 1;
+}
+
+/* Thème clair */
+.light-theme .terminal-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.light-theme .terminal-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.5);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  border-radius: 6px;
+}
+
+.light-theme .terminal-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(59, 130, 246, 0.7);
 }
 
 /* Styles Firefox */
 .terminal-scrollbar {
   scrollbar-width: thin;
-  scrollbar-color: var(--terminal-color) rgba(0, 0, 0, 0.3);
 }
 
-.light-theme .terminal-scrollbar::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.05);
-  border: none;
+/* Thème vert (par défaut) */
+.terminal-scrollbar {
+  scrollbar-color: var(--terminal-green) rgba(0, 0, 0, 0.3);
 }
 
-.light-theme .terminal-scrollbar::-webkit-scrollbar-thumb {
-  background: var(--primary);
-  opacity: 0.3;
-  border-radius: 4px;
+/* Thème ambre */
+.amber-theme .terminal-scrollbar {
+  scrollbar-color: var(--terminal-amber) rgba(0, 0, 0, 0.3);
 }
 
-.light-theme .terminal-scrollbar::-webkit-scrollbar-thumb:hover {
-  opacity: 0.5;
-}
-
+/* Thème clair */
 .light-theme .terminal-scrollbar {
-  scrollbar-color: var(--primary) rgba(0, 0, 0, 0.05);
+  scrollbar-color: rgba(59, 130, 246, 0.5) rgba(0, 0, 0, 0.05);
+}
+
+/* Responsive styles */
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Responsive typography */
+@media (max-width: 640px) {
+  h1 {
+    font-size: 1.75rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+  }
+  h3 {
+    font-size: 1.25rem;
+  }
+  p {
+    font-size: 0.875rem;
+  }
+}
+
+/* Responsive images */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Responsive containers */
+.container {
+  width: 100%;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #555;
 }
 

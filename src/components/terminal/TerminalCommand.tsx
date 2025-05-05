@@ -18,6 +18,7 @@ const TerminalCommand: React.FC<TerminalCommandProps> = ({
   const [showOutput, setShowOutput] = useState(!isTyping);
   const [displayedText, setDisplayedText] = useState('');
   const commandRef = useRef<HTMLDivElement>(null);
+  const [visitedSections, setVisitedSections] = useState<Set<string>>(new Set());
   
   useEffect(() => {
     if (isTyping) {

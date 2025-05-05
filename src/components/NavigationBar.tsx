@@ -55,31 +55,31 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ onCommand, isScrolled = f
 
       {/* Main navigation bar */}
       <div className={`${baseClasses} ${navClasses} mt-0 backdrop-blur-md`}>
-        <div className="flex space-x-3">
-          {commands.map((cmd) => (
-            <button
-              key={cmd.name}
-              onClick={() => onCommand(cmd.name)}
-              className={`${buttonBaseClasses} ${buttonClasses}`}
-            >
-              {cmd.label}
-            </button>
-          ))}
-        </div>
-        <div className="flex items-center space-x-3">
+      <div className="flex space-x-3">
+        {commands.map((cmd) => (
           <button
-            onClick={() => onCommand('install cv')}
-            className={`${buttonBaseClasses} ${cvButtonClasses}`}
-          >
-            <Download size={16} />
-            {t('nav.cv')}
-          </button>
-          <button
-            onClick={() => onCommand('help')}
+            key={cmd.name}
+            onClick={() => onCommand(cmd.name)}
             className={`${buttonBaseClasses} ${buttonClasses}`}
           >
-            {t('nav.help')}
+            {cmd.label}
           </button>
+        ))}
+      </div>
+      <div className="flex items-center space-x-3">
+        <button
+          onClick={() => onCommand('install cv')}
+          className={`${buttonBaseClasses} ${cvButtonClasses}`}
+        >
+          <Download size={16} />
+          {t('nav.cv')}
+        </button>
+        <button
+          onClick={() => onCommand('help')}
+          className={`${buttonBaseClasses} ${buttonClasses}`}
+        >
+          {t('nav.help')}
+        </button>
         </div>
       </div>
     </div>

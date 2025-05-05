@@ -59,14 +59,14 @@ const AboutSection: React.FC = () => {
   const timelineItems = t('about.timeline.items', { returnObjects: true }) as TimelineItemData[];
   
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 w-full">
       <h2 className="text-xl font-bold border-b border-current pb-2">
         {t('about.title')}
       </h2>
       
-      <div className="flex flex-col lg:flex-row gap-6">
-        <div className="lg:w-1/3">
-          <div className="border border-current p-4 rounded-md">
+      <div className="flex flex-col lg:flex-row gap-4 sm:gap-6">
+        <div className="w-full lg:w-1/3">
+          <div className="border border-current p-3 sm:p-4 rounded-md">
             <div className="aspect-square bg-terminal-dark/50 rounded overflow-hidden relative mb-4">
               {/* Image avec effet de scan */}
               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-current/5 to-transparent animate-scan-line"></div>
@@ -92,16 +92,16 @@ const AboutSection: React.FC = () => {
           </div>
         </div>
         
-        <div className="lg:w-2/3 space-y-4">
-          <div className="space-y-4">
-          <p>{t('about.intro')}</p>
-          <p>{t('about.background')}</p>
-          <p>{t('about.approach')}</p>
+        <div className="w-full lg:w-2/3 space-y-4">
+          <div className="space-y-3 sm:space-y-4">
+            <p className="text-sm sm:text-base">{t('about.intro')}</p>
+            <p className="text-sm sm:text-base">{t('about.background')}</p>
+            <p className="text-sm sm:text-base">{t('about.approach')}</p>
           </div>
           
-          <div className="border border-current p-4 rounded-md">
-            <h3 className="text-lg font-semibold mb-4">{t('about.softSkills.title')}</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="border border-current p-3 sm:p-4 rounded-md">
+            <h3 className="text-lg font-semibold mb-3 sm:mb-4">{t('about.softSkills.title')}</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4">
               {softSkills.map((skill, index) => (
                 <div 
                   key={index} 
@@ -116,26 +116,26 @@ const AboutSection: React.FC = () => {
                   {/* Effet de pulsation de l'icône */}
                   <div className="relative z-10">
                     <skill.icon 
-                      size={20} 
+                      size={18} 
                       className={`${skill.color} group-hover:scale-110 transition-transform duration-300 group-hover:animate-pulse`} 
                     />
-              </div>
+                  </div>
                   
                   {/* Texte avec effet de glissement */}
-                  <span className="relative z-10 group-hover:translate-x-1 transition-transform duration-300">
+                  <span className="relative z-10 text-sm sm:text-base group-hover:translate-x-1 transition-transform duration-300">
                     {t(`about.softSkills.${skill.label}`)}
                   </span>
                   
                   {/* Effet de scan au survol */}
                   <div className="absolute inset-0 bg-gradient-to-b from-transparent via-current/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </div>
+                </div>
               ))}
-              </div>
-              </div>
+            </div>
+          </div>
 
-          <div className="border border-current p-4 rounded-md">
-            <h3 className="text-lg font-semibold mb-4">{t('about.timeline.title')}</h3>
-            <div className="space-y-4">
+          <div className="border border-current p-3 sm:p-4 rounded-md">
+            <h3 className="text-lg font-semibold mb-3 sm:mb-4">{t('about.timeline.title')}</h3>
+            <div className="space-y-3 sm:space-y-4">
               {timelineItems.map((item, index) => (
                 <TimelineItem
                   key={index}

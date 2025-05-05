@@ -15,7 +15,6 @@ import SnakeGame from './terminal/SnakeGame';
 import GamesMenu from './terminal/GamesMenu';
 import CVDownload from './terminal/CVDownload';
 import AnimatedBackground from './ui/AnimatedBackground';
-import ChatBot from './terminal/ChatBot';
 
 interface Message {
   type: 'user' | 'bot';
@@ -69,6 +68,7 @@ const Terminal: React.FC = () => {
   const [achievements, setAchievements] = useState<Achievement[]>([]);
   const [showAchievement, setShowAchievement] = useState(false);
   const [currentAchievement, setCurrentAchievement] = useState<Achievement | null>(null);
+  const [visitedSections, setVisitedSections] = useState<Set<string>>(new Set());
   
   // Scroll to bottom after each command
   useEffect(() => {
@@ -165,7 +165,7 @@ const Terminal: React.FC = () => {
   ];
 
   // Fonction pour vérifier et débloquer les achievements
-  const checkAchievements = (action: string) => {
+  const checkAchievements = (action: string, section?: string) => {
     let achievementToUnlock: Achievement | null = null;
 
     switch (action) {
@@ -175,8 +175,18 @@ const Terminal: React.FC = () => {
         }
         break;
       case 'explore':
-        if (!achievements.some(a => a.id === 'explorer')) {
-          achievementToUnlock = possibleAchievements.find(a => a.id === 'explorer') || null;
+        if (section) {
+          const newVisitedSections = new Set(visitedSections);
+          newVisitedSections.add(section);
+          setVisitedSections(newVisitedSections);
+          
+          // Vérifier si toutes les sections principales ont été visitées
+          const mainSections = ['about', 'projects', 'skills', 'contact'];
+          const allSectionsVisited = mainSections.every(s => newVisitedSections.has(s));
+          
+          if (allSectionsVisited && !achievements.some(a => a.id === 'explorer')) {
+            achievementToUnlock = possibleAchievements.find(a => a.id === 'explorer') || null;
+          }
         }
         break;
       case 'theme':
@@ -203,7 +213,7 @@ const Terminal: React.FC = () => {
       }, 3000);
     }
   };
-
+  
   const handleCommand = (cmd: string, fromNav: boolean = false) => {
     playKeySound();
     setIsNavCommand(fromNav);
@@ -215,19 +225,19 @@ const Terminal: React.FC = () => {
     // Handle different commands
     switch (cmd.toLowerCase()) {
       case 'about':
-        checkAchievements('explore');
+        checkAchievements('explore', 'about');
         output = <AboutSection />;
         break;
       case 'projects':
-        checkAchievements('explore');
+        checkAchievements('explore', 'projects');
         output = <ProjectsSection />;
         break;
       case 'skills':
-        checkAchievements('explore');
+        checkAchievements('explore', 'skills');
         output = <SkillsSection />;
         break;
       case 'contact':
-        checkAchievements('explore');
+        checkAchievements('explore', 'contact');
         output = <ContactSection />;
         break;
       case 'install cv':
@@ -318,7 +328,7 @@ const Terminal: React.FC = () => {
   }
   
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col h-[75vh]">
       <AnimatedBackground />
       <NavigationBar onCommand={(cmd) => handleCommand(cmd, true)} isScrolled={isScrolled} />
       
@@ -326,18 +336,30 @@ const Terminal: React.FC = () => {
       <AnimatePresence>
         {showAchievement && currentAchievement && (
           <motion.div
-            initial={{ y: -100, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -100, opacity: 0 }}
+            initial={{ x: 100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: 100, opacity: 0 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
-            className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50"
+            className="fixed bottom-4 right-4 z-[100] max-w-xs w-full"
           >
-            <div className="bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg flex items-center space-x-3">
-              <div className="text-3xl">{currentAchievement.icon}</div>
+            <div className={`
+              ${theme === 'light' 
+                ? 'bg-white/95 border-blue-200 text-blue-900 shadow-lg' 
+                : 'bg-terminal-dark/90 border-current text-current'
+              } 
+              backdrop-blur-sm px-4 py-3 rounded-lg shadow-lg flex items-center space-x-3
+            `}>
+              <div className="text-2xl">{currentAchievement.icon}</div>
               <div>
-                <div className="font-bold">{t('achievements.unlocked', 'Achievement Unlocked!')}</div>
-                <div className="text-sm">{currentAchievement.title}</div>
-                <div className="text-xs opacity-80">{currentAchievement.description}</div>
+                <div className={`font-bold text-sm ${theme === 'light' ? 'text-blue-700' : ''}`}>
+                  {t('achievements.unlocked', 'Achievement Unlocked!')}
+                </div>
+                <div className={`text-xs font-medium ${theme === 'light' ? 'text-blue-800' : ''}`}>
+                  {currentAchievement.title}
+                </div>
+                <div className={`text-xs ${theme === 'light' ? 'text-blue-600' : 'opacity-80'}`}>
+                  {currentAchievement.description}
+                </div>
               </div>
             </div>
           </motion.div>
@@ -363,7 +385,6 @@ const Terminal: React.FC = () => {
           <div ref={terminalEndRef} />
         </div>
       </div>
-      <ChatBot />
     </div>
   );
 };
