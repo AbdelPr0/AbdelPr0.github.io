@@ -119,7 +119,7 @@ const AboutSection: React.FC = () => {
                       size={18} 
                       className={`${skill.color} group-hover:scale-110 transition-transform duration-300 group-hover:animate-pulse`} 
                     />
-                  </div>
+              </div>
                   
                   {/* Texte avec effet de glissement */}
                   <span className="relative z-10 text-sm sm:text-base group-hover:translate-x-1 transition-transform duration-300">
@@ -128,10 +128,10 @@ const AboutSection: React.FC = () => {
                   
                   {/* Effet de scan au survol */}
                   <div className="absolute inset-0 bg-gradient-to-b from-transparent via-current/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </div>
+              </div>
               ))}
-            </div>
-          </div>
+              </div>
+              </div>
 
           <div className="border border-current p-3 sm:p-4 rounded-md">
             <h3 className="text-lg font-semibold mb-3 sm:mb-4">{t('about.timeline.title')}</h3>

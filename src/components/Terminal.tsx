@@ -15,6 +15,7 @@ import SnakeGame from './terminal/SnakeGame';
 import GamesMenu from './terminal/GamesMenu';
 import CVDownload from './terminal/CVDownload';
 import AnimatedBackground from './ui/AnimatedBackground';
+import Achievements from './ui/Achievements';
 
 interface Message {
   type: 'user' | 'bot';
@@ -65,7 +66,10 @@ const Terminal: React.FC = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const terminalRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const [achievements, setAchievements] = useState<Achievement[]>([]);
+  const [achievements, setAchievements] = useState<Achievement[]>(() => {
+    const savedAchievements = localStorage.getItem('achievements');
+    return savedAchievements ? JSON.parse(savedAchievements) : [];
+  });
   const [showAchievement, setShowAchievement] = useState(false);
   const [currentAchievement, setCurrentAchievement] = useState<Achievement | null>(null);
   const [visitedSections, setVisitedSections] = useState<Set<string>>(new Set());
@@ -240,6 +244,15 @@ const Terminal: React.FC = () => {
         checkAchievements('explore', 'contact');
         output = <ContactSection />;
         break;
+      case 'blog':
+        output = (
+          <div className="flex flex-col items-center justify-center py-12 space-y-4">
+            <div className="text-4xl font-bold animate-pulse">🚧</div>
+            <div className="text-2xl font-bold">{t('blog.comingSoon', 'Coming Soon')}</div>
+            <div className="text-sm opacity-70">{t('blog.underConstruction', 'This section is under construction')}</div>
+          </div>
+        );
+        break;
       case 'install cv':
         output = <CVDownload />;
         break;
@@ -274,6 +287,7 @@ const Terminal: React.FC = () => {
               <div>▸ <span className="text-red-500">install cv</span> → {t('help.cv')}</div>
               <div>▸ <span className="text-red-500">theme</span>      → {t('help.theme')} (green/amber/light)</div>
               <div>▸ <span className="text-red-500">language</span>   → {t('help.language')}</div>
+              <div>▸ <span className="text-red-500">achievements</span> → {t('help.achievements', 'View your achievements')}</div>
               <div>▸ <span className="text-red-500">clear</span>      → {t('help.clear')}</div>
               <div>▸ <span className="text-red-500">easter-egg</span> → {t('help.easter_egg')}</div>
             </div>
@@ -287,6 +301,10 @@ const Terminal: React.FC = () => {
         setHistory([]);
         output = <></>;
         return;
+      case 'achievement':
+      case 'achievements':
+        output = <Achievements />;
+        break;
       default:
         output = <div className="text-sm">{t('terminal.notFound')}</div>;
     }
@@ -322,6 +340,11 @@ const Terminal: React.FC = () => {
 
     initializeTerminal();
   }, []);
+  
+  // Sauvegarder les achievements dans localStorage quand ils changent
+  useEffect(() => {
+    localStorage.setItem('achievements', JSON.stringify(achievements));
+  }, [achievements]);
   
   if (showWelcome) {
     return <WelcomeScreen onComplete={() => setShowWelcome(false)} />;
