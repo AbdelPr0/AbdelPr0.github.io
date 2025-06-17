@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import TerminalCommand from './terminal/TerminalCommand';
@@ -7,6 +7,10 @@ import AboutSection from './sections/AboutSection';
 import ProjectsSection from './sections/ProjectsSection';
 import SkillsSection from './sections/SkillsSection';
 import ContactSection from './sections/ContactSection';
+import BehindTheCodeSection from './sections/BehindTheCodeSection';
+import RecruiterModeSection from './sections/RecruiterModeSection';
+import GratitudeWallSection from './sections/GratitudeWallSection';
+import GitHubStatsSection from './sections/GitHubStatsSection';
 import { useTheme } from '@/contexts/ThemeContext';
 import WelcomeScreen from './WelcomeScreen';
 import NavigationBar from './NavigationBar';
@@ -46,7 +50,10 @@ const Terminal: React.FC = () => {
   const [showWelcome, setShowWelcome] = useState(true);
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [currentBootIndex, setCurrentBootIndex] = useState(0);
+  const [typingLine, setTypingLine] = useState('');
+  const [isBootTyping, setIsBootTyping] = useState(false);
   const terminalEndRef = useRef<HTMLDivElement>(null);
+  const latestOutputRef = useRef<HTMLDivElement>(null);
   const playKeySound = useKeyboardSound(soundEnabled);
   const [isNavCommand, setIsNavCommand] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -66,6 +73,7 @@ const Terminal: React.FC = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const terminalRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const [lastCommandId, setLastCommandId] = useState<number | null>(null);
   const [achievements, setAchievements] = useState<Achievement[]>(() => {
     const savedAchievements = localStorage.getItem('achievements');
     return savedAchievements ? JSON.parse(savedAchievements) : [];
@@ -74,12 +82,26 @@ const Terminal: React.FC = () => {
   const [currentAchievement, setCurrentAchievement] = useState<Achievement | null>(null);
   const [visitedSections, setVisitedSections] = useState<Set<string>>(new Set());
   
-  // Scroll to bottom after each command
-  useEffect(() => {
-    terminalEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [history]);
+  // Fonction pour faire défiler vers une commande spécifique
+  const scrollToCommand = useCallback((commandId: number) => {
+    const commandElement = document.getElementById(`command-${commandId}`);
+    if (commandElement) {
+      setTimeout(() => {
+        commandElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
+  }, []);
 
-  // Handle scroll effect
+  // Effet pour le défilement automatique après l'ajout d'une commande
+  useEffect(() => {
+    if (lastCommandId !== null && history.length > 0) {
+      scrollToCommand(lastCommandId);
+    } else if (bootSequence) {
+      // Si nous sommes toujours dans la séquence de démarrage, défiler vers la fin
+    terminalEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [history, lastCommandId, bootSequence, scrollToCommand]);
+  
   useEffect(() => {
     const handleScroll = () => {
       const terminalContent = document.querySelector('.terminal-scrollbar');
@@ -97,50 +119,57 @@ const Terminal: React.FC = () => {
     };
   }, []);
   
-  // Initial boot sequence
   useEffect(() => {
     if (showWelcome) return;
 
     const bootMessages = [
-      { message: t('terminal.boot'), delay: 600 },
-      { message: t('terminal.copyright'), delay: 1000 },
-      { message: t('terminal.loading'), delay: 1000 },
-      { message: t('terminal.accessGranted'), delay: 800 },
-      { message: t('terminal.initializing'), delay: 1000 },
-      { message: t('terminal.hello'), delay: 500 },
-      { message: t('terminal.help'), delay: 500 },
+      t('terminal.boot'),
+      t('terminal.copyright'),
+      t('terminal.loading'),
+      t('terminal.accessGranted'),
+      t('terminal.initializing'),
+      t('terminal.hello'),
+      t('terminal.help'),
     ];
 
-    if (currentBootIndex < bootMessages.length) {
-      const currentMessage = bootMessages[currentBootIndex];
-      
+    if (currentBootIndex < bootMessages.length && !isBootTyping) {
+      setIsBootTyping(true);
+      const line = bootMessages[currentBootIndex];
+      let charIndex = 0;
+      setTypingLine('');
+      const typeChar = () => {
+        setTypingLine((prev) => prev + line[charIndex]);
+        charIndex++;
+        if (charIndex < line.length) {
+          setTimeout(typeChar, 18);
+        } else {
       setTimeout(() => {
         setHistory(prev => [
           ...prev, 
           {
             id: Date.now() + currentBootIndex,
-            command: currentMessage.message,
+                command: line,
             output: <></>,
             timestamp: new Date().toLocaleTimeString()
           }
         ]);
-        
-        setTimeout(() => {
+            setTypingLine('');
+            setIsBootTyping(false);
           setCurrentBootIndex(prev => prev + 1);
-        }, currentMessage.delay);
-        
         if (currentBootIndex === bootMessages.length - 1) {
-          setTimeout(() => setBootSequence(false), 1000);
+              setTimeout(() => setBootSequence(false), 600);
+            }
+          }, 350);
         }
-      }, 100);
+      };
+      setTimeout(typeChar, 300);
     }
-  }, [t, showWelcome, currentBootIndex]);
+  }, [t, showWelcome, currentBootIndex, isBootTyping]);
 
   const handleHelp = () => {
     handleCommand('help');
   };
   
-  // Liste des achievements possibles
   const possibleAchievements: Achievement[] = [
     {
       id: 'first_command',
@@ -168,7 +197,6 @@ const Terminal: React.FC = () => {
     }
   ];
 
-  // Fonction pour vérifier et débloquer les achievements
   const checkAchievements = (action: string, section?: string) => {
     let achievementToUnlock: Achievement | null = null;
 
@@ -184,7 +212,6 @@ const Terminal: React.FC = () => {
           newVisitedSections.add(section);
           setVisitedSections(newVisitedSections);
           
-          // Vérifier si toutes les sections principales ont été visitées
           const mainSections = ['about', 'projects', 'skills', 'contact'];
           const allSectionsVisited = mainSections.every(s => newVisitedSections.has(s));
           
@@ -223,10 +250,8 @@ const Terminal: React.FC = () => {
     setIsNavCommand(fromNav);
     let output: React.ReactNode;
     
-    // Vérifier les achievements
     checkAchievements('command');
     
-    // Handle different commands
     switch (cmd.toLowerCase()) {
       case 'about':
         checkAchievements('explore', 'about');
@@ -253,6 +278,18 @@ const Terminal: React.FC = () => {
           </div>
         );
         break;
+      case 'behind-the-code':
+        output = <BehindTheCodeSection />;
+        break;
+      case 'recruiter-mode':
+        output = <RecruiterModeSection />;
+        break;
+      case 'gratitude-wall':
+        output = <GratitudeWallSection />;
+        break;
+      case 'github-stats':
+        output = <GitHubStatsSection />;
+        break;
       case 'install cv':
         output = <CVDownload />;
         break;
@@ -278,13 +315,35 @@ const Terminal: React.FC = () => {
       case 'help':
         output = (
           <div className="text-sm space-y-2">
-            <div className="text-green-500 font-bold mb-2">{t('help.title')}</div>
+            <div className={`${
+              theme === 'green' ? 'text-green-500' : 
+              theme === 'amber' ? 'text-amber-500' : 
+              'text-blue-600'
+            } font-bold mb-2`}>{t('help.title')}</div>
             <div className="grid gap-2">
-              <div>▸ <span className="text-red-500">about</span>      → {t('help.about')}</div>
-              <div>▸ <span className="text-red-500">projects</span>   → {t('help.projects')}</div>
-              <div>▸ <span className="text-red-500">skills</span>    → {t('help.skills')}</div>
-              <div>▸ <span className="text-red-500">contact</span>    → {t('help.contact')}</div>
+              <div>▸ <span className={`${
+                theme === 'green' ? 'text-green-400' : 
+                theme === 'amber' ? 'text-amber-400' : 
+                'text-blue-500'
+              } font-medium`}>about</span>      → {t('help.about')}</div>
+              <div>▸ <span className={`${
+                theme === 'green' ? 'text-green-400' : 
+                theme === 'amber' ? 'text-amber-400' : 
+                'text-blue-500'
+              } font-medium`}>projects</span>   → {t('help.projects')}</div>
+              <div>▸ <span className={`${
+                theme === 'green' ? 'text-green-400' : 
+                theme === 'amber' ? 'text-amber-400' : 
+                'text-blue-500'
+              } font-medium`}>skills</span>    → {t('help.skills')}</div>
+              <div>▸ <span className={`${
+                theme === 'green' ? 'text-green-400' : 
+                theme === 'amber' ? 'text-amber-400' : 
+                'text-blue-500'
+              } font-medium`}>contact</span>    → {t('help.contact')}</div>
               <div>▸ <span className="text-red-500">install cv</span> → {t('help.cv')}</div>
+              <div>▸ <span className="text-red-500">gratitude-wall</span> → {t('help.gratitude-wall')}</div>
+              <div>▸ <span className="text-red-500">github-stats</span> → {t('help.github-stats')}</div>
               <div>▸ <span className="text-red-500">theme</span>      → {t('help.theme')} (green/amber/light)</div>
               <div>▸ <span className="text-red-500">language</span>   → {t('help.language')}</div>
               <div>▸ <span className="text-red-500">achievements</span> → {t('help.achievements', 'View your achievements')}</div>
@@ -309,15 +368,20 @@ const Terminal: React.FC = () => {
         output = <div className="text-sm">{t('terminal.notFound')}</div>;
     }
     
+    const newCommandId = Date.now();
+    
     setHistory(prev => [
       ...prev, 
       {
-        id: Date.now(),
+        id: newCommandId,
         command: cmd,
         output,
         timestamp: new Date().toLocaleTimeString()
       }
     ]);
+    
+    // Définir l'ID de la dernière commande pour déclencher le défilement
+    setLastCommandId(newCommandId);
   };
   
   const scrollToBottom = () => {
@@ -341,7 +405,6 @@ const Terminal: React.FC = () => {
     initializeTerminal();
   }, []);
   
-  // Sauvegarder les achievements dans localStorage quand ils changent
   useEffect(() => {
     localStorage.setItem('achievements', JSON.stringify(achievements));
   }, [achievements]);
@@ -351,11 +414,9 @@ const Terminal: React.FC = () => {
   }
   
   return (
-    <div className="flex flex-col h-[75vh]">
+    <div className="flex flex-col h-[75vh] relative">
       <AnimatedBackground />
       <NavigationBar onCommand={(cmd) => handleCommand(cmd, true)} isScrolled={isScrolled} />
-      
-      {/* Achievement Notification */}
       <AnimatePresence>
         {showAchievement && currentAchievement && (
           <motion.div
@@ -365,13 +426,13 @@ const Terminal: React.FC = () => {
             transition={{ duration: 0.5, ease: "easeOut" }}
             className="fixed bottom-4 right-4 z-[100] max-w-xs w-full"
           >
-            <div className={`
-              ${theme === 'light' 
+            <div className={
+              `${theme === 'light' 
                 ? 'bg-white/95 border-blue-200 text-blue-900 shadow-lg' 
                 : 'bg-terminal-dark/90 border-current text-current'
               } 
-              backdrop-blur-sm px-4 py-3 rounded-lg shadow-lg flex items-center space-x-3
-            `}>
+              backdrop-blur-sm px-4 py-3 rounded-lg shadow-lg flex items-center space-x-3`
+            }>
               <div className="text-2xl">{currentAchievement.icon}</div>
               <div>
                 <div className={`font-bold text-sm ${theme === 'light' ? 'text-blue-700' : ''}`}>
@@ -388,23 +449,30 @@ const Terminal: React.FC = () => {
           </motion.div>
         )}
       </AnimatePresence>
-
       <div className="flex-1 overflow-auto p-2 terminal-scrollbar pt-[88px]">
         <div className="space-y-4">
           {history.map((item) => (
+            <div id={`command-${item.id}`} key={item.id}>
             <TerminalCommand 
-              key={item.id}
               command={item.command}
               output={item.output}
               timestamp={item.timestamp}
               isTyping={bootSequence}
             />
+            </div>
           ))}
-          
+          {bootSequence && typingLine && (
+            <TerminalCommand 
+              key={"typing-line"}
+              command={typingLine}
+              output={<></>}
+              timestamp={new Date().toLocaleTimeString()}
+              isTyping={true}
+            />
+          )}
           {!bootSequence && (
             <TerminalInput onCommand={handleCommand} placeholder="help" />
           )}
-          
           <div ref={terminalEndRef} />
         </div>
       </div>

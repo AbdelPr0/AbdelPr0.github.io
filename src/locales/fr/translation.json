@@ -9,15 +9,19 @@
   },
   "help": {
     "title": "Commandes disponibles",
-    "about": "Afficher mes informations",
-    "projects": "Voir mes projets",
-    "skills": "Lister mes compétences",
-    "contact": "Informations de contact",
+    "about": "En savoir plus sur le développeur",
+    "projects": "Voir les projets réalisés",
+    "skills": "Voir mes compétences",
+    "contact": "Me contacter",
     "cv": "Télécharger mon CV",
     "theme": "Changer le thème",
     "language": "Changer la langue",
     "clear": "Effacer le terminal",
-    "easter_egg": "Découvrir les fonctionnalités cachées"
+    "easter_egg": "Découvrir les fonctionnalités cachées",
+    "behind-the-code": "Voir les coulisses de ce portfolio",
+    "recruiter-mode": "Voir une version condensée pour recruteurs",
+    "gratitude-wall": "Voir les personnes qui m'ont aidé",
+    "github-stats": "Voir mes statistiques GitHub"
   },
   "achievements": {
     "unlocked": "Succès débloqué !",
@@ -37,5 +41,244 @@
       "title": "Changeur de langue !",
       "description": "Vous avez changé la langue du portfolio !"
     }
+  },
+  "terminal": {
+    "welcome": "Bienvenue dans le terminal de Namir",
+    "prompt": "visitor@namir:~$",
+    "placeholder": "Tapez 'help' pour voir les commandes disponibles",
+    "commands": {
+      "about": "À propos de moi",
+      "projects": "Mes projets",
+      "skills": "Mes compétences",
+      "contact": "Me contacter",
+      "blog": "Mon blog",
+      "chat": "Discuter avec moi",
+      "install cv": "Télécharger mon CV",
+      "theme": "Changer le thème",
+      "language": "Changer la langue",
+      "help": "Afficher l'aide",
+      "clear": "Effacer l'écran",
+      "easter-egg": "Trouver l'easter egg",
+      "behind-the-code": "Coulisses du code",
+      "recruiter-mode": "Mode recruteur",
+      "gratitude-wall": "Mur de gratitude",
+      "github-stats": "Stats GitHub"
+    },
+    "help": {
+      "title": "Commandes disponibles",
+      "usage": "Utilisation",
+      "description": "Description",
+      "examples": "Exemples",
+      "example": "Exemple",
+      "options": "Options",
+      "option": "Option"
+    }
+  },
+  "about": {
+    "title": "À propos",
+    "subtitle": "Développeur Full Stack & DevOps",
+    "description": "Passionné par le développement web et les nouvelles technologies, je crée des solutions innovantes et performantes.",
+    "experience": "Expérience",
+    "education": "Formation",
+    "interests": "Centres d'intérêt"
+  },
+  "projects": {
+    "title": "Projets",
+    "featured": "Projets en vedette",
+    "viewProject": "Voir le projet",
+    "viewCode": "Voir le code",
+    "viewAll": "Voir tous les projets",
+    "items": [
+      {
+        "title": "Terminal Portfolio",
+        "description": "Un portfolio interactif inspiré des terminaux Unix, avec des commandes personnalisées et une interface immersive.",
+        "longDescription": "Ce portfolio est une application web interactive qui simule l'expérience d'un terminal Unix. Il permet aux visiteurs d'interagir avec le contenu à travers des commandes personnalisées, créant ainsi une expérience unique et mémorable. Le projet démontre mes compétences en développement frontend et en création d'interfaces utilisateur innovantes.",
+        "tech": "React, TypeScript, TailwindCSS",
+        "image": "/images/projects/@terminal-portfolio.jpg",
+        "videoUrl": "https://www.youtube.com/embed/your-video-id",
+        "features": [
+          "Interface de terminal interactive",
+          "Système de commandes personnalisées",
+          "Thèmes clair/sombre",
+          "Support multilingue",
+          "Animations et transitions fluides",
+          "Design responsive"
+        ],
+        "githubUrl": "https://github.com/yourusername/terminal-portfolio",
+        "liveUrl": "https://your-portfolio-url.com"
+      },
+      {
+        "title": "E-commerce Platform",
+        "description": "Une plateforme e-commerce complète avec gestion des stocks, paiements et analytics.",
+        "longDescription": "Une plateforme e-commerce robuste et évolutive qui offre une expérience d'achat fluide aux utilisateurs tout en fournissant des outils puissants aux administrateurs. Le système inclut une gestion complète des stocks, un système de paiement sécurisé, et des analyses détaillées des ventes et du comportement des utilisateurs.",
+        "tech": "Node.js, React, MongoDB",
+        "image": "/images/projects/@ecommerce-platform.jpg",
+        "videoUrl": "https://www.youtube.com/embed/your-video-id",
+        "features": [
+          "Catalogue de produits dynamique",
+          "Système de panier et de paiement",
+          "Gestion des stocks en temps réel",
+          "Tableau de bord administrateur",
+          "Système de recherche avancé",
+          "Intégration avec des APIs de paiement"
+        ],
+        "githubUrl": "https://github.com/yourusername/ecommerce-platform",
+        "liveUrl": "https://your-ecommerce-url.com"
+      },
+      {
+        "title": "AI Chat Assistant",
+        "description": "Un assistant conversationnel IA pour le support client et l'automatisation des tâches.",
+        "longDescription": "Un assistant IA sophistiqué qui utilise le traitement du langage naturel pour comprendre et répondre aux requêtes des utilisateurs. Le système peut gérer les demandes de support client, automatiser des tâches répétitives et fournir des informations pertinentes de manière conversationnelle.",
+        "tech": "Python, TensorFlow, FastAPI",
+        "image": "/images/projects/@ai-chat-assistant.jpg",
+        "videoUrl": "https://www.youtube.com/embed/your-video-id",
+        "features": [
+          "Compréhension du langage naturel",
+          "Réponses contextuelles",
+          "Intégration avec les systèmes existants",
+          "Apprentissage continu",
+          "Interface de configuration intuitive",
+          "Rapports d'analyse des conversations"
+        ],
+        "githubUrl": "https://github.com/yourusername/ai-chat-assistant",
+        "liveUrl": "https://your-ai-chat-url.com"
+      },
+      {
+        "title": "DevOps Dashboard",
+        "description": "Un tableau de bord pour surveiller et gérer l'infrastructure cloud et les déploiements.",
+        "longDescription": "Un tableau de bord DevOps complet qui centralise la surveillance et la gestion de l'infrastructure cloud. Il permet aux équipes de suivre les performances, de gérer les déploiements et de répondre rapidement aux incidents, tout en fournissant des insights détaillés sur l'état du système.",
+        "tech": "Docker, Kubernetes, Grafana",
+        "image": "/images/projects/@devops-dashboard.jpg",
+        "videoUrl": "https://www.youtube.com/embed/your-video-id",
+        "features": [
+          "Surveillance en temps réel",
+          "Gestion des conteneurs",
+          "Alertes automatisées",
+          "Tableaux de bord personnalisables",
+          "Intégration CI/CD",
+          "Rapports de performance"
+        ],
+        "githubUrl": "https://github.com/yourusername/devops-dashboard",
+        "liveUrl": "https://your-dashboard-url.com"
+      }
+    ]
+  },
+  "skills": {
+    "title": "Compétences",
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "devops": "DevOps",
+      "database": "Bases de données",
+      "tools": "Outils"
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "email": "Email",
+    "phone": "Téléphone",
+    "location": "Localisation",
+    "social": "Réseaux sociaux",
+    "form": {
+      "name": "Nom",
+      "email": "Email",
+      "message": "Message",
+      "send": "Envoyer"
+    }
+  },
+  "blog": {
+    "title": "Blog",
+    "readMore": "Lire la suite",
+    "categories": "Catégories",
+    "tags": "Tags",
+    "search": "Rechercher"
+  },
+  "chat": {
+    "title": "Chat",
+    "placeholder": "Tapez votre message...",
+    "send": "Envoyer",
+    "thinking": "Réflexion en cours..."
+  },
+  "theme": {
+    "title": "Thème",
+    "light": "Clair",
+    "dark": "Sombre",
+    "system": "Système"
+  },
+  "language": {
+    "title": "Langue",
+    "en": "English",
+    "fr": "Français"
+  },
+  "achievements": {
+    "title": "Réalisations",
+    "first_command": {
+      "title": "Première Commande !",
+      "description": "Vous avez exécuté votre première commande dans le terminal !"
+    },
+    "explorer": {
+      "title": "Explorateur !",
+      "description": "Vous avez visité toutes les sections principales du portfolio !"
+    },
+    "theme_changer": {
+      "title": "Changeur de Thème !",
+      "description": "Vous avez changé le thème du portfolio !"
+    },
+    "language_switcher": {
+      "title": "Changeur de Langue !",
+      "description": "Vous avez changé la langue du portfolio !"
+    }
+  },
+  "behind-the-code": {
+    "title": "Coulisses du Code",
+    "subtitle": "La Création de ce Portfolio",
+    "description": "Explorez le parcours de création de ce portfolio terminal interactif, des maquettes initiales à l'implémentation finale.",
+    "sections": {
+      "wireframes": "Maquettes",
+      "prototypes": "Prototypes",
+      "testing": "Tests",
+      "technical-choices": "Choix Techniques"
+    },
+    "wireframes-description": "Les croquis initiaux et concepts de design qui ont mené à cette interface basée sur un terminal.",
+    "prototypes-description": "Prototypes fonctionnels et itérations précoces du portfolio.",
+    "testing-description": "Procédures de test, retours utilisateurs et optimisations de performance.",
+    "technical-choices-description": "Explication des frameworks, bibliothèques et décisions architecturales."
+  },
+  "recruiter-mode": {
+    "title": "Mode Recruteur",
+    "subtitle": "Aperçu Rapide pour Recruteurs",
+    "description": "Une version condensée de mon portfolio axée sur les informations clés pour les recruteurs.",
+    "pitch": "Développeur Full Stack & DevOps expérimenté avec expertise en technologies web modernes et infrastructure cloud.",
+    "cv-download": "Télécharger CV",
+    "stack": "Stack Technique",
+    "availability": "Disponibilité",
+    "available": "Disponible pour embauche",
+    "key-skills": "Compétences Clés",
+    "experience": "Points Forts d'Expérience"
+  },
+  "gratitude-wall": {
+    "title": "Mur de Gratitude",
+    "subtitle": "Personnes Qui M'ont Aidé à Grandir",
+    "description": "Un hommage aux mentors, enseignants, collègues et créateurs de contenu qui ont contribué à mon parcours d'apprentissage.",
+    "categories": {
+      "teachers": "Enseignants",
+      "mentors": "Mentors",
+      "colleagues": "Collègues",
+      "content-creators": "Créateurs de Contenu"
+    },
+    "message": "Profonde reconnaissance à tous ceux qui ont partagé leurs connaissances, fourni des conseils et soutenu ma croissance en tant que développeur."
+  },
+  "github-stats": {
+    "title": "Statistiques GitHub",
+    "subtitle": "Représentation Visuelle de Mon Activité GitHub",
+    "description": "Une visualisation interactive de mon activité GitHub, montrant les commits, langages et contributions.",
+    "sections": {
+      "commits": "Commits",
+      "languages": "Langages",
+      "contributions": "Contributions",
+      "streak": "Série Actuelle"
+    },
+    "loading": "Chargement des statistiques GitHub...",
+    "error": "Impossible de charger les données GitHub. Veuillez réessayer plus tard."
   }
 } 

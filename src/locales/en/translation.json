@@ -17,11 +17,183 @@
     "theme": "Change theme",
     "language": "Change language",
     "clear": "Clear terminal",
-    "easter_egg": "Discover hidden features"
+    "easter_egg": "Discover hidden features",
+    "behind-the-code": "View the making of this portfolio",
+    "recruiter-mode": "View a condensed version for recruiters",
+    "gratitude-wall": "See people who helped me learn",
+    "github-stats": "View my GitHub statistics"
+  },
+  "terminal": {
+    "welcome": "Welcome to Namir's Terminal",
+    "prompt": "visitor@namir:~$",
+    "placeholder": "Type 'help' to see available commands",
+    "commands": {
+      "about": "About me",
+      "projects": "My projects",
+      "skills": "My skills",
+      "contact": "Contact me",
+      "blog": "My blog",
+      "chat": "Chat with me",
+      "install cv": "Download my CV",
+      "theme": "Change theme",
+      "language": "Change language",
+      "help": "Show help",
+      "clear": "Clear screen",
+      "easter-egg": "Find easter egg",
+      "behind-the-code": "Behind the code",
+      "recruiter-mode": "Recruiter mode",
+      "gratitude-wall": "Wall of gratitude",
+      "github-stats": "GitHub stats"
+    },
+    "help": {
+      "title": "Available commands",
+      "usage": "Usage",
+      "description": "Description",
+      "examples": "Examples",
+      "example": "Example",
+      "options": "Options",
+      "option": "Option"
+    }
+  },
+  "about": {
+    "title": "About",
+    "subtitle": "Full Stack & DevOps Developer",
+    "description": "Passionate about web development and new technologies, I create innovative and performant solutions.",
+    "experience": "Experience",
+    "education": "Education",
+    "interests": "Interests"
+  },
+  "projects": {
+    "title": "Projects",
+    "featured": "Featured Projects",
+    "viewProject": "View Project",
+    "viewCode": "View Code",
+    "viewAll": "View All Projects",
+    "items": [
+      {
+        "title": "Terminal Portfolio",
+        "description": "An interactive portfolio inspired by Unix terminals, with custom commands and an immersive interface.",
+        "longDescription": "This portfolio is an interactive web application that simulates the experience of a Unix terminal. It allows visitors to interact with content through custom commands, creating a unique and memorable experience. The project demonstrates my frontend development skills and innovative user interface creation.",
+        "tech": "React, TypeScript, TailwindCSS",
+        "image": "/images/projects/@terminal-portfolio.jpg",
+        "videoUrl": "https://www.youtube.com/embed/your-video-id",
+        "features": [
+          "Interactive terminal interface",
+          "Custom command system",
+          "Light/dark themes",
+          "Multilingual support",
+          "Smooth animations and transitions",
+          "Responsive design"
+        ],
+        "githubUrl": "https://github.com/yourusername/terminal-portfolio",
+        "liveUrl": "https://your-portfolio-url.com"
+      },
+      {
+        "title": "E-commerce Platform",
+        "description": "A complete e-commerce platform with stock management, payments, and analytics.",
+        "longDescription": "A robust and scalable e-commerce platform that provides a seamless shopping experience for users while offering powerful tools for administrators. The system includes comprehensive stock management, secure payment processing, and detailed analytics of sales and user behavior.",
+        "tech": "Node.js, React, MongoDB",
+        "image": "/images/projects/@ecommerce-platform.jpg",
+        "videoUrl": "https://www.youtube.com/embed/your-video-id",
+        "features": [
+          "Dynamic product catalog",
+          "Shopping cart and payment system",
+          "Real-time stock management",
+          "Admin dashboard",
+          "Advanced search system",
+          "Payment API integration"
+        ],
+        "githubUrl": "https://github.com/yourusername/ecommerce-platform",
+        "liveUrl": "https://your-ecommerce-url.com"
+      },
+      {
+        "title": "AI Chat Assistant",
+        "description": "An AI conversational assistant for customer support and task automation.",
+        "longDescription": "A sophisticated AI assistant that uses natural language processing to understand and respond to user queries. The system can handle customer support requests, automate repetitive tasks, and provide relevant information in a conversational manner.",
+        "tech": "Python, TensorFlow, FastAPI",
+        "image": "/images/projects/@ai-chat-assistant.jpg",
+        "videoUrl": "https://www.youtube.com/embed/your-video-id",
+        "features": [
+          "Natural language understanding",
+          "Contextual responses",
+          "Integration with existing systems",
+          "Continuous learning",
+          "Intuitive configuration interface",
+          "Conversation analytics reports"
+        ],
+        "githubUrl": "https://github.com/yourusername/ai-chat-assistant",
+        "liveUrl": "https://your-ai-chat-url.com"
+      },
+      {
+        "title": "DevOps Dashboard",
+        "description": "A dashboard to monitor and manage cloud infrastructure and deployments.",
+        "longDescription": "A comprehensive DevOps dashboard that centralizes cloud infrastructure monitoring and management. It enables teams to track performance, manage deployments, and respond quickly to incidents while providing detailed insights into system status.",
+        "tech": "Docker, Kubernetes, Grafana",
+        "image": "/images/projects/@devops-dashboard.jpg",
+        "videoUrl": "https://www.youtube.com/embed/your-video-id",
+        "features": [
+          "Real-time monitoring",
+          "Container management",
+          "Automated alerts",
+          "Customizable dashboards",
+          "CI/CD integration",
+          "Performance reports"
+        ],
+        "githubUrl": "https://github.com/yourusername/devops-dashboard",
+        "liveUrl": "https://your-dashboard-url.com"
+      }
+    ]
+  },
+  "skills": {
+    "title": "Skills",
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "devops": "DevOps",
+      "database": "Databases",
+      "tools": "Tools"
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "email": "Email",
+    "phone": "Phone",
+    "location": "Location",
+    "social": "Social Media",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "send": "Send"
+    }
+  },
+  "blog": {
+    "title": "Blog",
+    "readMore": "Read More",
+    "categories": "Categories",
+    "tags": "Tags",
+    "search": "Search"
+  },
+  "chat": {
+    "title": "Chat",
+    "placeholder": "Type your message...",
+    "send": "Send",
+    "thinking": "Thinking..."
+  },
+  "theme": {
+    "title": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "language": {
+    "title": "Language",
+    "en": "English",
+    "fr": "Français"
   },
   "achievements": {
     "unlocked": "Achievement Unlocked!",
-    "firstCommand": {
+    "first_command": {
       "title": "First Command!",
       "description": "You executed your first command in the terminal!"
     },
@@ -29,13 +201,65 @@
       "title": "Explorer!",
       "description": "You visited all main sections of the portfolio!"
     },
-    "themeChanger": {
+    "theme_changer": {
       "title": "Theme Changer!",
       "description": "You changed the theme of the portfolio!"
     },
-    "languageSwitcher": {
+    "language_switcher": {
       "title": "Language Switcher!",
       "description": "You switched the language of the portfolio!"
     }
+  },
+  "behind-the-code": {
+    "title": "Behind the Code",
+    "subtitle": "The Making of This Portfolio",
+    "description": "Explore the journey behind creating this interactive terminal portfolio, from initial wireframes to final implementation.",
+    "sections": {
+      "wireframes": "Wireframes",
+      "prototypes": "Prototypes",
+      "testing": "Testing",
+      "technical-choices": "Technical Choices"
+    },
+    "wireframes-description": "The initial sketches and design concepts that led to this terminal-based interface.",
+    "prototypes-description": "Early functional prototypes and iterations of the portfolio.",
+    "testing-description": "Testing procedures, user feedback, and performance optimizations.",
+    "technical-choices-description": "Explanation of the frameworks, libraries, and architectural decisions."
+  },
+  "recruiter-mode": {
+    "title": "Recruiter Mode",
+    "subtitle": "Quick Overview for Recruiters",
+    "description": "A condensed version of my portfolio focused on key information for recruiters.",
+    "pitch": "Experienced Full Stack & DevOps developer with expertise in modern web technologies and cloud infrastructure.",
+    "cv-download": "Download CV",
+    "stack": "Tech Stack",
+    "availability": "Availability",
+    "available": "Available for hire",
+    "key-skills": "Key Skills",
+    "experience": "Experience Highlights"
+  },
+  "gratitude-wall": {
+    "title": "Wall of Gratitude",
+    "subtitle": "People Who Helped Me Grow",
+    "description": "A tribute to the mentors, teachers, colleagues, and content creators who contributed to my learning journey.",
+    "categories": {
+      "teachers": "Teachers",
+      "mentors": "Mentors",
+      "colleagues": "Colleagues",
+      "content-creators": "Content Creators"
+    },
+    "message": "Deep appreciation to everyone who shared their knowledge, provided guidance, and supported my growth as a developer."
+  },
+  "github-stats": {
+    "title": "GitHub Statistics",
+    "subtitle": "Visual Representation of My GitHub Activity",
+    "description": "An interactive visualization of my GitHub activity, showing commits, languages, and contributions.",
+    "sections": {
+      "commits": "Commits",
+      "languages": "Languages",
+      "contributions": "Contributions",
+      "streak": "Current Streak"
+    },
+    "loading": "Loading GitHub statistics...",
+    "error": "Could not load GitHub data. Please try again later."
   }
 } 
