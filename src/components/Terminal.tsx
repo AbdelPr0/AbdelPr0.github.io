@@ -46,12 +46,8 @@ const Terminal: React.FC = () => {
   const { t, i18n } = useTranslation();
   const { theme, toggleTheme } = useTheme();
   const [history, setHistory] = useState<CommandType[]>([]);
-  const [bootSequence, setBootSequence] = useState(true);
   const [showWelcome, setShowWelcome] = useState(true);
   const [soundEnabled, setSoundEnabled] = useState(true);
-  const [currentBootIndex, setCurrentBootIndex] = useState(0);
-  const [typingLine, setTypingLine] = useState('');
-  const [isBootTyping, setIsBootTyping] = useState(false);
   const terminalEndRef = useRef<HTMLDivElement>(null);
   const latestOutputRef = useRef<HTMLDivElement>(null);
   const playKeySound = useKeyboardSound(soundEnabled);
@@ -82,26 +78,6 @@ const Terminal: React.FC = () => {
   const [currentAchievement, setCurrentAchievement] = useState<Achievement | null>(null);
   const [visitedSections, setVisitedSections] = useState<Set<string>>(new Set());
   
-  // Fonction pour faire défiler vers une commande spécifique
-  const scrollToCommand = useCallback((commandId: number) => {
-    const commandElement = document.getElementById(`command-${commandId}`);
-    if (commandElement) {
-      setTimeout(() => {
-        commandElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 100);
-    }
-  }, []);
-
-  // Effet pour le défilement automatique après l'ajout d'une commande
-  useEffect(() => {
-    if (lastCommandId !== null && history.length > 0) {
-      scrollToCommand(lastCommandId);
-    } else if (bootSequence) {
-      // Si nous sommes toujours dans la séquence de démarrage, défiler vers la fin
-    terminalEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, [history, lastCommandId, bootSequence, scrollToCommand]);
-  
   useEffect(() => {
     const handleScroll = () => {
       const terminalContent = document.querySelector('.terminal-scrollbar');
@@ -119,53 +95,6 @@ const Terminal: React.FC = () => {
     };
   }, []);
   
-  useEffect(() => {
-    if (showWelcome) return;
-
-    const bootMessages = [
-      t('terminal.boot'),
-      t('terminal.copyright'),
-      t('terminal.loading'),
-      t('terminal.accessGranted'),
-      t('terminal.initializing'),
-      t('terminal.hello'),
-      t('terminal.help'),
-    ];
-
-    if (currentBootIndex < bootMessages.length && !isBootTyping) {
-      setIsBootTyping(true);
-      const line = bootMessages[currentBootIndex];
-      let charIndex = 0;
-      setTypingLine('');
-      const typeChar = () => {
-        setTypingLine((prev) => prev + line[charIndex]);
-        charIndex++;
-        if (charIndex < line.length) {
-          setTimeout(typeChar, 18);
-        } else {
-      setTimeout(() => {
-        setHistory(prev => [
-          ...prev, 
-          {
-            id: Date.now() + currentBootIndex,
-                command: line,
-            output: <></>,
-            timestamp: new Date().toLocaleTimeString()
-          }
-        ]);
-            setTypingLine('');
-            setIsBootTyping(false);
-          setCurrentBootIndex(prev => prev + 1);
-        if (currentBootIndex === bootMessages.length - 1) {
-              setTimeout(() => setBootSequence(false), 600);
-            }
-          }, 350);
-        }
-      };
-      setTimeout(typeChar, 300);
-    }
-  }, [t, showWelcome, currentBootIndex, isBootTyping]);
-
   const handleHelp = () => {
     handleCommand('help');
   };
@@ -453,26 +382,15 @@ const Terminal: React.FC = () => {
         <div className="space-y-4">
           {history.map((item) => (
             <div id={`command-${item.id}`} key={item.id}>
-            <TerminalCommand 
-              command={item.command}
-              output={item.output}
-              timestamp={item.timestamp}
-              isTyping={bootSequence}
-            />
+              <TerminalCommand 
+                command={item.command}
+                output={item.output}
+                timestamp={item.timestamp}
+                isTyping={false}
+              />
             </div>
           ))}
-          {bootSequence && typingLine && (
-            <TerminalCommand 
-              key={"typing-line"}
-              command={typingLine}
-              output={<></>}
-              timestamp={new Date().toLocaleTimeString()}
-              isTyping={true}
-            />
-          )}
-          {!bootSequence && (
-            <TerminalInput onCommand={handleCommand} placeholder="help" />
-          )}
+          <TerminalInput onCommand={handleCommand} placeholder="help" />
           <div ref={terminalEndRef} />
         </div>
       </div>
