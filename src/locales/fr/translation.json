@@ -20,8 +20,7 @@
     "easter_egg": "Découvrir les fonctionnalités cachées",
     "behind-the-code": "Voir les coulisses de ce portfolio",
     "recruiter-mode": "Voir une version condensée pour recruteurs",
-    "gratitude-wall": "Voir les personnes qui m'ont aidé",
-    "github-stats": "Voir mes statistiques GitHub"
+
   },
   "achievements": {
     "unlocked": "Succès débloqué !",
@@ -61,8 +60,7 @@
       "easter-egg": "Trouver l'easter egg",
       "behind-the-code": "Coulisses du code",
       "recruiter-mode": "Mode recruteur",
-      "gratitude-wall": "Mur de gratitude",
-      "github-stats": "Stats GitHub"
+
     },
     "help": {
       "title": "Commandes disponibles",
@@ -256,29 +254,5 @@
     "key-skills": "Compétences Clés",
     "experience": "Points Forts d'Expérience"
   },
-  "gratitude-wall": {
-    "title": "Mur de Gratitude",
-    "subtitle": "Personnes Qui M'ont Aidé à Grandir",
-    "description": "Un hommage aux mentors, enseignants, collègues et créateurs de contenu qui ont contribué à mon parcours d'apprentissage.",
-    "categories": {
-      "teachers": "Enseignants",
-      "mentors": "Mentors",
-      "colleagues": "Collègues",
-      "content-creators": "Créateurs de Contenu"
-    },
-    "message": "Profonde reconnaissance à tous ceux qui ont partagé leurs connaissances, fourni des conseils et soutenu ma croissance en tant que développeur."
-  },
-  "github-stats": {
-    "title": "Statistiques GitHub",
-    "subtitle": "Représentation Visuelle de Mon Activité GitHub",
-    "description": "Une visualisation interactive de mon activité GitHub, montrant les commits, langages et contributions.",
-    "sections": {
-      "commits": "Commits",
-      "languages": "Langages",
-      "contributions": "Contributions",
-      "streak": "Série Actuelle"
-    },
-    "loading": "Chargement des statistiques GitHub...",
-    "error": "Impossible de charger les données GitHub. Veuillez réessayer plus tard."
-  }
+
 } 

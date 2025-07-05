@@ -16,8 +16,7 @@ const AVAILABLE_COMMANDS = [
   'chat',
   'behind-the-code',
   'recruiter-mode',
-  'gratitude-wall',
-  'github-stats',
+
   'install cv',
   'theme',
   'language',

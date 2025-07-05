@@ -20,8 +20,7 @@
     "easter_egg": "Discover hidden features",
     "behind-the-code": "View the making of this portfolio",
     "recruiter-mode": "View a condensed version for recruiters",
-    "gratitude-wall": "See people who helped me learn",
-    "github-stats": "View my GitHub statistics"
+
   },
   "terminal": {
     "welcome": "Welcome to Namir's Terminal",
@@ -42,8 +41,7 @@
       "easter-egg": "Find easter egg",
       "behind-the-code": "Behind the code",
       "recruiter-mode": "Recruiter mode",
-      "gratitude-wall": "Wall of gratitude",
-      "github-stats": "GitHub stats"
+
     },
     "help": {
       "title": "Available commands",
@@ -237,29 +235,5 @@
     "key-skills": "Key Skills",
     "experience": "Experience Highlights"
   },
-  "gratitude-wall": {
-    "title": "Wall of Gratitude",
-    "subtitle": "People Who Helped Me Grow",
-    "description": "A tribute to the mentors, teachers, colleagues, and content creators who contributed to my learning journey.",
-    "categories": {
-      "teachers": "Teachers",
-      "mentors": "Mentors",
-      "colleagues": "Colleagues",
-      "content-creators": "Content Creators"
-    },
-    "message": "Deep appreciation to everyone who shared their knowledge, provided guidance, and supported my growth as a developer."
-  },
-  "github-stats": {
-    "title": "GitHub Statistics",
-    "subtitle": "Visual Representation of My GitHub Activity",
-    "description": "An interactive visualization of my GitHub activity, showing commits, languages, and contributions.",
-    "sections": {
-      "commits": "Commits",
-      "languages": "Languages",
-      "contributions": "Contributions",
-      "streak": "Current Streak"
-    },
-    "loading": "Loading GitHub statistics...",
-    "error": "Could not load GitHub data. Please try again later."
-  }
+
 } 

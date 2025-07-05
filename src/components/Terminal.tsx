@@ -9,8 +9,7 @@ import SkillsSection from './sections/SkillsSection';
 import ContactSection from './sections/ContactSection';
 import BehindTheCodeSection from './sections/BehindTheCodeSection';
 import RecruiterModeSection from './sections/RecruiterModeSection';
-import GratitudeWallSection from './sections/GratitudeWallSection';
-import GitHubStatsSection from './sections/GitHubStatsSection';
+
 import { useTheme } from '@/contexts/ThemeContext';
 import WelcomeScreen from './WelcomeScreen';
 import NavigationBar from './NavigationBar';
@@ -213,12 +212,7 @@ const Terminal: React.FC = () => {
       case 'recruiter-mode':
         output = <RecruiterModeSection />;
         break;
-      case 'gratitude-wall':
-        output = <GratitudeWallSection />;
-        break;
-      case 'github-stats':
-        output = <GitHubStatsSection />;
-        break;
+
       case 'install cv':
         output = <CVDownload />;
         break;
@@ -271,8 +265,7 @@ const Terminal: React.FC = () => {
                 'text-blue-500'
               } font-medium`}>contact</span>    → {t('help.contact')}</div>
               <div>▸ <span className="text-red-500">install cv</span> → {t('help.cv')}</div>
-              <div>▸ <span className="text-red-500">gratitude-wall</span> → {t('help.gratitude-wall')}</div>
-              <div>▸ <span className="text-red-500">github-stats</span> → {t('help.github-stats')}</div>
+
               <div>▸ <span className="text-red-500">theme</span>      → {t('help.theme')} (green/amber/light)</div>
               <div>▸ <span className="text-red-500">language</span>   → {t('help.language')}</div>
               <div>▸ <span className="text-red-500">achievements</span> → {t('help.achievements', 'View your achievements')}</div>
@@ -337,6 +330,12 @@ const Terminal: React.FC = () => {
   useEffect(() => {
     localStorage.setItem('achievements', JSON.stringify(achievements));
   }, [achievements]);
+  
+  useEffect(() => {
+    if (terminalEndRef.current) {
+      terminalEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [history]);
   
   if (showWelcome) {
     return <WelcomeScreen onComplete={() => setShowWelcome(false)} />;
