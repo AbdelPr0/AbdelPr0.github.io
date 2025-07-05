@@ -13,7 +13,7 @@ import RecruiterModeSection from './sections/RecruiterModeSection';
 import { useTheme } from '@/contexts/ThemeContext';
 import WelcomeScreen from './WelcomeScreen';
 import NavigationBar from './NavigationBar';
-import useKeyboardSound from '@/hooks/useKeyboardSound';
+
 import SnakeGame from './terminal/SnakeGame';
 import GamesMenu from './terminal/GamesMenu';
 import CVDownload from './terminal/CVDownload';
@@ -46,10 +46,8 @@ const Terminal: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
   const [history, setHistory] = useState<CommandType[]>([]);
   const [showWelcome, setShowWelcome] = useState(true);
-  const [soundEnabled, setSoundEnabled] = useState(true);
   const terminalEndRef = useRef<HTMLDivElement>(null);
   const latestOutputRef = useRef<HTMLDivElement>(null);
-  const playKeySound = useKeyboardSound(soundEnabled);
   const [isNavCommand, setIsNavCommand] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [currentSection, setCurrentSection] = useState<string>('home');
@@ -174,7 +172,6 @@ const Terminal: React.FC = () => {
   };
   
   const handleCommand = (cmd: string, fromNav: boolean = false) => {
-    playKeySound();
     setIsNavCommand(fromNav);
     let output: React.ReactNode;
     
