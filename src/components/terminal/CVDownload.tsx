@@ -1,15 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { Download, CheckCircle2, XCircle } from 'lucide-react';
+import { CheckCircle2, Download, XCircle } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const CVDownload: React.FC = () => {
-  const [status, setStatus] = useState<'downloading' | 'success' | 'error'>('downloading');
+  const [status, setStatus] = useState<'downloading' | 'success' | 'error'>(
+    'downloading'
+  );
   const [progress, setProgress] = useState(0);
   const { t } = useTranslation();
 
   useEffect(() => {
     // Vérifier si le fichier existe
-    fetch('public/cv.pdf', { method: 'HEAD' })
+    // use Vite base URL so the path works in dev and production
+    const cvUrl = `${import.meta.env.BASE_URL}CV.pdf`;
+
+    fetch(cvUrl, { method: 'HEAD' })
       .then(response => {
         if (!response.ok) {
           throw new Error('CV file not found');
@@ -36,7 +41,8 @@ const CVDownload: React.FC = () => {
   useEffect(() => {
     if (status === 'success') {
       // Déclencher le téléchargement réel après l'animation
-      fetch('public/cv.pdf')
+      const cvUrl = `https://raw.githubusercontent.com/AbdelPr0/AbdelPr0.github.io/c61048e66adc1528bcfc58f2165e46a7b8361f0b/public/CV.pdf`;
+      fetch(cvUrl)
         .then(response => response.blob())
         .then(blob => {
           const url = window.URL.createObjectURL(blob);
@@ -59,20 +65,20 @@ const CVDownload: React.FC = () => {
       icon: <Download className="animate-bounce" size={20} />,
       text: t('cv.downloading.text'),
       log: `> ${t('cv.downloading.log')} ${progress}%`,
-      color: "text-current"
+      color: 'text-current',
     },
     success: {
       icon: <CheckCircle2 size={20} />,
       text: t('cv.success.text'),
       log: t('cv.success.log'),
-      color: "text-green-500"
+      color: 'text-green-500',
     },
     error: {
       icon: <XCircle size={20} />,
       text: t('cv.error.text'),
       log: t('cv.error.log'),
-      color: "text-red-500"
-    }
+      color: 'text-red-500',
+    },
   };
 
   const currentMessage = messages[status];
@@ -80,9 +86,7 @@ const CVDownload: React.FC = () => {
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-2">
-        <div className={currentMessage.color}>
-          {currentMessage.icon}
-        </div>
+        <div className={currentMessage.color}>{currentMessage.icon}</div>
         <span>{currentMessage.text}</span>
       </div>
 
@@ -104,4 +108,4 @@ const CVDownload: React.FC = () => {
   );
 };
 
-export default CVDownload; 
+export default CVDownload;
