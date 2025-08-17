@@ -85,21 +85,61 @@
     "viewProject": "View Project",
     "viewCode": "View Code",
     "featured": "Featured Projects",
+    "demonstration": "Demonstration",
+    "description": "Description",
+    "features": "Features",
+    "technologies": "Technologies",
+    "viewOnGithub": "View on GitHub",
+    "noGithubRepo": "No GitHub repository",
     "items": [
       {
-        "title": "E-Commerce Platform",
-        "description": "Full-stack online store with secure payment processing, user accounts, and inventory management.",
-        "tech": "React, Node.js, MongoDB, Stripe"
+        "title": "Cineflix API",
+        "description": "Cineflix, REST API for movie reviews and ratings",
+        "longDescription": "Cineflix API is a movie review and rating management API inspired by IMDb. It allows users to publish reviews, assign ratings, search for movies, and view rankings based on user evaluations.",
+        "tech": "Springboot, Kotlin, MySQL, REST",
+        "features": [
+          "Movie reviews",
+          "Rating system",
+          "Advanced search",
+          "User accounts"
+        ]
       },
       {
-        "title": "Weather Monitoring App",
-        "description": "Mobile application that provides real-time weather data and forecasts with interactive maps.",
-        "tech": "React Native, Weather API, MapBox"
+        "title": "AnswerSphere",
+        "description": "Online survey application",
+        "longDescription": "AnswerSphere is a survey web application developed in C# with ASP.NET. It offers an API and web interface for creating, managing, and responding to questionnaires through complete CRUD functionalities on questions and answers.",
+        "tech": "C#, ASP.NET, HTML, CSS, REST",
+        "features": [
+          "Question management",
+          "Answer management",
+          "Complete CRUD",
+          "Web interface"
+        ]
       },
       {
-        "title": "Task Management System",
-        "description": "Collaborative project management tool with task tracking, team assignments, and progress visualization.",
-        "tech": "Vue.js, Firebase, Chart.js"
+        "title": "Hangman Game",
+        "description": "Hangman mobile game in Java",
+        "longDescription": "Small mobile hangman game: guess the word within a limited number of attempts. Simple interface, clear logic, and Gradle structure for Android. Developed in Java.",
+        "tech": "Java, Android Studio, SQLite, Gradle",
+        "features": [
+          "Random words & letters to guess",
+          "Attempt/remaining counter",
+          "Win/loss detection",
+          "Quick game reset"
+        ]
+      },
+      {
+        "title": "CodeMirror6 Research",
+        "description": "CodeMirror 6 editor prototype",
+        "longDescription": "Prototype integration of CodeMirror 6 in a Vue app, aiming to replace CodeMirror 5 while preserving syntax highlighting, themes, events, and adding completion, multi-file support, and collaborative editing.",
+        "tech": "Vue, Javascript, HTML, Vite",
+        "features": [
+          "Multi-file, collaborative editing (targeted)",
+          "Customizable syntax highlighting and themes",
+          "Edit events (selection, modification)",
+          "Line immutability/masking",
+          "Completion and syntax assistance"
+        ]
       }
     ]
   },
@@ -128,7 +168,6 @@
     "github": "GitHub",
     "linkedin": "LinkedIn",
     "twitter": "Twitter",
-    "email": "Email",
     "meeting": {
       "title": "Schedule a Meeting",
       "description": "Schedule an online meeting",

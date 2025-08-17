@@ -24,6 +24,8 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
   isOpen,
   onClose,
 }) => {
+  const { t } = useTranslation();
+
   if (!isOpen) return null;
 
   return (
@@ -49,7 +51,9 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
 
               {project.videoUrl && (
                 <div className="mb-4">
-                  <h3 className="text-lg font-semibold mb-2">Démonstration</h3>
+                  <h3 className="text-lg font-semibold mb-2">
+                    {t('projects.demonstration')}
+                  </h3>
                   <div className="relative w-full aspect-video rounded-lg overflow-hidden">
                     <iframe
                       src={project.videoUrl}
@@ -64,7 +68,9 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
 
             <div>
               <div className="mb-4">
-                <h3 className="text-lg font-semibold mb-2">Description</h3>
+                <h3 className="text-lg font-semibold mb-2">
+                  {t('projects.description')}
+                </h3>
                 <p className="text-sm">
                   {project.longDescription || project.description}
                 </p>
@@ -73,7 +79,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
               {project.features && (
                 <div className="mb-4">
                   <h3 className="text-lg font-semibold mb-2">
-                    Fonctionnalités
+                    {t('projects.features')}
                   </h3>
                   <ul className="list-disc list-inside text-sm space-y-1">
                     {project.features.map((feature, index) => (
@@ -84,7 +90,9 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
               )}
 
               <div className="mb-4">
-                <h3 className="text-lg font-semibold mb-2">Technologies</h3>
+                <h3 className="text-lg font-semibold mb-2">
+                  {t('projects.technologies')}
+                </h3>
                 <p className="text-sm">{project.tech}</p>
               </div>
 
@@ -95,7 +103,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-xs border border-current px-2 py-1 rounded flex items-center gap-1 hover:bg-current/10 transition-colors ml-2"
-                    title="Voir sur GitHub"
+                    title={t('projects.viewOnGithub')}
                   >
                     <FaGithub size={14} />
                     GitHub
@@ -115,69 +123,33 @@ const ProjectsSection: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   // Get projects from translations
-  const projects = [
-    {
-      title: 'API Cineflix',
-      description: 'Cineflix, API REST de critiques et notations de films',
-      longDescription:
-        'API Cineflix est une API de gestion de critiques et notations de films inspirée d’IMDb. Elle permet aux utilisateurs de publier des avis, attribuer des notes, rechercher des films et consulter des classements basés sur les évaluations.',
-      tech: 'Springboot, Kotlin, MySQL, REST',
-      image: '/Cineflix.png',
-      githubUrl: 'https://github.com/AbdelPr0/Cineflix',
-      features: [
-        'Avis sur les films',
-        'Système de notation',
-        'Recherche avancée',
-        'Comptes utilisateurs',
-      ],
-    },
-    {
-      title: 'AnswerSphere',
-      description: 'Application de sondages en ligne',
-      longDescription:
-        'AnswerSphere est une application web de sondages développée en C# avec ASP.NET. Elle offre une API et une interface web permettant de créer, gérer et répondre à des questionnaires grâce à des fonctionnalités CRUD complètes sur les questions et réponses.',
-      tech: 'C#, ASP.NET, HTML, CSS, REST',
-      image: '/AnswerSphere.png',
-      githubUrl: 'https://github.com/AbdelPr0/AnswerSphere',
-      features: [
-        'Gestion des questions',
-        'Gestion des réponses',
-        'CRUD complet',
-        'Interface web',
-      ],
-    },
-    {
-      title: 'Bonhomme-pendu',
-      description: 'Bonhomme-pendu, jeu mobile en Java',
-      longDescription:
-        'Petit jeu mobile du pendu : devinez le mot en un nombre d’essais limité. Interface simple, logique claire et structure Gradle pour Android. Développé en Java.',
-      tech: 'Java, Android Studio, SQLite, Gradle',
-      image: '/Bonhomme.png',
-      githubUrl: 'https://github.com/AbdelPr0/Bonhomme-pendu',
-      features: [
-        'Mots aléatoires & lettres à deviner',
-        'Compteur d’essais/restantes',
-        'Détection de victoire/défaite',
-        'Réinitialisation rapide de partie',
-      ],
-    },
-    {
-      title: 'RechercheCodeMirror6',
-      description: 'RechercheCodeMirror6, Prototype d’éditeur CodeMirror 6',
-      longDescription:
-        'Prototype d’intégration de CodeMirror 6 dans une app Vue, visant à remplacer CodeMirror 5 en conservant la coloration, thèmes, événements et ajoutant complétion, multi-fichiers et édition collaborative.',
-      tech: 'Vue, Javascript, HTML, Vite',
-      image: '/RechercheCodeMirror6.png',
-      githubUrl: 'https://github.com/AbdelPr0/RechercheCodeMirror6',
-      features: [
-        'Multi-fichiers, édition collaborative (ciblées)',
-        'Coloration et thèmes personnalisables',
-        'Événements d’édition (sélection, modification)',
-        'Immutabilité/masquage de lignes',
-        'Complétion et aide syntaxique',
-      ],
-    },
-  ];
+  const projectsData = t('projects.items', { returnObjects: true }) as Array<{
+    title: string;
+    description: string;
+    longDescription: string;
+    tech: string;
+    features: string[];
+  }>;
+
+  const projects: Project[] = projectsData.map((project, index) => ({
+    title: project.title,
+    description: project.description,
+    longDescription: project.longDescription,
+    tech: project.tech,
+    image: [
+      '/Cineflix.png',
+      '/AnswerSphere.png',
+      '/Bonhomme.png',
+      '/RechercheCodeMirror6.png',
+    ][index],
+    githubUrl: [
+      'https://github.com/AbdelPr0/Cineflix',
+      'https://github.com/AbdelPr0/AnswerSphere',
+      'https://github.com/AbdelPr0/Bonhomme-pendu',
+      'https://github.com/AbdelPr0/RechercheCodeMirror6',
+    ][index],
+    features: project.features,
+  }));
 
   return (
     <div className="space-y-4">
@@ -222,10 +194,6 @@ const ProjectsSection: React.FC = () => {
                 >
                   {t('projects.viewProject')}
                 </button>
-                {(() => {
-                  console.log(project);
-                  return null;
-                })()}
                 <a
                   href={project.githubUrl ? project.githubUrl : undefined}
                   target="_blank"
@@ -236,7 +204,9 @@ const ProjectsSection: React.FC = () => {
                       : 'opacity-50 pointer-events-none'
                   }`}
                   title={
-                    project.githubUrl ? 'Voir sur GitHub' : 'Aucun dépôt GitHub'
+                    project.githubUrl
+                      ? t('projects.viewOnGithub')
+                      : t('projects.noGithubRepo')
                   }
                   tabIndex={project.githubUrl ? 0 : -1}
                 >

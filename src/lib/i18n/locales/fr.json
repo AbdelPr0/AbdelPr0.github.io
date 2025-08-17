@@ -85,21 +85,61 @@
     "viewProject": "Voir le Projet",
     "viewCode": "Voir le Code",
     "featured": "Projets en Vedette",
+    "demonstration": "Démonstration",
+    "description": "Description",
+    "features": "Fonctionnalités",
+    "technologies": "Technologies",
+    "viewOnGithub": "Voir sur GitHub",
+    "noGithubRepo": "Aucun dépôt GitHub",
     "items": [
       {
-        "title": "Plateforme E-Commerce",
-        "description": "Boutique en ligne full-stack avec traitement sécurisé des paiements, comptes utilisateurs et gestion des stocks.",
-        "tech": "React, Node.js, MongoDB, Stripe"
+        "title": "API Cineflix",
+        "description": "Cineflix, API REST de critiques et notations de films",
+        "longDescription": "API Cineflix est une API de gestion de critiques et notations de films inspirée d'IMDb. Elle permet aux utilisateurs de publier des avis, attribuer des notes, rechercher des films et consulter des classements basés sur les évaluations.",
+        "tech": "Springboot, Kotlin, MySQL, REST",
+        "features": [
+          "Avis sur les films",
+          "Système de notation",
+          "Recherche avancée",
+          "Comptes utilisateurs"
+        ]
       },
       {
-        "title": "Application de Surveillance Météo",
-        "description": "Application mobile fournissant des données météorologiques en temps réel et des prévisions avec cartes interactives.",
-        "tech": "React Native, API Météo, MapBox"
+        "title": "AnswerSphere",
+        "description": "Application de sondages en ligne",
+        "longDescription": "AnswerSphere est une application web de sondages développée en C# avec ASP.NET. Elle offre une API et une interface web permettant de créer, gérer et répondre à des questionnaires grâce à des fonctionnalités CRUD complètes sur les questions et réponses.",
+        "tech": "C#, ASP.NET, HTML, CSS, REST",
+        "features": [
+          "Gestion des questions",
+          "Gestion des réponses",
+          "CRUD complet",
+          "Interface web"
+        ]
       },
       {
-        "title": "Système de Gestion des Tâches",
-        "description": "Outil de gestion de projet collaboratif avec suivi des tâches, affectations d'équipe et visualisation des progrès.",
-        "tech": "Vue.js, Firebase, Chart.js"
+        "title": "Bonhomme-pendu",
+        "description": "Bonhomme-pendu, jeu mobile en Java",
+        "longDescription": "Petit jeu mobile du pendu : devinez le mot en un nombre d'essais limité. Interface simple, logique claire et structure Gradle pour Android. Développé en Java.",
+        "tech": "Java, Android Studio, SQLite, Gradle",
+        "features": [
+          "Mots aléatoires & lettres à deviner",
+          "Compteur d'essais/restantes",
+          "Détection de victoire/défaite",
+          "Réinitialisation rapide de partie"
+        ]
+      },
+      {
+        "title": "RechercheCodeMirror6",
+        "description": "RechercheCodeMirror6, Prototype d'éditeur CodeMirror 6",
+        "longDescription": "Prototype d'intégration de CodeMirror 6 dans une app Vue, visant à remplacer CodeMirror 5 en conservant la coloration, thèmes, événements et ajoutant complétion, multi-fichiers et édition collaborative.",
+        "tech": "Vue, Javascript, HTML, Vite",
+        "features": [
+          "Multi-fichiers, édition collaborative (ciblées)",
+          "Coloration et thèmes personnalisables",
+          "Événements d'édition (sélection, modification)",
+          "Immutabilité/masquage de lignes",
+          "Complétion et aide syntaxique"
+        ]
       }
     ]
   },
@@ -128,7 +168,6 @@
     "github": "GitHub",
     "linkedin": "LinkedIn",
     "twitter": "Twitter",
-    "email": "Email",
     "meeting": {
       "title": "Organiser un Meeting",
       "description": "Planifier une réunion en ligne",
