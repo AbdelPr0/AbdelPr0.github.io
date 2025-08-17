@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
 import { getHighScore, updateHighScore } from '@/utils/highscores';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 interface TetrisGameProps {
   onQuit: () => void;
@@ -112,7 +112,9 @@ const TetrisGame: React.FC<TetrisGameProps> = ({ onQuit }) => {
   const rotatePiece = (piece: Tetromino): number[][] => {
     const shape = TETROMINOES[piece.type].shape;
     const size = shape.length;
-    const rotated = Array(size).fill(0).map(() => Array(size).fill(0));
+    const rotated = Array(size)
+      .fill(0)
+      .map(() => Array(size).fill(0));
 
     for (let y = 0; y < size; y++) {
       for (let x = 0; x < size; x++) {
@@ -125,10 +127,12 @@ const TetrisGame: React.FC<TetrisGameProps> = ({ onQuit }) => {
 
   const getRotatedShape = (piece: Tetromino): number[][] => {
     let shape = TETROMINOES[piece.type].shape;
-    
+
     // Appliquer la rotation autant de fois que nécessaire
     for (let i = 0; i < piece.rotation; i++) {
-      const rotated = Array(shape.length).fill(0).map(() => Array(shape.length).fill(0));
+      const rotated = Array(shape.length)
+        .fill(0)
+        .map(() => Array(shape.length).fill(0));
       for (let y = 0; y < shape.length; y++) {
         for (let x = 0; x < shape[y].length; x++) {
           rotated[x][shape.length - 1 - y] = shape[y][x];
@@ -140,59 +144,71 @@ const TetrisGame: React.FC<TetrisGameProps> = ({ onQuit }) => {
     return shape;
   };
 
-  const isValidMove = (piece: Tetromino, offsetX: number = 0, offsetY: number = 0, newRotation: boolean = false, rotationValue?: number): boolean => {
-    const testPiece = {
-      ...piece,
-      position: {
-        x: piece.position.x + offsetX,
-        y: piece.position.y + offsetY
-      },
-      rotation: rotationValue !== undefined ? rotationValue : piece.rotation
-    };
-    
-    const shape = getRotatedShape(testPiece);
-    
-    for (let y = 0; y < shape.length; y++) {
-      for (let x = 0; x < shape[y].length; x++) {
-        if (shape[y][x]) {
-          const newX = testPiece.position.x + x;
-          const newY = testPiece.position.y + y;
+  const isValidMove = useCallback(
+    (
+      piece: Tetromino,
+      offsetX: number = 0,
+      offsetY: number = 0,
+      newRotation: boolean = false,
+      rotationValue?: number
+    ): boolean => {
+      const testPiece = {
+        ...piece,
+        position: {
+          x: piece.position.x + offsetX,
+          y: piece.position.y + offsetY,
+        },
+        rotation: rotationValue !== undefined ? rotationValue : piece.rotation,
+      };
 
-          if (
-            newX < 0 ||
-            newX >= GRID_WIDTH ||
-            newY >= GRID_HEIGHT ||
-            (newY >= 0 && grid[newY][newX] !== '')
-          ) {
-            return false;
+      const shape = getRotatedShape(testPiece);
+
+      for (let y = 0; y < shape.length; y++) {
+        for (let x = 0; x < shape[y].length; x++) {
+          if (shape[y][x]) {
+            const newX = testPiece.position.x + x;
+            const newY = testPiece.position.y + y;
+
+            if (
+              newX < 0 ||
+              newX >= GRID_WIDTH ||
+              newY >= GRID_HEIGHT ||
+              (newY >= 0 && grid[newY][newX] !== '')
+            ) {
+              return false;
+            }
           }
         }
       }
-    }
-    return true;
-  };
+      return true;
+    },
+    [grid]
+  );
 
-  const mergePieceToGrid = (piece: Tetromino) => {
-    const newGrid = grid.map(row => [...row]);
-    const shape = getRotatedShape(piece);
-    const color = TETROMINOES[piece.type].color;
+  const mergePieceToGrid = useCallback(
+    (piece: Tetromino) => {
+      const newGrid = grid.map(row => [...row]);
+      const shape = getRotatedShape(piece);
+      const color = TETROMINOES[piece.type].color;
 
-    for (let y = 0; y < shape.length; y++) {
-      for (let x = 0; x < shape[y].length; x++) {
-        if (shape[y][x]) {
-          const gridY = piece.position.y + y;
-          const gridX = piece.position.x + x;
-          if (gridY >= 0) {
-            newGrid[gridY][gridX] = color;
+      for (let y = 0; y < shape.length; y++) {
+        for (let x = 0; x < shape[y].length; x++) {
+          if (shape[y][x]) {
+            const gridY = piece.position.y + y;
+            const gridX = piece.position.x + x;
+            if (gridY >= 0) {
+              newGrid[gridY][gridX] = color;
+            }
           }
         }
       }
-    }
 
-    return newGrid;
-  };
+      return newGrid;
+    },
+    [grid]
+  );
 
-  const clearLines = (newGrid: string[][]) => {
+  const clearLines = useCallback((newGrid: string[][]) => {
     let linesCleared = 0;
     const updatedGrid = newGrid.filter(row => {
       const isLineFull = row.every(cell => cell !== '');
@@ -206,20 +222,24 @@ const TetrisGame: React.FC<TetrisGameProps> = ({ onQuit }) => {
 
     // Points bonus pour les lignes multiples
     const points = {
-      1: 100,  // 1 ligne = 100 points
-      2: 300,  // 2 lignes = 300 points
-      3: 500,  // 3 lignes = 500 points
-      4: 800   // 4 lignes = 800 points (Tetris!)
+      1: 100, // 1 ligne = 100 points
+      2: 300, // 2 lignes = 300 points
+      3: 500, // 3 lignes = 500 points
+      4: 800, // 4 lignes = 800 points (Tetris!)
     };
 
     if (linesCleared > 0) {
-      setScore(prev => prev + (points[linesCleared as keyof typeof points] || linesCleared * 100));
+      setScore(
+        prev =>
+          prev +
+          (points[linesCleared as keyof typeof points] || linesCleared * 100)
+      );
     }
 
     return updatedGrid;
-  };
+  }, []);
 
-  const moveDown = () => {
+  const moveDown = useCallback(() => {
     if (!currentPiece || gameOver || isPaused) return;
 
     if (isValidMove(currentPiece, 0, 1)) {
@@ -233,7 +253,7 @@ const TetrisGame: React.FC<TetrisGameProps> = ({ onQuit }) => {
     } else {
       // Points pour avoir placé une pièce
       setScore(prev => prev + 10);
-      
+
       const newGrid = mergePieceToGrid(currentPiece);
       setGrid(clearLines(newGrid));
 
@@ -244,15 +264,22 @@ const TetrisGame: React.FC<TetrisGameProps> = ({ onQuit }) => {
         setCurrentPiece(newPiece);
       }
     }
-  };
+  }, [
+    currentPiece,
+    gameOver,
+    isPaused,
+    isValidMove,
+    mergePieceToGrid,
+    clearLines,
+  ]);
 
-  const resetGame = () => {
+  const resetGame = useCallback(() => {
     setGrid(Array(GRID_HEIGHT).fill(Array(GRID_WIDTH).fill('')));
     setCurrentPiece(createNewPiece());
     setScore(0);
     setGameOver(false);
     setIsPaused(false);
-  };
+  }, []);
 
   useEffect(() => {
     if (!currentPiece) {
@@ -285,7 +312,7 @@ const TetrisGame: React.FC<TetrisGameProps> = ({ onQuit }) => {
           if (isValidMove(currentPiece, 0, 0, true, nextRotation)) {
             setCurrentPiece({
               ...currentPiece,
-              rotation: nextRotation
+              rotation: nextRotation,
             });
           }
           break;
@@ -322,7 +349,15 @@ const TetrisGame: React.FC<TetrisGameProps> = ({ onQuit }) => {
 
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [currentPiece, isPaused, gameOver]);
+  }, [
+    currentPiece,
+    isPaused,
+    gameOver,
+    isValidMove,
+    moveDown,
+    onQuit,
+    resetGame,
+  ]);
 
   useEffect(() => {
     if (gameOver || isPaused) return;
@@ -333,7 +368,7 @@ const TetrisGame: React.FC<TetrisGameProps> = ({ onQuit }) => {
         clearInterval(gameLoopRef.current);
       }
     };
-  }, [currentPiece, gameOver, isPaused]);
+  }, [currentPiece, gameOver, isPaused, moveDown]);
 
   return (
     <div className="space-y-4">
@@ -368,27 +403,30 @@ const TetrisGame: React.FC<TetrisGameProps> = ({ onQuit }) => {
         )}
 
         {/* Pièce courante */}
-        {currentPiece && getRotatedShape(currentPiece).map((row, y) =>
-          row.map((cell, x) => {
-            if (cell) {
-              const posX = (currentPiece.position.x + x) * CELL_SIZE;
-              const posY = (currentPiece.position.y + y) * CELL_SIZE;
-              return (
-                <div
-                  key={`piece-${x}-${y}`}
-                  className={`absolute ${TETROMINOES[currentPiece.type].color}`}
-                  style={{
-                    left: posX,
-                    top: posY,
-                    width: CELL_SIZE,
-                    height: CELL_SIZE,
-                  }}
-                />
-              );
-            }
-            return null;
-          })
-        )}
+        {currentPiece &&
+          getRotatedShape(currentPiece).map((row, y) =>
+            row.map((cell, x) => {
+              if (cell) {
+                const posX = (currentPiece.position.x + x) * CELL_SIZE;
+                const posY = (currentPiece.position.y + y) * CELL_SIZE;
+                return (
+                  <div
+                    key={`piece-${x}-${y}`}
+                    className={`absolute ${
+                      TETROMINOES[currentPiece.type].color
+                    }`}
+                    style={{
+                      left: posX,
+                      top: posY,
+                      width: CELL_SIZE,
+                      height: CELL_SIZE,
+                    }}
+                  />
+                );
+              }
+              return null;
+            })
+          )}
 
         {/* Écran de Game Over */}
         {gameOver && (
@@ -396,9 +434,7 @@ const TetrisGame: React.FC<TetrisGameProps> = ({ onQuit }) => {
             <div className="text-red-500 text-4xl font-bold mb-4 animate-pulse">
               GAME OVER
             </div>
-            <div className="text-green-500 text-2xl mb-4">
-              Score: {score}
-            </div>
+            <div className="text-green-500 text-2xl mb-4">Score: {score}</div>
             <div className="text-gray-400 text-sm space-y-2">
               <div>Appuyez sur Q pour quitter</div>
               <div>Appuyez sur E pour recommencer</div>
@@ -407,10 +443,11 @@ const TetrisGame: React.FC<TetrisGameProps> = ({ onQuit }) => {
         )}
       </div>
       <div className="text-gray-400 text-sm">
-        Contrôles: WASD/Flèches pour déplacer, W/Haut pour pivoter, Espace pour pause, Q pour quitter, E pour recommencer
+        Contrôles: WASD/Flèches pour déplacer, W/Haut pour pivoter, Espace pour
+        pause, Q pour quitter, E pour recommencer
       </div>
     </div>
   );
 };
 
-export default TetrisGame; 
+export default TetrisGame;

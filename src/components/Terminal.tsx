@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import AboutSection from './sections/AboutSection';
 import BehindTheCodeSection from './sections/BehindTheCodeSection';
@@ -406,15 +406,15 @@ const Terminal: React.FC = () => {
     setLastCommandId(newCommandId);
   };
 
-  const scrollToBottom = () => {
+  const scrollToBottom = useCallback(() => {
     if (messagesEndRef.current && isInitialized) {
       messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
     }
-  };
+  }, [isInitialized]);
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages, isInitialized]);
+  }, [messages, isInitialized, scrollToBottom]);
 
   useEffect(() => {
     const initializeTerminal = async () => {

@@ -1,6 +1,6 @@
 import { useTheme } from '@/contexts/ThemeContext';
 import { AnimatePresence, motion } from 'framer-motion';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const WelcomeScreen: React.FC<{ onComplete: () => void }> = ({
@@ -13,15 +13,18 @@ const WelcomeScreen: React.FC<{ onComplete: () => void }> = ({
   const [showCursor, setShowCursor] = useState(true);
   const [showStartButton, setShowStartButton] = useState(false);
 
-  const welcomeText = [
-    'Initializing system...',
-    'Checking security protocols...',
-    'Connecting to mainframe...',
-    'Authenticating user...',
-    'Welcome to my digital space!',
-    'I am a Full Stack Developer passionate about creating innovative solutions.',
-    'Feel free to explore my portfolio using the terminal interface.',
-  ];
+  const welcomeText = useMemo(
+    () => [
+      'Initializing system...',
+      'Checking security protocols...',
+      'Connecting to mainframe...',
+      'Authenticating user...',
+      'Welcome to my digital space!',
+      'I am a Full Stack Developer passionate about creating innovative solutions.',
+      'Feel free to explore my portfolio using the terminal interface.',
+    ],
+    []
+  );
 
   useEffect(() => {
     const cursorInterval = setInterval(() => {
@@ -54,7 +57,7 @@ const WelcomeScreen: React.FC<{ onComplete: () => void }> = ({
         setShowStartButton(true);
       }, 300);
     }
-  }, [currentIndex]);
+  }, [currentIndex, welcomeText]);
 
   return (
     <motion.div
