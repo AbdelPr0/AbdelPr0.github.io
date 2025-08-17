@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
 import { useTheme } from '@/contexts/ThemeContext';
+import { AnimatePresence, motion } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
-const WelcomeScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
+const WelcomeScreen: React.FC<{ onComplete: () => void }> = ({
+  onComplete,
+}) => {
   const { t } = useTranslation();
   const { theme } = useTheme();
   const [currentText, setCurrentText] = useState('');
@@ -18,7 +20,7 @@ const WelcomeScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) => 
     'Authenticating user...',
     'Welcome to my digital space!',
     'I am a Full Stack Developer passionate about creating innovative solutions.',
-    'Feel free to explore my portfolio using the terminal interface.'
+    'Feel free to explore my portfolio using the terminal interface.',
   ];
 
   useEffect(() => {
@@ -28,7 +30,7 @@ const WelcomeScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) => 
 
     return () => clearInterval(cursorInterval);
   }, []);
-  
+
   useEffect(() => {
     if (currentIndex < welcomeText.length) {
       const currentString = welcomeText[currentIndex];
@@ -38,13 +40,13 @@ const WelcomeScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) => 
         if (charIndex <= currentString.length) {
           setCurrentText(currentString.slice(0, charIndex));
           charIndex++;
-      } else {
+        } else {
           clearInterval(typingInterval);
           setTimeout(() => {
             setCurrentIndex(prev => prev + 1);
-          }, 500);
-      }
-      }, 30);
+          }, 200);
+        }
+      }, 20);
 
       return () => clearInterval(typingInterval);
     } else {
@@ -55,15 +57,15 @@ const WelcomeScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) => 
   }, [currentIndex]);
 
   return (
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
       className={`fixed inset-0 flex items-center justify-center z-50 ${
         theme === 'light' ? 'bg-white' : 'bg-terminal-black'
       }`}
-      >
+    >
       <div className="max-w-2xl w-full p-8">
         <motion.div
           initial={{ y: 20, opacity: 0 }}
@@ -77,13 +79,15 @@ const WelcomeScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) => 
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-center mb-12 font-mono whitespace-pre"
           >
-            <div className={`
+            <div
+              className={`
               ${theme === 'light' ? 'text-blue-600' : 'text-terminal-green'}
               text-base md:text-lg lg:text-xl
               font-bold
               tracking-wider
-            `}>
-{`
+            `}
+            >
+              {`
     █████╗     ██████╗ 
    ██╔══██╗   ██╔════╝ 
    ███████║   ██║  ███╗
@@ -112,8 +116,6 @@ const WelcomeScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) => 
             {welcomeText.slice(0, currentIndex).map((text, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: index * 0.1 }}
                 className={`
                   ${theme === 'light' ? 'text-blue-900' : 'text-terminal-green'}
@@ -125,8 +127,6 @@ const WelcomeScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) => 
             ))}
             {currentIndex < welcomeText.length && (
               <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: currentIndex * 0.1 }}
                 className={`
                   ${theme === 'light' ? 'text-blue-900' : 'text-terminal-green'}
@@ -142,8 +142,8 @@ const WelcomeScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) => 
                   |
                 </motion.span>
               </motion.div>
-          )}
-        </div>
+            )}
+          </div>
 
           <AnimatePresence>
             {showStartButton && (
@@ -152,30 +152,31 @@ const WelcomeScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) => 
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.5 }}
-                className="flex justify-center mt-8"
+                className="flex justify-start mt-8"
               >
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={onComplete}
                   className={`
-                    px-6 py-3 rounded-md font-bold
-                    ${theme === 'light' 
-                      ? 'bg-blue-600 text-white hover:bg-blue-700' 
-                      : 'bg-terminal-green text-terminal-black hover:bg-terminal-green/90'
+                    px-6 py-3 text-green-400 border border-green-400 font-bold
+                    ${
+                      theme === 'light'
+                        ? 'bg-blue-600 text-white hover:bg-blue-700'
+                        : 'bg-transparent  hover:bg-terminal-green/90 hover:text-black'
                     }
                     transition-colors duration-300
                   `}
                 >
                   Start Exploration
                 </motion.button>
-      </motion.div>
+              </motion.div>
             )}
-    </AnimatePresence>
+          </AnimatePresence>
         </motion.div>
       </div>
     </motion.div>
   );
 };
 
-export default WelcomeScreen; 
+export default WelcomeScreen;
