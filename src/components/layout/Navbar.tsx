@@ -29,7 +29,7 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Menu desktop */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="md:hidden sm:hidden items-center space-x-4">
             {navItems.map(item => (
               <a
                 key={item.label}

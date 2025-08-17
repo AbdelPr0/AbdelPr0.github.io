@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 interface TerminalCommandProps {
@@ -8,18 +8,20 @@ interface TerminalCommandProps {
   isTyping?: boolean;
 }
 
-const TerminalCommand: React.FC<TerminalCommandProps> = ({ 
-  command, 
-  output, 
+const TerminalCommand: React.FC<TerminalCommandProps> = ({
+  command,
+  output,
   timestamp = new Date().toLocaleTimeString(),
-  isTyping = true
+  isTyping = true,
 }) => {
   const { t } = useTranslation();
   const [showOutput, setShowOutput] = useState(!isTyping);
   const [displayedText, setDisplayedText] = useState('');
   const commandRef = useRef<HTMLDivElement>(null);
-  const [visitedSections, setVisitedSections] = useState<Set<string>>(new Set());
-  
+  const [visitedSections, setVisitedSections] = useState<Set<string>>(
+    new Set()
+  );
+
   useEffect(() => {
     if (isTyping) {
       let currentIndex = 0;
@@ -30,15 +32,15 @@ const TerminalCommand: React.FC<TerminalCommandProps> = ({
         } else {
           clearInterval(interval);
           setTimeout(() => {
-        setShowOutput(true);
+            setShowOutput(true);
           }, 500);
         }
       }, 100);
-      
+
       return () => clearInterval(interval);
     }
   }, [command, isTyping]);
-  
+
   return (
     <div className="mb-4">
       <div className="flex items-start">
@@ -52,12 +54,8 @@ const TerminalCommand: React.FC<TerminalCommandProps> = ({
           <div>{command}</div>
         )}
       </div>
-      
-      {showOutput && (
-        <div className="ml-6 mt-1 terminal-output">
-          {output}
-        </div>
-      )}
+
+      {showOutput && <div className="ml-6 mt-1 terminal-output">{output}</div>}
     </div>
   );
 };

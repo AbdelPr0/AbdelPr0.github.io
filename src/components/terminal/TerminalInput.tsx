@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 interface TerminalInputProps {
@@ -22,10 +22,13 @@ const AVAILABLE_COMMANDS = [
   'language',
   'help',
   'clear',
-  'easter-egg'
+  'easter-egg',
 ];
 
-const TerminalInput: React.FC<TerminalInputProps> = ({ onCommand, placeholder }) => {
+const TerminalInput: React.FC<TerminalInputProps> = ({
+  onCommand,
+  placeholder,
+}) => {
   const { t } = useTranslation();
   const [input, setInput] = useState('');
   const [suggestions, setSuggestions] = useState<string[]>([]);
@@ -33,19 +36,19 @@ const TerminalInput: React.FC<TerminalInputProps> = ({ onCommand, placeholder })
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
   const inputRef = useRef<HTMLInputElement>(null);
-  
+
   // Focus sur l'input au chargement
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
-  
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setInput(value);
-    
+
     // Mise à jour des suggestions
     if (value) {
-      const matches = AVAILABLE_COMMANDS.filter(cmd => 
+      const matches = AVAILABLE_COMMANDS.filter(cmd =>
         cmd.toLowerCase().startsWith(value.toLowerCase())
       );
       setSuggestions(matches);
@@ -54,7 +57,7 @@ const TerminalInput: React.FC<TerminalInputProps> = ({ onCommand, placeholder })
       setSuggestions([]);
     }
   };
-  
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && input.trim()) {
       onCommand(input.trim());
@@ -66,12 +69,18 @@ const TerminalInput: React.FC<TerminalInputProps> = ({ onCommand, placeholder })
       e.preventDefault();
       if (suggestions.length > 0) {
         // Navigation dans les suggestions
-        const newIndex = selectedSuggestionIndex > 0 ? selectedSuggestionIndex - 1 : suggestions.length - 1;
+        const newIndex =
+          selectedSuggestionIndex > 0
+            ? selectedSuggestionIndex - 1
+            : suggestions.length - 1;
         setSelectedSuggestionIndex(newIndex);
         setInput(suggestions[newIndex]);
       } else if (commandHistory.length > 0) {
         // Navigation dans l'historique
-        const newIndex = historyIndex < commandHistory.length - 1 ? historyIndex + 1 : historyIndex;
+        const newIndex =
+          historyIndex < commandHistory.length - 1
+            ? historyIndex + 1
+            : historyIndex;
         setHistoryIndex(newIndex);
         setInput(commandHistory[commandHistory.length - 1 - newIndex]);
       }
@@ -79,7 +88,10 @@ const TerminalInput: React.FC<TerminalInputProps> = ({ onCommand, placeholder })
       e.preventDefault();
       if (suggestions.length > 0) {
         // Navigation dans les suggestions
-        const newIndex = selectedSuggestionIndex < suggestions.length - 1 ? selectedSuggestionIndex + 1 : 0;
+        const newIndex =
+          selectedSuggestionIndex < suggestions.length - 1
+            ? selectedSuggestionIndex + 1
+            : 0;
         setSelectedSuggestionIndex(newIndex);
         setInput(suggestions[newIndex]);
       } else if (historyIndex > 0) {
@@ -99,9 +111,9 @@ const TerminalInput: React.FC<TerminalInputProps> = ({ onCommand, placeholder })
       setSuggestions([]);
     }
   };
-  
+
   return (
-    <div className="relative">
+    <div className="relative mt-[5rem">
       <div className="flex items-center">
         <span className="text-green-500 mr-2">{t('terminal.prompt')}</span>
         <input
@@ -114,14 +126,16 @@ const TerminalInput: React.FC<TerminalInputProps> = ({ onCommand, placeholder })
           placeholder={placeholder}
         />
       </div>
-      
+
       {suggestions.length > 0 && (
         <div className="absolute left-0 mt-1 bg-gray-800 border border-gray-700 rounded shadow-lg z-50">
           {suggestions.map((suggestion, index) => (
             <div
               key={suggestion}
               className={`px-2 py-1 cursor-pointer text-gray-300 ${
-                index === selectedSuggestionIndex ? 'bg-gray-700' : 'hover:bg-gray-700'
+                index === selectedSuggestionIndex
+                  ? 'bg-gray-700'
+                  : 'hover:bg-gray-700'
               }`}
               onClick={() => {
                 setInput(suggestion);
