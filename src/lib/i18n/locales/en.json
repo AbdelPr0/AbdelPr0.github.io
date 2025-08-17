@@ -22,7 +22,7 @@
     "skills": "Skills",
     "contact": "Contact",
     "cv": "CV",
-    "help": "❔ Help"
+    "help": "? Help"
   },
   "theme": {
     "green": "Green Terminal",
@@ -65,22 +65,16 @@
       "title": "ACADEMIC JOURNEY",
       "items": [
         {
-          "year": "2023 - 2024",
-          "title": "Master's in Software Engineering",
-          "school": "Paris-Saclay University",
-          "description": "Specialization in distributed applications and cloud computing."
+          "year": "2022 - 2025",
+          "title": "Bachelor in Software Engineering",
+          "school": "École de technologie supérieure",
+          "description": ""
         },
         {
-          "year": "2020 - 2023",
-          "title": "Bachelor's in Computer Science",
-          "school": "Paris Descartes University",
-          "description": "Comprehensive training in web development, databases, and algorithms."
-        },
-        {
-          "year": "2018 - 2020",
-          "title": "DUT in Computer Science",
-          "school": "IUT Paris",
-          "description": "Practical training in programming, networks, and information systems."
+          "year": "2022",
+          "title": "DEC in Computer Science at Cégep de Rosemont",
+          "school": "Cégep de Rosemont",
+          "description": "Specialization in web and mobile application development."
         }
       ]
     }
@@ -187,7 +181,7 @@
     "theme": "Change theme",
     "language": "Change language",
     "clear": "Clear screen",
-    "easter_egg": "🎮 Find out for yourself!"
+    "easter_egg": "Find out for yourself!"
   },
   "footer": {
     "copyright": "© 2025 Abdelrahmane Gacemi",

@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { getHighScore } from '@/utils/highscores';
+import React, { useEffect, useState } from 'react';
 import SnakeGame from './SnakeGame';
 import TetrisGame from './TetrisGame';
-import { getHighScore } from '@/utils/highscores';
 
 interface Game {
   id: string;
@@ -17,7 +17,7 @@ const GamesMenu: React.FC = () => {
   useEffect(() => {
     setHighScores({
       snake: getHighScore('snake'),
-      tetris: getHighScore('tetris')
+      tetris: getHighScore('tetris'),
     });
   }, [selectedGame]); // Mise à jour quand on revient au menu
 
@@ -26,14 +26,14 @@ const GamesMenu: React.FC = () => {
       id: 'snake',
       name: '🐍 Snake',
       component: <SnakeGame onQuit={() => setSelectedGame(null)} />,
-      description: 'Le classique jeu du serpent'
+      description: 'Le classique jeu du serpent',
     },
     {
       id: 'tetris',
       name: '🟦 Tetris',
       component: <TetrisGame onQuit={() => setSelectedGame(null)} />,
-      description: 'Le célèbre jeu de blocs'
-    }
+      description: 'Le célèbre jeu de blocs',
+    },
   ];
 
   if (selectedGame) {
@@ -56,7 +56,7 @@ const GamesMenu: React.FC = () => {
 
   return (
     <div className="space-y-4">
-      <div className="text-green-500 mb-4">🎮 Jeux Rétro</div>
+      <div className="text-green-500 mb-4">Jeux Rétro</div>
       <div className="grid gap-2">
         {games.map(game => (
           <button
@@ -66,7 +66,9 @@ const GamesMenu: React.FC = () => {
           >
             <div className="flex items-center space-x-2">
               <span className="text-yellow-500">{game.name}</span>
-              <span className="text-gray-400 text-sm">→ {game.description}</span>
+              <span className="text-gray-400 text-sm">
+                → {game.description}
+              </span>
             </div>
             <div className="text-green-500 text-sm">
               Record: {highScores[game.id as keyof typeof highScores]}
@@ -78,4 +80,4 @@ const GamesMenu: React.FC = () => {
   );
 };
 
-export default GamesMenu; 
+export default GamesMenu;

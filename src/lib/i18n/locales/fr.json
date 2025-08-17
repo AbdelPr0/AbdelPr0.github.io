@@ -22,7 +22,7 @@
     "skills": "Compétences",
     "contact": "Contact",
     "cv": "CV",
-    "help": "❔ Aide"
+    "help": "? Aide"
   },
   "theme": {
     "green": "Terminal Vert",
@@ -65,22 +65,16 @@
       "title": "PARCOURS ACADÉMIQUE",
       "items": [
         {
-          "year": "2023 - 2024",
-          "title": "Master en Ingénierie Logicielle",
-          "school": "Université Paris-Saclay",
-          "description": "Spécialisation en développement d'applications distribuées et cloud computing."
+          "year": "2022 - 2025",
+          "title": "Baccalauréat en génie logiciel",
+          "school": "École de technologie supérieure",
+          "description": ""
         },
         {
-          "year": "2020 - 2023",
-          "title": "Licence en Informatique",
-          "school": "Université Paris Descartes",
-          "description": "Formation complète en développement web, bases de données et algorithmique."
-        },
-        {
-          "year": "2018 - 2020",
-          "title": "DUT Informatique",
-          "school": "IUT de Paris",
-          "description": "Formation pratique en programmation, réseaux et systèmes d'information."
+          "year": "2022",
+          "title": "DEC en informatique au Cégep de Rosemont",
+          "school": "Cégep de Rosemont",
+          "description": "Spécialisation en développement d'applications web et mobiles."
         }
       ]
     }
@@ -187,7 +181,7 @@
     "theme": "Changer le thème",
     "language": "Changer la langue",
     "clear": "Effacer l'écran",
-    "easter_egg": "🎮 Découvrez par vous-même !"
+    "easter_egg": "Découvrez par vous-même !"
   },
   "footer": {
     "copyright": "© 2025 Abdelrahmane Gacemi",

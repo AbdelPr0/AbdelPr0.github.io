@@ -1,8 +1,8 @@
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useTheme } from '@/contexts/ThemeContext';
+import { HelpCircle, Menu, X } from 'lucide-react';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Menu, X, HelpCircle } from 'lucide-react';
-import { useTheme } from '@/contexts/ThemeContext';
-import { useLanguage } from '@/contexts/LanguageContext';
 
 const Navbar: React.FC = () => {
   const { t } = useTranslation();
@@ -14,9 +14,9 @@ const Navbar: React.FC = () => {
     { label: 'about', href: '#about' },
     { label: 'projects', href: '#projects' },
     { label: 'skills', href: '#skills' },
-    { label: 'blog', href: '#blog' },
+    // { label: 'blog', href: '#blog' },
     { label: 'contact', href: '#contact' },
-    { label: 'cv', href: '#cv' }
+    { label: 'cv', href: '#cv' },
   ];
 
   return (
@@ -30,7 +30,7 @@ const Navbar: React.FC = () => {
 
           {/* Menu desktop */}
           <div className="hidden md:flex items-center space-x-4">
-            {navItems.map((item) => (
+            {navItems.map(item => (
               <a
                 key={item.label}
                 href={item.href}
@@ -74,7 +74,7 @@ const Navbar: React.FC = () => {
       {/* Menu mobile déroulant */}
       <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'}`}>
         <div className="px-2 pt-2 pb-3 space-y-1">
-          {navItems.map((item) => (
+          {navItems.map(item => (
             <a
               key={item.label}
               href={item.href}
@@ -117,4 +117,4 @@ const Navbar: React.FC = () => {
   );
 };
 
-export default Navbar; 
+export default Navbar;
