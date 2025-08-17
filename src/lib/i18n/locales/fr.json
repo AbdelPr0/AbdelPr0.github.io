@@ -164,6 +164,8 @@
     "sending": "Transmission en cours...",
     "success": "Message transmis avec succès !",
     "error": "Échec de la transmission. Veuillez réessayer.",
+    "configError": "Configuration EmailJS incomplète",
+    "unexpectedError": "Une erreur inattendue s'est produite",
     "socialTitle": "Canaux de Communication",
     "github": "GitHub",
     "linkedin": "LinkedIn",

@@ -1,7 +1,8 @@
 import { useTheme } from '@/contexts/ThemeContext';
 import { useToast } from '@/hooks/use-toast';
+import { checkEmailJSConfig, initEmailJS, sendEmail } from '@/lib/emailjs';
 import { Github, Linkedin, Mail } from 'lucide-react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import MeetingScheduler from '../meeting/MeetingScheduler';
 
@@ -12,10 +13,24 @@ const ContactSection: React.FC = () => {
 
   const [formState, setFormState] = useState({
     name: '',
-    email: 'abdelrahmanepro@yahoo.com',
+    email: '',
     message: '',
   });
   const [loading, setLoading] = useState(false);
+  const [emailConfigValid, setEmailConfigValid] = useState(false);
+
+  useEffect(() => {
+    initEmailJS();
+    const configCheck = checkEmailJSConfig();
+    setEmailConfigValid(configCheck.isValid);
+
+    if (!configCheck.isValid) {
+      console.warn(
+        'EmailJS configuration incomplete. Missing variables:',
+        configCheck.missingVars
+      );
+    }
+  }, []);
 
   const isDarkTheme = theme !== 'light';
   const baseInputClass = `w-full p-2 rounded-md border ${
@@ -33,23 +48,56 @@ const ContactSection: React.FC = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!emailConfigValid) {
+      toast({
+        title: t('contact.error'),
+        description: 'EmailJS configuration is not properly set up.',
+        variant: 'destructive',
+      });
+      return;
+    }
+
     setLoading(true);
 
-    // Simulate form submission
-    setTimeout(() => {
-      setLoading(false);
+    try {
+      const result = await sendEmail({
+        from_name: formState.name,
+        from_email: formState.email,
+        message: formState.message,
+      });
+
+      if (result.success) {
+        toast({
+          title: t('contact.success'),
+          description: 'Your message has been sent successfully!',
+          variant: 'default',
+        });
+
+        setFormState({
+          name: '',
+          email: '',
+          message: '',
+        });
+      } else {
+        toast({
+          title: t('contact.error'),
+          description: result.message,
+          variant: 'destructive',
+        });
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
       toast({
-        title: t('contact.success'),
-        variant: 'default',
+        title: t('contact.error'),
+        description: 'An unexpected error occurred. Please try again.',
+        variant: 'destructive',
       });
-      setFormState({
-        name: '',
-        email: '',
-        message: '',
-      });
-    }, 1500);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -70,6 +118,7 @@ const ContactSection: React.FC = () => {
                 type="text"
                 id="name"
                 name="name"
+                placeholder="John Doe"
                 value={formState.name}
                 onChange={handleChange}
                 required
@@ -84,6 +133,7 @@ const ContactSection: React.FC = () => {
                 type="email"
                 id="email"
                 name="email"
+                placeholder="john.doe@example.com"
                 value={formState.email}
                 onChange={handleChange}
                 required
@@ -97,6 +147,7 @@ const ContactSection: React.FC = () => {
               <textarea
                 id="message"
                 name="message"
+                placeholder="Message"
                 value={formState.message}
                 onChange={handleChange}
                 required
