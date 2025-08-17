@@ -99,16 +99,15 @@
     "noGithubRepo": "No GitHub repository",
     "items": [
       {
-        "title": "TindArt",
-        "description": "TindArt, Discover Your Artistic Style",
-        "longDescription": "Web application inspired by Tinder for art, designed during an internship: users swipe artworks to like/ignore. A preference model learns their taste and suggests recommendations by style, era, and artist, with history and profile.",
-        "tech": "HTML, CSS, Javascript, Wordpress",
+        "title": "Cineflix API",
+        "description": "Cineflix, REST API for movie reviews and ratings",
+        "longDescription": "Cineflix API is a movie review and rating management API inspired by IMDb. It allows users to publish reviews, assign ratings, search for movies, and view rankings based on user evaluations.",
+        "tech": "Springboot, Kotlin, MySQL, REST",
         "features": [
-          "Swipe left/right on artworks",
-          "Real-time preference learning",
-          "Recommendations by style/era/artist",
-          "Like history and review",
-          "Filters and guided discovery"
+          "Movie reviews",
+          "Rating system",
+          "Advanced search",
+          "User accounts"
         ]
       },
       {
@@ -136,15 +135,16 @@
         ]
       },
       {
-        "title": "Cineflix API",
-        "description": "Cineflix, REST API for movie reviews and ratings",
-        "longDescription": "Cineflix API is a movie review and rating management API inspired by IMDb. It allows users to publish reviews, assign ratings, search for movies, and view rankings based on user evaluations.",
-        "tech": "Springboot, Kotlin, MySQL, REST",
+        "title": "TindArt",
+        "description": "TindArt, Discover Your Artistic Style",
+        "longDescription": "Web application inspired by Tinder for art, designed during an internship: users swipe artworks to like/ignore. A preference model learns their taste and suggests recommendations by style, era, and artist, with history and profile.",
+        "tech": "HTML, CSS, Javascript, Wordpress",
         "features": [
-          "Movie reviews",
-          "Rating system",
-          "Advanced search",
-          "User accounts"
+          "Swipe left/right on artworks",
+          "Real-time preference learning",
+          "Recommendations by style/era/artist",
+          "Like history and review",
+          "Filters and guided discovery"
         ]
       },
       {

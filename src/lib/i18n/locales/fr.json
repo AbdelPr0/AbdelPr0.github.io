@@ -99,16 +99,15 @@
     "noGithubRepo": "Aucun dépôt GitHub",
     "items": [
       {
-        "title": "TindArt",
-        "description": "TindArt, Découvre ton style artistique",
-        "longDescription": "Application web façon Tinder pour l’art, conçue en stage : l’utilisateur swipe des œuvres pour aimer/ignorer. Un modèle de préférences apprend son goût et propose des recommandations par styles, époques et artistes, avec historique et profil.",
-        "tech": "HTML, CSS, Javascript, Wordpress",
+        "title": "API Cineflix",
+        "description": "Cineflix, API REST de critiques et notations de films",
+        "longDescription": "API Cineflix est une API de gestion de critiques et notations de films inspirée d'IMDb. Elle permet aux utilisateurs de publier des avis, attribuer des notes, rechercher des films et consulter des classements basés sur les évaluations.",
+        "tech": "Springboot, Kotlin, MySQL, REST",
         "features": [
-          "Swipe gauche/droite sur les œuvres",
-          "Apprentissage des préférences en temps réel",
-          "Recommandations par style/époque/artiste",
-          "Historique des likes et relecture",
-          "Filtres et découverte guidée"
+          "Avis sur les films",
+          "Système de notation",
+          "Recherche avancée",
+          "Comptes utilisateurs"
         ]
       },
       {
@@ -135,16 +134,17 @@
           "Design responsive"
         ]
       },
-      {
-        "title": "API Cineflix",
-        "description": "Cineflix, API REST de critiques et notations de films",
-        "longDescription": "API Cineflix est une API de gestion de critiques et notations de films inspirée d'IMDb. Elle permet aux utilisateurs de publier des avis, attribuer des notes, rechercher des films et consulter des classements basés sur les évaluations.",
-        "tech": "Springboot, Kotlin, MySQL, REST",
+            {
+        "title": "TindArt",
+        "description": "TindArt, Découvre ton style artistique",
+        "longDescription": "Application web façon Tinder pour l’art, conçue en stage : l’utilisateur swipe des œuvres pour aimer/ignorer. Un modèle de préférences apprend son goût et propose des recommandations par styles, époques et artistes, avec historique et profil.",
+        "tech": "HTML, CSS, Javascript, Wordpress",
         "features": [
-          "Avis sur les films",
-          "Système de notation",
-          "Recherche avancée",
-          "Comptes utilisateurs"
+          "Swipe gauche/droite sur les œuvres",
+          "Apprentissage des préférences en temps réel",
+          "Recommandations par style/époque/artiste",
+          "Historique des likes et relecture",
+          "Filtres et découverte guidée"
         ]
       },
       {

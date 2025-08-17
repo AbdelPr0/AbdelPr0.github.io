@@ -137,19 +137,19 @@ const ProjectsSection: React.FC = () => {
     longDescription: project.longDescription,
     tech: project.tech,
     image: [
-      '/Arturart.png',     // TindArt
-      '/StageAvenir.png',  // StageAvenir
-      '/MusicaOne.png',    // Musica One
-      '/Cineflix.png',     // Cineflix API
-      '/Cosmorunner.png',  // CosmoRunner
-      '/Bonhomme.png',     // Bonhomme-pendu
+      '/Cineflix.png', // Cineflix API
+      '/StageAvenir.png', // StageAvenir
+      '/MusicaOne.png', // Musica One
+      '/Arturart.png', // TindArt
+      '/Cosmorunner.png', // CosmoRunner
+      '/Bonhomme.png', // Bonhomme-pendu
       '/RechercheCodeMirror6.png', // RechercheCodeMirror6
     ][index],
     githubUrl: [
-      'https://artur.art/tindart-independant/', // TindArt
+      'https://github.com/AbdelPr0/Cineflix',
       'https://github.com/AbdelPr0/StageAvenirAPI',
       'https://github.com/AbdelPr0/MusicaOne',
-      'https://github.com/AbdelPr0/Cineflix',
+      'https://artur.art/tindart-independant/',
       'https://github.com/AbdelPr0/CosmoRunner',
       'https://github.com/AbdelPr0/Bonhomme-pendu',
       'https://github.com/AbdelPr0/RechercheCodeMirror6',

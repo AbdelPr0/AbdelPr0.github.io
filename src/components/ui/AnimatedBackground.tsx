@@ -1,21 +1,23 @@
-import React from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
+import React from 'react';
 
 const AnimatedBackground: React.FC = () => {
   const { theme } = useTheme();
 
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden">
-      <div className={`absolute inset-0 ${
-        theme === 'light' 
-          ? 'bg-gradient-to-br from-blue-50 to-blue-100' 
-          : 'bg-gradient-to-br from-gray-900 to-black'
-      }`}>
+      <div
+        className={`absolute inset-0 ${
+          theme === 'light'
+            ? 'bg-gradient-to-br from-blue-50 to-blue-100'
+            : 'bg-gradient-to-br from-gray-900 to-black'
+        }`}
+      >
         {/* Grid pattern */}
         <div className="absolute inset-0 opacity-20">
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] animate-grid-pulse" />
         </div>
-        
+
         {/* Animated dots */}
         <div className="absolute inset-0">
           {Array.from({ length: 50 }).map((_, i) => (
@@ -27,8 +29,10 @@ const AnimatedBackground: React.FC = () => {
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
-                animation: `float ${3 + Math.random() * 4}s infinite ease-in-out`,
-                animationDelay: `${Math.random() * 2}s`
+                animation: `float ${
+                  3 + Math.random() * 4
+                }s infinite ease-in-out`,
+                animationDelay: `${Math.random() * 2}s`,
               }}
             />
           ))}
@@ -38,4 +42,4 @@ const AnimatedBackground: React.FC = () => {
   );
 };
 
-export default AnimatedBackground; 
+export default AnimatedBackground;

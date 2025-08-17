@@ -23,7 +23,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
     <ThemeProvider>
       <CRTEffect>
         <div className="min-h-screen w-full p-2 sm:p-4 md:p-6 flex flex-col">
-          <main className="flex-1 w-full max-w-7xl mx-auto flex flex-col px-2 sm:px-4 md:px-6">
+          <main className="flex-1 w-full max-w-7xl mx-auto flex flex-col px-2 sm:px-4 md:px-6 mb-5">
             <div className="terminal-window flex-1 flex flex-col w-full overflow-hidden">
               <TerminalHeader />
               <div className="terminal-content flex-1 overflow-y-auto overflow-x-hidden">
@@ -31,8 +31,8 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
               </div>
             </div>
           </main>
-          <footer className="mt-4 text-center text-xs opacity-70 px-2 sm:px-4 flex flex-col items-center gap-1">
-            <div className="flex justify-center gap-4 mb-1">
+          <footer className=" text-center text-xs opacity-70 px-2 sm:px-4 flex flex-col items-center gap-1">
+            <div className="flex justify-center gap-4 ">
               <a
                 href="https://github.com/AbdelPr0"
                 target="_blank"
