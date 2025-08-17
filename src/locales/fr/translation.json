@@ -19,7 +19,7 @@
     "clear": "Effacer le terminal",
     "easter_egg": "Découvrir les fonctionnalités cachées",
     "behind-the-code": "Voir les coulisses de ce portfolio",
-    "recruiter-mode": "Voir une version condensée pour recruteurs",
+    "recruiter-mode": "Voir une version condensée pour recruteurs"
 
   },
   "achievements": {
@@ -59,7 +59,7 @@
       "clear": "Effacer l'écran",
       "easter-egg": "Trouver l'easter egg",
       "behind-the-code": "Coulisses du code",
-      "recruiter-mode": "Mode recruteur",
+      "recruiter-mode": "Mode recruteur"
 
     },
     "help": {
@@ -253,6 +253,6 @@
     "available": "Disponible pour embauche",
     "key-skills": "Compétences Clés",
     "experience": "Points Forts d'Expérience"
-  },
+  }
 
 } 

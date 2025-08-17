@@ -19,7 +19,7 @@
     "clear": "Clear terminal",
     "easter_egg": "Discover hidden features",
     "behind-the-code": "View the making of this portfolio",
-    "recruiter-mode": "View a condensed version for recruiters",
+    "recruiter-mode": "View a condensed version for recruiters"
 
   },
   "terminal": {
@@ -40,7 +40,7 @@
       "clear": "Clear screen",
       "easter-egg": "Find easter egg",
       "behind-the-code": "Behind the code",
-      "recruiter-mode": "Recruiter mode",
+      "recruiter-mode": "Recruiter mode"
 
     },
     "help": {
@@ -234,6 +234,6 @@
     "available": "Available for hire",
     "key-skills": "Key Skills",
     "experience": "Experience Highlights"
-  },
+  }
 
 } 

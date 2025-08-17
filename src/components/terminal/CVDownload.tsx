@@ -40,7 +40,6 @@ const CVDownload: React.FC = () => {
 
   useEffect(() => {
     if (status === 'success') {
-      // Déclencher le téléchargement réel après l'animation
       const cvUrl = `https://raw.githubusercontent.com/AbdelPr0/AbdelPr0.github.io/c61048e66adc1528bcfc58f2165e46a7b8361f0b/public/CV.pdf`;
       fetch(cvUrl)
         .then(response => response.blob())

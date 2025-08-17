@@ -65,13 +65,13 @@
       "title": "PARCOURS ACADÉMIQUE",
       "items": [
         {
-          "year": "2022 - 2025",
+          "year": "2025 - Présent",
           "title": "Baccalauréat en génie logiciel",
           "school": "École de technologie supérieure",
           "description": ""
         },
         {
-          "year": "2022",
+          "year": "2021 - 2025",
           "title": "DEC en informatique au Cégep de Rosemont",
           "school": "Cégep de Rosemont",
           "description": "Spécialisation en développement d'applications web et mobiles."
@@ -139,6 +139,56 @@
           "Événements d'édition (sélection, modification)",
           "Immutabilité/masquage de lignes",
           "Complétion et aide syntaxique"
+        ]
+      },
+      {
+        "title": "CosmoRunner",
+        "description": "CosmoRunner, Prototype de jeu 3D",
+        "longDescription": "Prototype de jeu 3D réalisé sous Unity (2022.3.13f1) et C# : contrôles de déplacement, collisions et gestion d’état de partie, avec base technique prête à étendre (UI, shaders).",
+        "tech": "Unity, C#",
+        "features": [
+          "Contrôleur joueur (déplacements fluides)",
+          "Systèmes de score/chrono de base",
+          "Spawning/gestion d’objets en scène",
+          "Collisions & conditions de fin de partie",
+          "UI minimale (rejouer/état)"
+        ]
+      },
+      {
+        "title": "StageAvenir",
+        "description": "StageAvenir — API de gestion des stages",
+        "longDescription": "API Kotlin/Spring Boot avec application cliente mobile pour la gestion des stages au Collège de Rosemont : étudiants consultent et postulent, entreprises publient et répondent, professeurs coordonnent/suivent et génèrent des contrats ; testable via Postman.",
+        "tech": "Kotlin, Spring Boot, Android Studio",
+        "features": [
+          "Étudiants : parcourir les offres, postuler, créer une demande, suivre ses candidatures.",
+          "Entreprises : répondre aux demandes, publier des offres, accepter/refuser des candidatures.",
+          "Professeurs (coordonnateur/superviseur) : réviser demandes, approuver/refuser offres, générer contrats, assurer le suivi."
+        ]
+      },
+      {
+        "title": "Musica One",
+        "description": "Musica One, Application de streaming musical",
+        "longDescription": "Musica One est un clone web de Spotify réalisé en PHP, HTML, CSS et Bootstrap : navigation par playlists/albums, lecteur audio intégré, recherche de titres/artistes et gestion basique des favoris. Design responsive.",
+        "tech": "PHP, HTML, CSS, Bootstrap",
+        "features": [
+          "Navigation par playlists et albums",
+          "Lecteur audio intégré",
+          "Recherche de titres et artistes",
+          "Gestion des favoris",
+          "Design responsive"
+        ]
+      },
+      {
+        "title": "TindArt",
+        "description": "TindArt, Découvre ton style artistique",
+        "longDescription": "Application web façon Tinder pour l’art, conçue en stage : l’utilisateur swipe des œuvres pour aimer/ignorer. Un modèle de préférences apprend son goût et propose des recommandations par styles, époques et artistes, avec historique et profil.",
+        "tech": "HTML, CSS, Javascript, Wordpress",
+        "features": [
+          "Swipe gauche/droite sur les œuvres",
+          "Apprentissage des préférences en temps réel",
+          "Recommandations par style/époque/artiste",
+          "Historique des likes et relecture",
+          "Filtres et découverte guidée"
         ]
       }
     ]

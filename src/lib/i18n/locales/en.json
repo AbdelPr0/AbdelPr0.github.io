@@ -65,13 +65,13 @@
       "title": "ACADEMIC JOURNEY",
       "items": [
         {
-          "year": "2022 - 2025",
+          "year": "2025 - Present",
           "title": "Bachelor in Software Engineering",
           "school": "École de technologie supérieure",
           "description": ""
         },
         {
-          "year": "2022",
+          "year": "2021 - 2025",
           "title": "DEC in Computer Science at Cégep de Rosemont",
           "school": "Cégep de Rosemont",
           "description": "Specialization in web and mobile application development."
@@ -139,6 +139,56 @@
           "Edit events (selection, modification)",
           "Line immutability/masking",
           "Completion and syntax assistance"
+        ]
+      },
+      {
+        "title": "CosmoRunner",
+        "description": "CosmoRunner, 3D Game Prototype",
+        "longDescription": "3D game prototype developed in Unity (2022.3.13f1) and C#: movement controls, collision and game state management, with a technical base ready to extend (UI, shaders).",
+        "tech": "Unity, C#",
+        "features": [
+          "Player controller (smooth movement)",
+          "Basic score/timer systems",
+          "Spawning/object management in scene",
+          "Collisions & game over conditions",
+          "Minimal UI (replay/state)"
+        ]
+      },
+      {
+        "title": "StageAvenir",
+        "description": "StageAvenir — Internship Management API",
+        "longDescription": "Kotlin/Spring Boot API with a mobile client app for managing internships at Collège de Rosemont: students browse and apply, companies post and respond, professors coordinate/follow up and generate contracts; testable via Postman.",
+        "tech": "Kotlin, Spring Boot, Android Studio",
+        "features": [
+          "Students: browse offers, apply, create requests, track applications.",
+          "Companies: respond to requests, post offers, accept/reject applications.",
+          "Professors (coordinator/supervisor): review requests, approve/reject offers, generate contracts, ensure follow-up."
+        ]
+      },
+      {
+        "title": "Musica One",
+        "description": "Musica One, Music Streaming Application",
+        "longDescription": "Musica One is a web clone of Spotify built with PHP, HTML, CSS, and Bootstrap: browse by playlists/albums, integrated audio player, search for tracks/artists, and basic favorites management. Responsive design.",
+        "tech": "PHP, HTML, CSS, Bootstrap",
+        "features": [
+          "Browse by playlists and albums",
+          "Integrated audio player",
+          "Search for tracks and artists",
+          "Favorites management",
+          "Responsive design"
+        ]
+      },
+      {
+        "title": "TindArt",
+        "description": "TindArt, Discover Your Artistic Style",
+        "longDescription": "Web application inspired by Tinder for art, designed during an internship: users swipe artworks to like/ignore. A preference model learns their taste and suggests recommendations by style, era, and artist, with history and profile.",
+        "tech": "HTML, CSS, Javascript, Wordpress",
+        "features": [
+          "Swipe left/right on artworks",
+          "Real-time preference learning",
+          "Recommendations by style/era/artist",
+          "Like history and review",
+          "Filters and guided discovery"
         ]
       }
     ]
