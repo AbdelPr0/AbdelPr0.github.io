@@ -99,65 +99,16 @@
     "noGithubRepo": "Aucun dépôt GitHub",
     "items": [
       {
-        "title": "API Cineflix",
-        "description": "Cineflix, API REST de critiques et notations de films",
-        "longDescription": "API Cineflix est une API de gestion de critiques et notations de films inspirée d'IMDb. Elle permet aux utilisateurs de publier des avis, attribuer des notes, rechercher des films et consulter des classements basés sur les évaluations.",
-        "tech": "Springboot, Kotlin, MySQL, REST",
+        "title": "TindArt",
+        "description": "TindArt, Découvre ton style artistique",
+        "longDescription": "Application web façon Tinder pour l’art, conçue en stage : l’utilisateur swipe des œuvres pour aimer/ignorer. Un modèle de préférences apprend son goût et propose des recommandations par styles, époques et artistes, avec historique et profil.",
+        "tech": "HTML, CSS, Javascript, Wordpress",
         "features": [
-          "Avis sur les films",
-          "Système de notation",
-          "Recherche avancée",
-          "Comptes utilisateurs"
-        ]
-      },
-      {
-        "title": "AnswerSphere",
-        "description": "Application de sondages en ligne",
-        "longDescription": "AnswerSphere est une application web de sondages développée en C# avec ASP.NET. Elle offre une API et une interface web permettant de créer, gérer et répondre à des questionnaires grâce à des fonctionnalités CRUD complètes sur les questions et réponses.",
-        "tech": "C#, ASP.NET, HTML, CSS, REST",
-        "features": [
-          "Gestion des questions",
-          "Gestion des réponses",
-          "CRUD complet",
-          "Interface web"
-        ]
-      },
-      {
-        "title": "Bonhomme-pendu",
-        "description": "Bonhomme-pendu, jeu mobile en Java",
-        "longDescription": "Petit jeu mobile du pendu : devinez le mot en un nombre d'essais limité. Interface simple, logique claire et structure Gradle pour Android. Développé en Java.",
-        "tech": "Java, Android Studio, SQLite, Gradle",
-        "features": [
-          "Mots aléatoires & lettres à deviner",
-          "Compteur d'essais/restantes",
-          "Détection de victoire/défaite",
-          "Réinitialisation rapide de partie"
-        ]
-      },
-      {
-        "title": "RechercheCodeMirror6",
-        "description": "RechercheCodeMirror6, Prototype d'éditeur CodeMirror 6",
-        "longDescription": "Prototype d'intégration de CodeMirror 6 dans une app Vue, visant à remplacer CodeMirror 5 en conservant la coloration, thèmes, événements et ajoutant complétion, multi-fichiers et édition collaborative.",
-        "tech": "Vue, Javascript, HTML, Vite",
-        "features": [
-          "Multi-fichiers, édition collaborative (ciblées)",
-          "Coloration et thèmes personnalisables",
-          "Événements d'édition (sélection, modification)",
-          "Immutabilité/masquage de lignes",
-          "Complétion et aide syntaxique"
-        ]
-      },
-      {
-        "title": "CosmoRunner",
-        "description": "CosmoRunner, Prototype de jeu 3D",
-        "longDescription": "Prototype de jeu 3D réalisé sous Unity (2022.3.13f1) et C# : contrôles de déplacement, collisions et gestion d’état de partie, avec base technique prête à étendre (UI, shaders).",
-        "tech": "Unity, C#",
-        "features": [
-          "Contrôleur joueur (déplacements fluides)",
-          "Systèmes de score/chrono de base",
-          "Spawning/gestion d’objets en scène",
-          "Collisions & conditions de fin de partie",
-          "UI minimale (rejouer/état)"
+          "Swipe gauche/droite sur les œuvres",
+          "Apprentissage des préférences en temps réel",
+          "Recommandations par style/époque/artiste",
+          "Historique des likes et relecture",
+          "Filtres et découverte guidée"
         ]
       },
       {
@@ -185,16 +136,53 @@
         ]
       },
       {
-        "title": "TindArt",
-        "description": "TindArt, Découvre ton style artistique",
-        "longDescription": "Application web façon Tinder pour l’art, conçue en stage : l’utilisateur swipe des œuvres pour aimer/ignorer. Un modèle de préférences apprend son goût et propose des recommandations par styles, époques et artistes, avec historique et profil.",
-        "tech": "HTML, CSS, Javascript, Wordpress",
+        "title": "API Cineflix",
+        "description": "Cineflix, API REST de critiques et notations de films",
+        "longDescription": "API Cineflix est une API de gestion de critiques et notations de films inspirée d'IMDb. Elle permet aux utilisateurs de publier des avis, attribuer des notes, rechercher des films et consulter des classements basés sur les évaluations.",
+        "tech": "Springboot, Kotlin, MySQL, REST",
         "features": [
-          "Swipe gauche/droite sur les œuvres",
-          "Apprentissage des préférences en temps réel",
-          "Recommandations par style/époque/artiste",
-          "Historique des likes et relecture",
-          "Filtres et découverte guidée"
+          "Avis sur les films",
+          "Système de notation",
+          "Recherche avancée",
+          "Comptes utilisateurs"
+        ]
+      },
+      {
+        "title": "CosmoRunner",
+        "description": "CosmoRunner, Prototype de jeu 3D",
+        "longDescription": "Prototype de jeu 3D réalisé sous Unity (2022.3.13f1) et C# : contrôles de déplacement, collisions et gestion d’état de partie, avec base technique prête à étendre (UI, shaders).",
+        "tech": "Unity, C#",
+        "features": [
+          "Contrôleur joueur (déplacements fluides)",
+          "Systèmes de score/chrono de base",
+          "Spawning/gestion d’objets en scène",
+          "Collisions & conditions de fin de partie",
+          "UI minimale (rejouer/état)"
+        ]
+      },
+      {
+        "title": "Bonhomme-pendu",
+        "description": "Bonhomme-pendu, jeu mobile en Java",
+        "longDescription": "Petit jeu mobile du pendu : devinez le mot en un nombre d'essais limité. Interface simple, logique claire et structure Gradle pour Android. Développé en Java.",
+        "tech": "Java, Android Studio, SQLite, Gradle",
+        "features": [
+          "Mots aléatoires & lettres à deviner",
+          "Compteur d'essais/restantes",
+          "Détection de victoire/défaite",
+          "Réinitialisation rapide de partie"
+        ]
+      },
+      {
+        "title": "RechercheCodeMirror6",
+        "description": "RechercheCodeMirror6, Prototype d'éditeur CodeMirror 6",
+        "longDescription": "Prototype d'intégration de CodeMirror 6 dans une app Vue, visant à remplacer CodeMirror 5 en conservant la coloration, thèmes, événements et ajoutant complétion, multi-fichiers et édition collaborative.",
+        "tech": "Vue, Javascript, HTML, Vite",
+        "features": [
+          "Multi-fichiers, édition collaborative (ciblées)",
+          "Coloration et thèmes personnalisables",
+          "Événements d'édition (sélection, modification)",
+          "Immutabilité/masquage de lignes",
+          "Complétion et aide syntaxique"
         ]
       }
     ]

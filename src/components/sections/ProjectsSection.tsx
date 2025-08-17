@@ -137,24 +137,22 @@ const ProjectsSection: React.FC = () => {
     longDescription: project.longDescription,
     tech: project.tech,
     image: [
-      '/Cineflix.png',
-      '/AnswerSphere.png',
-      '/Bonhomme.png',
-      '/RechercheCodeMirror6.png',
-      '/Cosmorunner.png',
-      '/StageAvenir.png',
-      '/MusicaOne.png',
-      '/Arturart.png',
+      '/Arturart.png',     // TindArt
+      '/StageAvenir.png',  // StageAvenir
+      '/MusicaOne.png',    // Musica One
+      '/Cineflix.png',     // Cineflix API
+      '/Cosmorunner.png',  // CosmoRunner
+      '/Bonhomme.png',     // Bonhomme-pendu
+      '/RechercheCodeMirror6.png', // RechercheCodeMirror6
     ][index],
     githubUrl: [
-      'https://github.com/AbdelPr0/Cineflix',
-      'https://github.com/AbdelPr0/AnswerSphere',
-      'https://github.com/AbdelPr0/Bonhomme-pendu',
-      'https://github.com/AbdelPr0/RechercheCodeMirror6',
-      'https://github.com/AbdelPr0/CosmoRunner',
+      'https://artur.art/tindart-independant/', // TindArt
       'https://github.com/AbdelPr0/StageAvenirAPI',
       'https://github.com/AbdelPr0/MusicaOne',
-      'https://artur.art/tindart-independant/',
+      'https://github.com/AbdelPr0/Cineflix',
+      'https://github.com/AbdelPr0/CosmoRunner',
+      'https://github.com/AbdelPr0/Bonhomme-pendu',
+      'https://github.com/AbdelPr0/RechercheCodeMirror6',
     ][index],
     features: project.features,
   }));
